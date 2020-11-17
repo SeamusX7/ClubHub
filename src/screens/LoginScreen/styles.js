@@ -24,7 +24,8 @@ export default StyleSheet.create({
         marginBottom: 10,
         marginLeft: 30,
         marginRight: 30,
-        paddingLeft: 16
+        paddingLeft: 16,
+        fontFamily: 'montserrat-regular'
     },
     button: {
         backgroundColor: '#788eec',
@@ -34,12 +35,12 @@ export default StyleSheet.create({
         height: 48,
         borderRadius: 5,
         alignItems: "center",
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     buttonTitle: {
         color: 'white',
         fontSize: 16,
-        fontWeight: "bold"
+        fontFamily: 'montserrat-bold'
     },
     footerView: {
         flex: 1,
@@ -48,11 +49,12 @@ export default StyleSheet.create({
     },
     footerText: {
         fontSize: 16,
-        color: '#2e2e2d'
+        color: '#2e2e2d',
+        fontFamily: 'montserrat-regular'
     },
     footerLink: {
         color: "#788eec",
-        fontWeight: "bold",
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: 'montserrat-semibold'
     }
 })
