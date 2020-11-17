@@ -57,7 +57,7 @@ export default function App() {
   if (fontsLoaded) {
     return (
       <NavigationContainer> 
-        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }} >
+        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, gestureEnabled: false }} >
           <Stack.Screen name="ChooseTeam"> 
             {props => <ChooseTeamScreen {...props} extraData={user} />}
           </Stack.Screen>
