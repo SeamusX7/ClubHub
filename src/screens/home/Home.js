@@ -1,11 +1,21 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
-			
-		</View>
+      <Button 
+        title="Upcoming Sessions"
+        onPress={() => navigation.navigate('ViewUpcomingMatchSession')} />
+
+      <Button 
+        title="Notifications"
+        onPress={() => navigation.navigate('Notification')} />
+
+      <Button 
+        title="Settings"
+        onPress={() => navigation.navigate('Settings')} />
+    </View>
 	)
 }
 
