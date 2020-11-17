@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 
-export default function TeamScreen() {
+export default function TeamScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      
+      <Button 
+        title="Player"
+        onPress={() => navigation.navigate('Player')} />
     </View>
   )
 }
