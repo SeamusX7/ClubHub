@@ -6,7 +6,7 @@ export default function HomeScreen({ navigation }) {
 		<View style={styles.container}>
       <Button 
         title="Upcoming Sessions"
-        onPress={() => navigation.navigate('ViewUpcomingMatchSession')} />
+        onPress={() => navigation.navigate('Session')} />
 
       <Button 
         title="Notifications"
