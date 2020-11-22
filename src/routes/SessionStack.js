@@ -9,8 +9,6 @@ import ViewUpcomingMatchSessionScreen from '../screens/session/ViewUpcomingMatch
 import ViewPreviousMatchSessionScreen from '../screens/session/ViewPreviousMatchSession';
 import ViewPreviousTrainingSessionScreen from '../screens/session/ViewPreviousTrainingSession';
 import ViewPreviousGymSessionScreen from '../screens/session/ViewPreviousGymSession';
-import MessageScreen from '../screens/team/Message'
-import ViewMessageScreen from '../screens/team/ViewMessage'
 
 const SessionStack = createStackNavigator();
 
@@ -25,8 +23,6 @@ export default function SessionStackScreen() {
       <SessionStack.Screen name="ViewPreviousMatchSession" component={ViewPreviousMatchSessionScreen} options={{ title: 'View Previous Match Session' }} ></SessionStack.Screen>
       <SessionStack.Screen name="ViewPreviousTrainingSession" component={ViewPreviousTrainingSessionScreen} options={{ title: 'View Previous Training Session' }} ></SessionStack.Screen>
       <SessionStack.Screen name="ViewPreviousGymSession" component={ViewPreviousGymSessionScreen} options={{ title: 'View Previous Gym Session' }} ></SessionStack.Screen>
-      <SessionStack.Screen name="Message" component={MessageScreen} options={{ title: 'Message' }} ></SessionStack.Screen>
-      <SessionStack.Screen name="ViewMessage" component={ViewMessageScreen} options={{ title: 'View Message' }} ></SessionStack.Screen>
     </SessionStack.Navigator>
   )
 }
