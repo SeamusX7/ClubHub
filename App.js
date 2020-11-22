@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { firebase } from './src/firebase/config';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {decode, encode} from 'base-64';
+import { decode, encode } from 'base-64';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
@@ -11,8 +11,10 @@ import { AppLoading } from 'expo';
 import { LoginScreen, RegistrationScreen } from './src/screens';
 import ChooseTeamScreen from './src/screens/ChooseTeam';
 import TabNavigator from './src/routes/TabNavigator';
+import MessageScreen from './src/screens/message/Message'
+import ViewMessageScreen from './src/screens/message/ViewMessage'
 
-if (!global.btoa) {  global.btoa = encode }
+if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
 const getFonts = () => Font.loadAsync({
@@ -46,24 +48,26 @@ export default function App() {
             setUser(userData)
           })
           .catch((error) => {
-            
+
           });
       } else {
-        
+
       }
     });
   }, []);
 
   if (fontsLoaded) {
     return (
-      <NavigationContainer> 
+      <NavigationContainer>
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, gestureEnabled: false }} >
-          <Stack.Screen name="ChooseTeam"> 
+          <Stack.Screen name="ChooseTeam">
             {props => <ChooseTeamScreen {...props} extraData={user} />}
           </Stack.Screen>
           <Stack.Screen name="TabNavigator" component={TabNavigator}></Stack.Screen>
-          <Stack.Screen name="Login" component={LoginScreen} options={{ animationEnabled: false }} /> 
+          <Stack.Screen name="Login" component={LoginScreen} options={{ animationEnabled: false }} />
           <Stack.Screen name="Registration" component={RegistrationScreen} options={{ animationEnabled: false }} />
+          <Stack.Screen name="Message" component={MessageScreen} options={{ headerShown: true, headerBackTitleVisible: false, gestureEnabled: true, title: 'Message' }} ></Stack.Screen>
+          <Stack.Screen name="ViewMessage" component={ViewMessageScreen} options={{ headerShown: true, headerBackTitleVisible: false, gestureEnabled: true, title: 'View Message' }} ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     )
@@ -73,5 +77,5 @@ export default function App() {
         startAsync={getFonts}
         onFinish={() => setFontsLoaded(true)} />
     )
-  }  
+  }
 }
