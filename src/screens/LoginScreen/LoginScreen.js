@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Image, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import styles from './styles';
+import { Keyboard, Text, TextInput, View, StyleSheet } from 'react-native';
 import { firebase } from '../../firebase/config';
+
+ // Local File Imports
+import FlatButton from '../../components/Button';
 
 export default function LoginScreen( {navigation} ) {
 	const [email, setEmail] = useState('');
@@ -41,45 +42,114 @@ export default function LoginScreen( {navigation} ) {
     		}
 
     		return (
-        	<View style={styles.container}>
-            <KeyboardAwareScrollView
-							style={{ flex: 1, width: '100%' }}
-							keyboardShouldPersistTaps="always">
+					<View style={styles.container}>
+						<View style={styles.logoContainer}>
 
-                <Image
-									style={styles.logo}
-									source={require('../../../src/assets/icon.png')} />
+						</View>
+						<View style={styles.formContainer}>
+							<View style={styles.form}>
+								<Text style={styles.authHeaderText}>Sign in</Text>
 
-                <TextInput
+								<Text style={styles.labelText}>Email</Text>
+								<TextInput
 									style={styles.input}
-									placeholder='E-mail'
-									placeholderTextColor="#aaaaaa"
+									placeholder='Enter email...'
+									placeholderTextColor="#b7b7b7"
 									onChangeText={(text) => setEmail(text)}
 									value={email}
 									underlineColorAndroid="transparent"
-									autoCapitalize="none"/>
+									autoCapitalize="none" />
 
-                <TextInput
+								<Text style={styles.labelText}>Password</Text>
+								<TextInput
 									style={styles.input}
-									placeholderTextColor="#aaaaaa"
+									placeholder="Enter password..."
+									placeholderTextColor="#b7b7b7"
 									secureTextEntry
-									placeholder='Password'
 									onChangeText={(text) => setPassword(text)}
 									value={password}
 									underlineColorAndroid="transparent"
 									autoCapitalize="none" />
 
-                <TouchableOpacity
-									style={styles.button}
-									onPress={() => onLoginPress()} >
-                    <Text style={styles.buttonTitle}>Log in</Text>
-                </TouchableOpacity>
+								<FlatButton
+									text="Sign in"
+									onPress={() => onLoginPress()} />
 
-                <View style={styles.footerView}>
-									<Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
-                </View>
-								
-            </KeyboardAwareScrollView>
-        </View>
-    )
+							</View>
+						</View>
+						<View style={styles.footerContainer}>
+							<Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+						</View>
+					</View>
+				)
 }
+
+const styles = StyleSheet.create({
+	container: {
+		alignItems: 'stretch',
+		backgroundColor: '#f0f2f7',
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'flex-start',
+	},
+	logoContainer: {
+		// backgroundColor: '#5386e4',
+		flex: 1,
+		height: 50,
+	},
+	formContainer: {
+		flex: 4,
+		height: 50,
+	},
+	footerContainer: {
+		alignItems: 'center',
+		flex: 1,
+		height: 50,
+		justifyContent: 'center'
+	},
+	form: {
+		backgroundColor: '#fff',
+		borderRadius: 12,
+		height: '100%',
+		marginHorizontal: 30,
+		padding: 20,
+
+		// Shadow
+		elevation: 6,
+		shadowColor: "#000",
+		shadowOffset: {
+			height: 3,
+			width: 0,
+		},
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+	},
+	authHeaderText: {
+		color: '#333',
+		fontFamily: 'montserrat-semibold',
+		fontSize: 18,
+	},
+	labelText: {
+		fontFamily: 'montserrat-regular',
+		fontSize: 14,
+		marginTop: 20,
+		marginBottom: 4
+	},
+	input: {
+		backgroundColor: '#f0f2f7',
+		borderRadius: 5,
+		paddingHorizontal: 16,
+		paddingVertical: 15,
+	},
+	footerText: {
+		color: '#333',
+		fontFamily: 'montserrat-regular',
+		fontSize: 14,	
+
+	},
+	footerLink: {
+		color: "#5386e4",
+		fontSize: 14,
+		fontFamily: 'montserrat-semibold'
+	}
+})

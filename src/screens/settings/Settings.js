@@ -33,7 +33,7 @@ export default function SettingsScreen({ navigation }) {
         onPress={() => navigation.navigate('PrivacyPolicy')} />
 
       <Button 
-        title="logout"
+        title="Logout"
         onPress={() => navigation.navigate('Login')} />
     </View>
   )
