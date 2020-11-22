@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import SettingsScreen from '../screens/settings/Settings';
-import ProfileScreen from '../screens/settings/Profile'
+import ProfileScreen from '../screens/settings/Profile';
 import ClubHubPlusScreen from '../screens/settings/ClubHubPlus';
 import CustomisationScreen from '../screens/settings/Customisation';
 import LanguageScreen from '../screens/settings/Language';
