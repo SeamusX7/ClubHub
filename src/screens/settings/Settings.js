@@ -8,6 +8,10 @@ export default function SettingsScreen({ navigation }) {
         title="ClubHubPlus"
         onPress={() => navigation.navigate('ClubHubPlus')} />
 
+<Button
+        title="Profile"
+        onPress={() => navigation.navigate('Profile')} />
+
       <Button
         title="Switch Team"
         onPress={() => navigation.navigate('ChooseTeam')} />
