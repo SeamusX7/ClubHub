@@ -7,6 +7,8 @@ import PreviousTrainingSessionsScreen from '../screens/session/PreviousTrainingS
 import PreviousGymSessionsScreen from '../screens/session/PreviousGymSessions';
 import ViewUpcomingMatchSessionScreen from '../screens/session/ViewUpcomingMatchSession';
 import ViewPreviousMatchSessionScreen from '../screens/session/ViewPreviousMatchSession';
+import ViewPreviousTrainingSessionScreen from '../screens/session/ViewPreviousTrainingSession';
+import ViewPreviousGymSessionScreen from '../screens/session/ViewPreviousGymSession';
 
 const SessionStack = createStackNavigator();
 
@@ -19,6 +21,8 @@ export default function SessionStackScreen() {
       <SessionStack.Screen name="PreviousGymSessions" component={PreviousGymSessionsScreen} options={{ title: 'Previous Gym Sessions' }} ></SessionStack.Screen>
       <SessionStack.Screen name="ViewUpcomingMatchSession" component={ViewUpcomingMatchSessionScreen} options={{ title: 'View Upcoming Match Session' }} ></SessionStack.Screen>
       <SessionStack.Screen name="ViewPreviousMatchSession" component={ViewPreviousMatchSessionScreen} options={{ title: 'View Previous Match Session' }} ></SessionStack.Screen>
+      <SessionStack.Screen name="ViewPreviousTrainingSession" component={ViewPreviousTrainingSessionScreen} options={{ title: 'View Previous Training Session' }} ></SessionStack.Screen>
+      <SessionStack.Screen name="ViewPreviousGymSession" component={ViewPreviousGymSessionScreen} options={{ title: 'View Previous Gym Session' }} ></SessionStack.Screen>
     </SessionStack.Navigator>
   )
 }
