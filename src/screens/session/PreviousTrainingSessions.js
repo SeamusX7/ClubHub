@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 
-export default function PreviousTrainingSessionsScreen() {
+export default function PreviousTrainingSessionsScreen({ navigation }) {
   return (
     <View style={styles.container}>
-
+      <Button
+        title="View training"
+        onPress={() => navigation.navigate('ViewPreviousTrainingSession')} />
     </View>
   )
 }
