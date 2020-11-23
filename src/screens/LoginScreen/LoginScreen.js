@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Keyboard, Text, TextInput, View, StyleSheet } from 'react-native';
+import { Keyboard, Text, TextInput, View, StyleSheet, Image } from 'react-native';
 import { firebase } from '../../firebase/config';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
  // Local File Imports
 import FlatButton from '../../components/Button';
+import form_styles from '../../assets/styles/FormStyle';
+import auth_styles from '../../assets/styles/AuthStyle';
 
 export default function LoginScreen( {navigation} ) {
 	const [email, setEmail] = useState('');
@@ -42,114 +45,57 @@ export default function LoginScreen( {navigation} ) {
     		}
 
     		return (
-					<View style={styles.container}>
-						<View style={styles.logoContainer}>
+					<KeyboardAwareScrollView
+						contentContainerStyle={styles.container}>
+					
+						<Image
+							source={require('../../../src/assets/icon-notext.png')}
+							style={auth_styles.logo} />
 
+						<View style={auth_styles.titleContainer}>
+							<Text style={auth_styles.titleText}>Sign in</Text>
+							<Text style={auth_styles.subtitleText}>Sign in to use our app</Text>
 						</View>
-						<View style={styles.formContainer}>
-							<View style={styles.form}>
-								<Text style={styles.authHeaderText}>Sign in</Text>
 
-								<Text style={styles.labelText}>Email</Text>
-								<TextInput
-									style={styles.input}
-									placeholder='Enter email...'
-									placeholderTextColor="#b7b7b7"
-									onChangeText={(text) => setEmail(text)}
-									value={email}
-									underlineColorAndroid="transparent"
-									autoCapitalize="none" />
+						<Text style={form_styles.labelText}>Email</Text>
+						<TextInput
+							style={form_styles.input}
+							placeholder='Enter email...'
+							placeholderTextColor="#b7b7b7"
+							onChangeText={(text) => setEmail(text)}
+							value={email}
+							underlineColorAndroid="transparent"
+							autoCapitalize="none"
+							clearButtonMode="while-editing"
+							keyboardType="email-address" />
 
-								<Text style={styles.labelText}>Password</Text>
-								<TextInput
-									style={styles.input}
-									placeholder="Enter password..."
-									placeholderTextColor="#b7b7b7"
-									secureTextEntry
-									onChangeText={(text) => setPassword(text)}
-									value={password}
-									underlineColorAndroid="transparent"
-									autoCapitalize="none" />
+						<Text style={form_styles.labelText}>Password</Text>
+						<TextInput
+							style={form_styles.input}
+							placeholder="Enter password..."
+							placeholderTextColor="#b7b7b7"
+							secureTextEntry
+							onChangeText={(text) => setPassword(text)}
+							value={password}
+							underlineColorAndroid="transparent"
+							autoCapitalize="none"
+							clearButtonMode="while-editing" />
 
-								<FlatButton
-									text="Sign in"
-									onPress={() => onLoginPress()} />
+						<FlatButton
+							text="Sign in"
+							onPress={() => onLoginPress()} />
 
-							</View>
-						</View>
-						<View style={styles.footerContainer}>
-							<Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
-						</View>
-					</View>
+						<Text style={auth_styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={auth_styles.footerLink}>Sign up</Text></Text>
+
+					</KeyboardAwareScrollView>
 				)
 }
 
 const styles = StyleSheet.create({
 	container: {
-		alignItems: 'stretch',
 		backgroundColor: '#f0f2f7',
 		flex: 1,
-		flexDirection: 'column',
-		justifyContent: 'flex-start',
-	},
-	logoContainer: {
-		// backgroundColor: '#5386e4',
-		flex: 1,
-		height: 50,
-	},
-	formContainer: {
-		flex: 4,
-		height: 50,
-	},
-	footerContainer: {
-		alignItems: 'center',
-		flex: 1,
-		height: 50,
-		justifyContent: 'center'
-	},
-	form: {
-		backgroundColor: '#fff',
-		borderRadius: 12,
-		height: '100%',
+		justifyContent: 'center',
 		marginHorizontal: 30,
-		padding: 20,
-
-		// Shadow
-		elevation: 6,
-		shadowColor: "#000",
-		shadowOffset: {
-			height: 3,
-			width: 0,
-		},
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
 	},
-	authHeaderText: {
-		color: '#333',
-		fontFamily: 'montserrat-semibold',
-		fontSize: 18,
-	},
-	labelText: {
-		fontFamily: 'montserrat-regular',
-		fontSize: 14,
-		marginTop: 20,
-		marginBottom: 4
-	},
-	input: {
-		backgroundColor: '#f0f2f7',
-		borderRadius: 5,
-		paddingHorizontal: 16,
-		paddingVertical: 15,
-	},
-	footerText: {
-		color: '#333',
-		fontFamily: 'montserrat-regular',
-		fontSize: 14,	
-
-	},
-	footerLink: {
-		color: "#5386e4",
-		fontSize: 14,
-		fontFamily: 'montserrat-semibold'
-	}
 })
