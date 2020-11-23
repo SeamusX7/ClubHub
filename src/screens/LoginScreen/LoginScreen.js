@@ -81,6 +81,8 @@ export default function LoginScreen( {navigation} ) {
 							autoCapitalize="none"
 							clearButtonMode="while-editing" />
 
+						<Text style={styles.forgotPasswordText}>Forgot password?</Text>
+
 						<FlatButton
 							text="Sign in"
 							onPress={() => onLoginPress()} />
@@ -98,4 +100,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		paddingHorizontal: 30,
 	},
+	forgotPasswordText: {
+		fontFamily: 'montserrat-regular',
+		marginTop: 8,
+		textAlign: 'right',
+	}
 })
