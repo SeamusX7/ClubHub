@@ -96,6 +96,6 @@ const styles = StyleSheet.create({
 		backgroundColor: '#f0f2f7',
 		flex: 1,
 		justifyContent: 'center',
-		marginHorizontal: 30,
+		paddingHorizontal: 30,
 	},
 })
