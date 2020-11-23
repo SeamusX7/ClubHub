@@ -64,7 +64,7 @@ export default function RegistrationScreen({ navigation }) {
 				<Text style={auth_styles.subtitleText}>Sign up to use our app</Text>
 			</View>
 
-			<Text style={form_styles.labelText}>Full Name</Text>
+			<Text style={form_styles.labelText}>Full name</Text>
 			<TextInput
 				style={form_styles.input}
 				placeholder='Enter full name...'
@@ -99,7 +99,7 @@ export default function RegistrationScreen({ navigation }) {
 				autoCapitalize="none"
 				clearButtonMode="while-editing" />
 
-			<Text style={form_styles.labelText}>Confirm Password</Text>
+			<Text style={form_styles.labelText}>Confirm password</Text>
 			<TextInput
 				style={form_styles.input}
 				placeholder="Confirm password..."
