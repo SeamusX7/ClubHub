@@ -9,7 +9,8 @@ export default StyleSheet.create({
 	},
 	input: {
 		backgroundColor: '#fff',
-		borderRadius: 5,
+    borderRadius: 5,
+    fontFamily: 'montserrat-regular',
 		paddingHorizontal: 16,
 		paddingVertical: 15,
 	},
