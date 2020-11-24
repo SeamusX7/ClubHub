@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react';
+import { Keyboard, Text, TextInput, View, StyleSheet, Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import styles from './styles';
-import { firebase } from '../../firebase/config'
+import { firebase } from '../../firebase/config';
 
-export default function RegistrationScreen( {navigation} ) {
+// Local File Imports
+import FlatButton from '../../components/Button';
+import form_styles from '../../assets/styles/FormStyle';
+import auth_styles from '../../assets/styles/AuthStyle';
+
+export default function RegistrationScreen({ navigation }) {
 	const [fullName, setFullName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -14,12 +18,12 @@ export default function RegistrationScreen( {navigation} ) {
 		navigation.navigate('Login');
 	}
 
-  const onRegisterPress = () => {
+	const onRegisterPress = () => {
 		if (password !== confirmPassword) {
 			alert("Passwords don't match.");
 			return
 		}
-    
+
 		firebase
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
@@ -35,76 +39,93 @@ export default function RegistrationScreen( {navigation} ) {
 					.doc(uid)
 					.set(user)
 					.then(() => {
-            navigation.navigate('ChooseTeam', {user: user});
-          })
+						navigation.navigate('ChooseTeam', { user: user });
+					})
 					.catch((error) => {
-							alert(error)
+						alert(error)
 					});
-				})
-				.catch((error) => {
-					alert(error)
-        });
-			}
+			})
+			.catch((error) => {
+				alert(error)
+			})
+		Keyboard.dismiss();
+	}
 
-    	return (
-        <View style={styles.container}>
-					<KeyboardAwareScrollView
-						style={{ flex: 1, width: '100%' }}
-						keyboardShouldPersistTaps="always" >
+	return (
+		<KeyboardAwareScrollView
+			contentContainerStyle={styles.container}>
 
-							<Image
-								style={styles.logo}
-								source={require('../../../src/assets/icon.png')} />
+			<Image
+				source={require('../../../src/assets/icon-notext.png')}
+				style={auth_styles.logo} />
 
-							<TextInput
-								style={styles.input}
-								placeholder='Full Name'
-								placeholderTextColor="#aaaaaa"
-								onChangeText={(text) => setFullName(text)}
-								value={fullName}
-								underlineColorAndroid="transparent"
-								autoCapitalize="none" />
+			<View style={auth_styles.titleContainer}>
+				<Text style={auth_styles.titleText}>Sign up</Text>
+				<Text style={auth_styles.subtitleText}>Sign up to use our app</Text>
+			</View>
 
-							<TextInput
-								style={styles.input}
-								placeholder='E-mail'
-								placeholderTextColor="#aaaaaa"
-								onChangeText={(text) => setEmail(text)}
-								value={email}
-								underlineColorAndroid="transparent"
-								autoCapitalize="none" />
+			<Text style={form_styles.labelText}>Full name</Text>
+			<TextInput
+				style={form_styles.input}
+				placeholder='Enter full name...'
+				placeholderTextColor="#b7b7b7"
+				onChangeText={(text) => setFullName(text)}
+				value={fullName}
+				underlineColorAndroid="transparent"
+				autoCapitalize="none"
+				clearButtonMode="while-editing" />
 
-							<TextInput
-								style={styles.input}
-								placeholderTextColor="#aaaaaa"
-								secureTextEntry
-								placeholder='Password'
-								onChangeText={(text) => setPassword(text)}
-								value={password}
-								underlineColorAndroid="transparent"
-								autoCapitalize="none"	/>
+			<Text style={form_styles.labelText}>Email</Text>
+			<TextInput
+				style={form_styles.input}
+				placeholder="Enter email..."
+				placeholderTextColor="#b7b7b7"
+				onChangeText={(text) => setEmail(text)}
+				value={email}
+				underlineColorAndroid="transparent"
+				autoCapitalize="none"
+				clearButtonMode="while-editing"
+				keyboardType="email-address" />
 
-                <TextInput
-									style={styles.input}
-									placeholderTextColor="#aaaaaa"
-									secureTextEntry
-									placeholder='Confirm Password'
-									onChangeText={(text) => setConfirmPassword(text)}
-									value={confirmPassword}
-									underlineColorAndroid="transparent"
-									autoCapitalize="none" />
+			<Text style={form_styles.labelText}>Password</Text>
+			<TextInput
+				style={form_styles.input}
+				placeholder="Enter password..."
+				placeholderTextColor="#b7b7b7"
+				secureTextEntry
+				onChangeText={(text) => setPassword(text)}
+				value={password}
+				underlineColorAndroid="transparent"
+				autoCapitalize="none"
+				clearButtonMode="while-editing" />
 
-                <TouchableOpacity
-									style={styles.button}
-									onPress={() => onRegisterPress()} >
-                    <Text style={styles.buttonTitle}>Create account</Text>
-                </TouchableOpacity>
+			<Text style={form_styles.labelText}>Confirm password</Text>
+			<TextInput
+				style={form_styles.input}
+				placeholder="Confirm password..."
+				placeholderTextColor="#b7b7b7"
+				secureTextEntry
+				onChangeText={(text) => setConfirmPassword(text)}
+				value={confirmPassword}
+				underlineColorAndroid="transparent"
+				autoCapitalize="none"
+				clearButtonMode="while-editing" />
 
-                <View style={styles.footerView}>
-									<Text style={styles.footerText}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
-                </View>
+			<FlatButton
+				text="Sign up"
+				onPress={() => onRegisterPress()} />
 
-            </KeyboardAwareScrollView>
-        </View>
-    )
+			<Text style={auth_styles.footerText}>Already have an account? <Text onPress={onFooterLinkPress} style={auth_styles.footerLink}>Sign in</Text></Text>
+
+		</KeyboardAwareScrollView>
+	)
 }
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: '#f0f2f7',
+		flex: 1,
+		justifyContent: 'center',
+		paddingHorizontal: 30,
+	},
+})

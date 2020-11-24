@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import styles from './styles';
+import { Keyboard, Text, TextInput, View, StyleSheet, Image } from 'react-native';
 import { firebase } from '../../firebase/config';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+ // Local File Imports
+import FlatButton from '../../components/Button';
+import form_styles from '../../assets/styles/FormStyle';
+import auth_styles from '../../assets/styles/AuthStyle';
 
 export default function LoginScreen( {navigation} ) {
 	const [email, setEmail] = useState('');
@@ -37,48 +41,68 @@ export default function LoginScreen( {navigation} ) {
 					.catch(error => {
 						alert(error)
 					})
+					Keyboard.dismiss();
     		}
 
     		return (
-        	<View style={styles.container}>
-            <KeyboardAwareScrollView
-							style={{ flex: 1, width: '100%' }}
-							keyboardShouldPersistTaps="always">
+					<KeyboardAwareScrollView
+						contentContainerStyle={styles.container}>
+					
+						<Image
+							source={require('../../../src/assets/icon-notext.png')}
+							style={auth_styles.logo} />
 
-                <Image
-									style={styles.logo}
-									source={require('../../../src/assets/icon.png')} />
+						<View style={auth_styles.titleContainer}>
+							<Text style={auth_styles.titleText}>Sign in</Text>
+							<Text style={auth_styles.subtitleText}>Sign in to use our app</Text>
+						</View>
 
-                <TextInput
-									style={styles.input}
-									placeholder='E-mail'
-									placeholderTextColor="#aaaaaa"
-									onChangeText={(text) => setEmail(text)}
-									value={email}
-									underlineColorAndroid="transparent"
-									autoCapitalize="none"/>
+						<Text style={form_styles.labelText}>Email</Text>
+						<TextInput
+							style={form_styles.input}
+							placeholder='Enter email...'
+							placeholderTextColor="#b7b7b7"
+							onChangeText={(text) => setEmail(text)}
+							value={email}
+							underlineColorAndroid="transparent"
+							autoCapitalize="none"
+							clearButtonMode="while-editing"
+							keyboardType="email-address" />
 
-                <TextInput
-									style={styles.input}
-									placeholderTextColor="#aaaaaa"
-									secureTextEntry
-									placeholder='Password'
-									onChangeText={(text) => setPassword(text)}
-									value={password}
-									underlineColorAndroid="transparent"
-									autoCapitalize="none" />
+						<Text style={form_styles.labelText}>Password</Text>
+						<TextInput
+							style={form_styles.input}
+							placeholder="Enter password..."
+							placeholderTextColor="#b7b7b7"
+							secureTextEntry
+							onChangeText={(text) => setPassword(text)}
+							value={password}
+							underlineColorAndroid="transparent"
+							autoCapitalize="none"
+							clearButtonMode="while-editing" />
 
-                <TouchableOpacity
-									style={styles.button}
-									onPress={() => onLoginPress()} >
-                    <Text style={styles.buttonTitle}>Log in</Text>
-                </TouchableOpacity>
+						<Text style={styles.forgotPasswordText}>Forgot password?</Text>
 
-                <View style={styles.footerView}>
-									<Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
-                </View>
-								
-            </KeyboardAwareScrollView>
-        </View>
-    )
+						<FlatButton
+							text="Sign in"
+							onPress={() => onLoginPress()} />
+
+						<Text style={auth_styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={auth_styles.footerLink}>Sign up</Text></Text>
+
+					</KeyboardAwareScrollView>
+				)
 }
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: '#f0f2f7',
+		flex: 1,
+		justifyContent: 'center',
+		paddingHorizontal: 30,
+	},
+	forgotPasswordText: {
+		fontFamily: 'montserrat-regular',
+		marginTop: 8,
+		textAlign: 'right',
+	}
+})
