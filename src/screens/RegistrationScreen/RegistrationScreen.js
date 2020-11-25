@@ -5,7 +5,6 @@ import { firebase } from '../../firebase/config';
 
 // Local File Imports
 import FlatButton from '../../components/Button';
-import form_styles from '../../assets/styles/FormStyle';
 import auth_styles from '../../assets/styles/AuthStyle';
 
 export default function RegistrationScreen({ navigation }) {
@@ -64,9 +63,9 @@ export default function RegistrationScreen({ navigation }) {
 				<Text style={auth_styles.subtitleText}>Sign up to use our app</Text>
 			</View>
 
-			<Text style={form_styles.labelText}>Full name</Text>
+			<Text style={auth_styles.authLabelText}>Full name</Text>
 			<TextInput
-				style={form_styles.input}
+				style={auth_styles.authInput}
 				placeholder='Enter full name...'
 				placeholderTextColor="#b7b7b7"
 				onChangeText={(text) => setFullName(text)}
@@ -75,9 +74,9 @@ export default function RegistrationScreen({ navigation }) {
 				autoCapitalize="none"
 				clearButtonMode="while-editing" />
 
-			<Text style={form_styles.labelText}>Email</Text>
+			<Text style={auth_styles.authLabelText}>Email</Text>
 			<TextInput
-				style={form_styles.input}
+				style={auth_styles.authInput}
 				placeholder="Enter email..."
 				placeholderTextColor="#b7b7b7"
 				onChangeText={(text) => setEmail(text)}
@@ -87,9 +86,9 @@ export default function RegistrationScreen({ navigation }) {
 				clearButtonMode="while-editing"
 				keyboardType="email-address" />
 
-			<Text style={form_styles.labelText}>Password</Text>
+			<Text style={auth_styles.authLabelText}>Password</Text>
 			<TextInput
-				style={form_styles.input}
+				style={auth_styles.authInput}
 				placeholder="Enter password..."
 				placeholderTextColor="#b7b7b7"
 				secureTextEntry
@@ -99,9 +98,9 @@ export default function RegistrationScreen({ navigation }) {
 				autoCapitalize="none"
 				clearButtonMode="while-editing" />
 
-			<Text style={form_styles.labelText}>Confirm password</Text>
+			<Text style={auth_styles.authLabelText}>Confirm password</Text>
 			<TextInput
-				style={form_styles.input}
+				style={auth_styles.authInput}
 				placeholder="Confirm password..."
 				placeholderTextColor="#b7b7b7"
 				secureTextEntry
