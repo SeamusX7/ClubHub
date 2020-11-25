@@ -35,5 +35,18 @@ export default StyleSheet.create({
 		color: "#5386e4",
 		fontSize: 14,
 		fontFamily: 'montserrat-semibold'
-	}
+	},
+	authInput: {
+		backgroundColor: '#fff',
+    borderRadius: 5,
+    fontFamily: 'montserrat-regular',
+		paddingHorizontal: 16,
+		paddingVertical: 15,
+	},
+	authLabelText: {
+		fontFamily: 'montserrat-regular',
+		fontSize: 14,
+		marginTop: 11,
+		marginBottom: 4
+	},
 })

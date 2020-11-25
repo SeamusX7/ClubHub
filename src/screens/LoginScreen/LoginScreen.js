@@ -5,7 +5,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
  // Local File Imports
 import FlatButton from '../../components/Button';
-import form_styles from '../../assets/styles/FormStyle';
 import auth_styles from '../../assets/styles/AuthStyle';
 
 export default function LoginScreen( {navigation} ) {
@@ -57,9 +56,9 @@ export default function LoginScreen( {navigation} ) {
 							<Text style={auth_styles.subtitleText}>Sign in to use our app</Text>
 						</View>
 
-						<Text style={form_styles.labelText}>Email</Text>
+						<Text style={auth_styles.authLabelText}>Email</Text>
 						<TextInput
-							style={form_styles.input}
+							style={auth_styles.authInput}
 							placeholder='Enter email...'
 							placeholderTextColor="#b7b7b7"
 							onChangeText={(text) => setEmail(text)}
@@ -69,9 +68,9 @@ export default function LoginScreen( {navigation} ) {
 							clearButtonMode="while-editing"
 							keyboardType="email-address" />
 
-						<Text style={form_styles.labelText}>Password</Text>
+						<Text style={auth_styles.authLabelText}>Password</Text>
 						<TextInput
-							style={form_styles.input}
+							style={auth_styles.authInput}
 							placeholder="Enter password..."
 							placeholderTextColor="#b7b7b7"
 							secureTextEntry
