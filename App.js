@@ -9,7 +9,7 @@ import { AppLoading } from 'expo';
 
 // Local File Imports
 import { LoginScreen, RegistrationScreen } from './src/screens';
-import ChooseTeamScreen from './src/screens/ChooseTeam';
+import ChooseTeamScreen from './src/screens/launchpad/ChooseTeam';
 import TabNavigator from './src/routes/TabNavigator';
 import MessageScreen from './src/screens/message/Message'
 import ViewMessageScreen from './src/screens/message/ViewMessage'

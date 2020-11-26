@@ -5,12 +5,16 @@ import { MaterialIcons } from '@expo/vector-icons';
 // Local File Imports
 import CreateTeamForm from './CreateTeamForm';
 import DisplayTeams from './DisplayTeams';
-import modal_styles from '../assets/styles/ModalStyle';
+import modal_styles from '../../assets/styles/ModalStyle';
 
 export default function ChooseTeamScreen(props) {
   const userName = props.extraData.fullName;
   const userId = props.extraData.id;
   const [modalOpen, setModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setModalOpen(false);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,7 +33,7 @@ export default function ChooseTeamScreen(props) {
                 style={modal_styles.modalToggleExit}
                 onPress={() => setModalOpen(false)} />
             </View>
-            <CreateTeamForm userId={userId} />
+            <CreateTeamForm userId={userId} closeModal={closeModal} />
           </View>
         </SafeAreaView>
       </Modal>
