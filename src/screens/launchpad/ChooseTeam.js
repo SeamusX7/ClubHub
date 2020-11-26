@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, SafeAreaView, Button, Modal, View } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, SafeAreaView, Button, Modal, View, TouchableOpacity } from 'react-native'
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Local File Imports
 import CreateTeamForm from './CreateTeamForm';
 import DisplayTeams from './DisplayTeams';
 import modal_styles from '../../assets/styles/ModalStyle';
+import card_styles from '../../assets/styles/CardStyle';
+import FlatButton from '../../components/CreateButton';
+import Card from '../../components/Card';
+import { FlatList } from 'react-native-gesture-handler';
 
 export default function ChooseTeamScreen(props) {
   const userName = props.extraData.fullName;
@@ -18,7 +22,7 @@ export default function ChooseTeamScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
-      
+
       <Modal
         visible={modalOpen}
         animationType='slide'>
@@ -38,22 +42,51 @@ export default function ChooseTeamScreen(props) {
         </SafeAreaView>
       </Modal>
 
-      <Text>Welcome back, {userName}!</Text>
-      {/* Chewie this is the file that you'll design the team card within. Uncomment when working on */}
-      {/* <DisplayTeams userId={userId} string='hello' /> */}
-
-      <MaterialIcons
-        name='add'
-        color='#333'
-        size={42}
-        style={modal_styles.modalToggleCreate}
-        onPress={() => setModalOpen(true)} />
-
       <Button
         title="go to app"
         onPress={() => props.navigation.navigate('TabNavigator')} />
 
-    </SafeAreaView>
+      <View>
+        <Text style={styles.greeting} >Welcome back, {userName}!</Text>
+        <Text style={styles.text}>Select a team to get started.</Text>
+      </View>
+
+      <View style={styles.cardView} >
+        <FlatList
+          data={userId}
+          renderItem={({ id }) => (
+            <TouchableOpacity>
+              <Card>
+                <View style={card_styles.container} >
+                  <View style={card_styles.circle} >
+                    <MaterialCommunityIcons
+                      name='trophy-outline'
+                      size={20}
+                      color='#5386e4'
+                      style={card_styles.icon} />
+                  </View>
+                  <View style={card_styles.textView} >
+                    <Text style={card_styles.textOne} >Sligo Rovers</Text>
+                    <Text style={card_styles.textTwo} >u24s</Text>
+                  </View>
+                  <View style={card_styles.option} >
+                    {/* <DisplayTeams userId={userId} string='hello' /> */}
+                    <MaterialIcons
+                      name='more-horiz'
+                      size={22}
+                      color='#B7B7B7'
+                    />
+                  </View>
+                </View>
+              </Card>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+
+      <FlatButton onPress={() => setModalOpen(true)} />
+
+    </SafeAreaView >
   )
 }
 
@@ -61,5 +94,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f2f7',
+    marginTop: 150,
+  },
+  greeting: {
+    textAlign: 'center',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 18,
+  },
+  text: {
+    textAlign: 'center',
+    fontFamily: 'montserrat-regular',
+    fontSize: 16,
+  },
+  cardView: {
+    marginTop: 30,
   }
 });
