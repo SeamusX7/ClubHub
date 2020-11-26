@@ -1,18 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { Formik } from 'formik';
-import { firebase } from '../firebase/config';
+import { firebase } from '../../firebase/config';
 
 // Local File Imports
-import FlatButton from '../components/ModalButton';
-import modal_styles from '../assets/styles/ModalStyle';
+import FlatButton from '../../components/ModalButton';
+import modal_styles from '../../assets/styles/ModalStyle';
 
-export default function CreateTeamForm(userId) {
+export default function CreateTeamForm({ closeModal, userId }) {
 	return (
 		<View>
 			<Formik
 				initialValues={{ teamName: '', club: '', sport: '' }}
 				onSubmit={(values) => {
+					closeModal();
 					const db = firebase.firestore()
 					db.collection('team').add({
 						club: values.club,
