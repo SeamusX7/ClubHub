@@ -1,10 +1,20 @@
 import React from 'react';
 import { StyleSheet, View, Button} from 'react-native';
-
+import { firebase } from '../../firebase/config';
 import SettingsButton from '../../components/SettingsButton';
 import LogoutButton from '../../components/LogoutButton';
 
 export default function SettingsScreen({ navigation }) {
+
+  signOutUser = async () => {
+    try {
+        await firebase.auth().signOut();
+        navigation.navigate('Login');
+    } catch (e) {
+        console.log(e);
+    }
+}
+
   return (
     <View style={styles.container}>
       <SettingsButton
@@ -37,7 +47,7 @@ export default function SettingsScreen({ navigation }) {
 
       <LogoutButton 
         text="Sign Out"
-        onPress={() => navigation.navigate('Login')} />
+        onPress={() => signOutUser()} />
     </View>
   )
 }
