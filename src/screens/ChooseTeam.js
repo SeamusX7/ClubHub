@@ -6,6 +6,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import CreateTeamForm from './CreateTeamForm';
 import DisplayTeams from './DisplayTeams';
 import modal_styles from '../assets/styles/ModalStyle';
+import card_styles from '../assets/styles/CardStyle';
+import FlatButton from '../components/CreateButton';
 
 export default function ChooseTeamScreen(props) {
   const userName = props.extraData.fullName;
@@ -14,7 +16,7 @@ export default function ChooseTeamScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
-      
+
       <Modal
         visible={modalOpen}
         animationType='slide'>
@@ -34,16 +36,14 @@ export default function ChooseTeamScreen(props) {
         </SafeAreaView>
       </Modal>
 
-      <Text>Welcome back, {userName}!</Text>
+      <View style={styles.f} >
+        <Text style={styles.greeting} >Welcome back, {userName}!</Text>
+        <Text style={styles.text}>Select a team to get started.</Text>
+      </View>
       {/* Chewie this is the file that you'll design the team card within. Uncomment when working on */}
       {/* <DisplayTeams userId={userId} string='hello' /> */}
 
-      <MaterialIcons
-        name='add'
-        color='#333'
-        size={42}
-        style={modal_styles.modalToggleCreate}
-        onPress={() => setModalOpen(true)} />
+      <FlatButton onPress={() => setModalOpen(true)} />
 
       <Button
         title="go to app"
@@ -57,5 +57,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f2f7',
+  },
+  f: {
+    flex: 1,
+  },
+  greeting: {
+    textAlign: 'center',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 18,
+  },
+  text: {
+    textAlign: 'center',
+    fontFamily: 'montserrat-regular',
+    fontSize: 16,
   }
 });
