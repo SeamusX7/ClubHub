@@ -1,13 +1,15 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
 export default function Card(props) {
   return (
-    <View style={styles.card}>
-      <View style={styles.cardContent}>
-        {props.children}
+    <TouchableOpacity>
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          {props.children}
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -16,7 +18,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     // elevation: 3,
     backgroundColor: '#fff',
-    marginHorizontal: 20,
     marginVertical: 6,
     height: 70,
     borderLeftWidth: 10,
