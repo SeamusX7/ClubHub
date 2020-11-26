@@ -44,9 +44,8 @@ export default function TabNavigator({ navigation }) {
         },
       })}
       tabBarOptions={{
-        activeTintColor: '#5386E4',
-        inactiveTintColor: '#B7B7B7',
-        // activeBackgroundColor: ‘#FAFAFA’,
+        activeTintColor: '#5386e4',
+        inactiveTintColor: '#b7b7b7',
         showLabel: false,
         tabStyle: {
           borderRadius: 8,
@@ -66,7 +65,7 @@ export default function TabNavigator({ navigation }) {
       <Tab.Screen name="Home" component={HomeStackScreen} />
       <Tab.Screen name="Team" component={TeamStackScreen} />
       <Tab.Screen name="Session" component={SessionStackScreen} />
-      <Tab.Screen name="Notification" component={NotificationStackScreen} options={{ tabBarBadge: 7 }} />
+      <Tab.Screen name="Notification" component={NotificationStackScreen} />
       <Tab.Screen name="Settings" component={SettingsStackScreen} />
     </Tab.Navigator>
   )

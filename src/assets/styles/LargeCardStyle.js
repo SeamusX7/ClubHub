@@ -6,7 +6,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     height: 120,
     justifyContent: 'space-between',
-    marginTop: 10,
   },
   largeLeftCard: {
     backgroundColor: '#fff',

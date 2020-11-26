@@ -5,6 +5,9 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
 import large_card_style from '../../assets/styles/LargeCardStyle';
+import Card from '../../components/Card';
+import card_styles from '../../assets/styles/CardStyle';
+import MoreButton from '../../components/MoreButton';
 
 export default function SessionScreen({ navigation }) {
   return (
@@ -19,7 +22,7 @@ export default function SessionScreen({ navigation }) {
     }, [navigation]),
 
     <View style={styles.container}>
-      <Text style={global_styles.title}>Previous sessions</Text>
+      <Text style={{...global_styles.title, marginBottom: 10}}>Previous sessions</Text>
       <View style={large_card_style.container}>
         <TouchableOpacity onPress={() => navigation.navigate('PreviousMatchSessions')} style={large_card_style.largeLeftCard}>
           <MaterialCommunityIcons
@@ -46,10 +49,25 @@ export default function SessionScreen({ navigation }) {
           <Text style={large_card_style.text}>Gym</Text>
         </TouchableOpacity>
       </View>
-
-      <Button
-        title="Upcoming session"
-        onPress={() => navigation.navigate('ViewUpcomingMatchSession')} />
+      <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Upcoming sessions</Text>
+      <Card onPress={() => navigation.navigate('ViewUpcomingMatchSession')}>
+        <View style={card_styles.container}>
+          <View style={card_styles.circle}>
+            <MaterialCommunityIcons
+              name='trophy-outline'
+              size={20}
+              color='#5386e4'
+              style={card_styles.icon} />
+          </View>
+          <View style={card_styles.textView}>
+            <Text style={card_styles.textOne}>vs. Drogheda United</Text>
+            <Text style={card_styles.textTwo}>14:30 | 6th February</Text>
+          </View>
+          <View style={card_styles.more}>
+            <MoreButton onPress={() => console.log('Tap')} />
+          </View>
+        </View>
+      </Card>
     </View>
   )
 }
