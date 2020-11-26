@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, SafeAreaView, Button, Modal, View, TouchableOpacity } from 'react-native'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FlatList } from 'react-native-gesture-handler';
 
 // Local File Imports
 import CreateTeamForm from './CreateTeamForm';
@@ -9,7 +10,6 @@ import modal_styles from '../../assets/styles/ModalStyle';
 import card_styles from '../../assets/styles/CardStyle';
 import FlatButton from '../../components/CreateButton';
 import Card from '../../components/Card';
-import { FlatList } from 'react-native-gesture-handler';
 
 export default function ChooseTeamScreen(props) {
   const userName = props.extraData.fullName;

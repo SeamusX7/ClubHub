@@ -1,6 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, View, Button, Text, TouchableOpacity } from 'react-native';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+
+// Local File Imports
+import global_styles from '../../assets/styles/GlobalStyle';
+import large_card_style from '../../assets/styles/LargeCardStyle';
 
 export default function SessionScreen({ navigation }) {
   return (
@@ -15,17 +19,33 @@ export default function SessionScreen({ navigation }) {
     }, [navigation]),
 
     <View style={styles.container}>
-      <Button
-        title="Previous match sessions"
-        onPress={() => navigation.navigate('PreviousMatchSessions')} />
-
-      <Button
-        title="Previous training sessions"
-        onPress={() => navigation.navigate('PreviousTrainingSessions')} />
-
-      <Button
-        title="Previous gym sessions"
-        onPress={() => navigation.navigate('PreviousGymSessions')} />
+      <Text style={global_styles.title}>Previous sessions</Text>
+      <View style={large_card_style.container}>
+        <TouchableOpacity onPress={() => navigation.navigate('PreviousMatchSessions')} style={large_card_style.largeLeftCard}>
+          <MaterialCommunityIcons
+            name="trophy-outline"
+            size={36}
+            color="#5386e4"
+            style={{ alignSelf: 'center' }} />
+          <Text style={large_card_style.text}>Matches</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('PreviousTrainingSessions')} style={large_card_style.largeCenterCard}>
+          <Ionicons
+            name="md-football"
+            size={36}
+            color="#5386e4"
+            style={{ alignSelf: 'center' }} />
+          <Text style={large_card_style.text}>Training</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('PreviousGymSessions')} style={large_card_style.largeRightCard}>
+          <MaterialCommunityIcons
+            name="dumbbell"
+            size={36}
+            color="#5386e4"
+            style={{ alignSelf: 'center' }} />
+          <Text style={large_card_style.text}>Gym</Text>
+        </TouchableOpacity>
+      </View>
 
       <Button
         title="Upcoming session"
@@ -38,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f0f2f7',
     flex: 1,
+    padding: 20,
   },
   icon: {
     marginRight: 20,
