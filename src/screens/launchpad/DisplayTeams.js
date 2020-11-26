@@ -1,7 +1,7 @@
 import react from 'react';
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, TextInput, FlatList, ScrollView, ActivityIndicator } from 'react-native'
-import { firebase } from '../firebase/config'
+import { firebase } from '../../firebase/config'
 // import TeamItem from './TeamItem'
 
 
