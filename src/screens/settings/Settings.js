@@ -1,39 +1,42 @@
 import React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, Button} from 'react-native';
+
+import SettingsButton from '../../components/SettingsButton';
+import LogoutButton from '../../components/LogoutButton';
 
 export default function SettingsScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Button
-        title="ClubHubPlus"
-        onPress={() => navigation.navigate('ClubHubPlus')} />
-
-<Button
-        title="Profile"
+      <SettingsButton
+        text="Profile"
         onPress={() => navigation.navigate('Profile')} />
 
-      <Button
-        title="Switch Team"
+      <SettingsButton
+        text="ClubHubPlus"
+        onPress={() => navigation.navigate('ClubHubPlus')} />
+
+      <SettingsButton
+        text="Switch Team"
         onPress={() => navigation.navigate('ChooseTeam')} />
 
-      <Button
-        title="Customisation"
+      <SettingsButton
+        text="Customisation"
         onPress={() => navigation.navigate('Customisation')} />
 
-<Button
-        title="Language"
+      <SettingsButton
+        text="Language"
         onPress={() => navigation.navigate('Language')} />
 
-<Button
-        title="Terms of Service"
+      <SettingsButton
+        text="Terms of Service"
         onPress={() => navigation.navigate('TermsOfService')} />
 
-<Button
-        title="Privacy Policy"
+      <SettingsButton
+        text="Privacy Policy"
         onPress={() => navigation.navigate('PrivacyPolicy')} />
 
-      <Button 
-        title="Logout"
+      <LogoutButton 
+        text="Sign Out"
         onPress={() => navigation.navigate('Login')} />
     </View>
   )
@@ -43,5 +46,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f2f7',
+    marginTop:10,
   },
+  icon: {
+    marginRight: 20,
+  },
+  
 });
+
