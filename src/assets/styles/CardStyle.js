@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   icon: {
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: 12,
   },
   textView: {
     marginLeft: 20,
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     fontSize: 12,
     marginTop: 1,
   },
-  option: {
+  more: {
     position: 'absolute',
     right: 0,
     marginTop: 12,

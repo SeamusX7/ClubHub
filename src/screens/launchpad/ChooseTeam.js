@@ -9,6 +9,7 @@ import DisplayTeams from './DisplayTeams';
 import modal_styles from '../../assets/styles/ModalStyle';
 import card_styles from '../../assets/styles/CardStyle';
 import FlatButton from '../../components/CreateButton';
+import MoreButton from '../../components/MoreButton';
 import Card from '../../components/Card';
 
 export default function ChooseTeamScreen(props) {
@@ -55,8 +56,8 @@ export default function ChooseTeamScreen(props) {
         <FlatList
           data={userId}
           renderItem={({ id }) => (
-            <TouchableOpacity>
-              <Card>
+            <Card>
+              <TouchableOpacity>
                 <View style={card_styles.container} >
                   <View style={card_styles.circle} >
                     <MaterialCommunityIcons
@@ -66,20 +67,16 @@ export default function ChooseTeamScreen(props) {
                       style={card_styles.icon} />
                   </View>
                   <View style={card_styles.textView} >
+                    {/* <DisplayTeams userId={userId} string='hello' /> */}
                     <Text style={card_styles.textOne} >Sligo Rovers</Text>
                     <Text style={card_styles.textTwo} >u24s</Text>
                   </View>
-                  <View style={card_styles.option} >
-                    {/* <DisplayTeams userId={userId} string='hello' /> */}
-                    <MaterialIcons
-                      name='more-horiz'
-                      size={22}
-                      color='#B7B7B7'
-                    />
+                  <View style={card_styles.more} >
+                    <MoreButton onPress={() => console.log('Tap')} />
                   </View>
                 </View>
-              </Card>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </Card>
           )}
         />
       </View>
