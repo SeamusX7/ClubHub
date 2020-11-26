@@ -43,10 +43,6 @@ export default function ChooseTeamScreen(props) {
         </SafeAreaView>
       </Modal>
 
-      <Button
-        title="go to app"
-        onPress={() => props.navigation.navigate('TabNavigator')} />
-
       <View>
         <Text style={styles.greeting} >Welcome back, {userName}!</Text>
         <Text style={styles.text}>Select a team to get started.</Text>
@@ -56,7 +52,7 @@ export default function ChooseTeamScreen(props) {
         {/* <FlatList
           data={userId}
           renderItem={({ id }) => ( */}
-        <Card>
+        <Card onPress={() => props.navigation.navigate('TabNavigator')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle} >
               <MaterialCommunityIcons
