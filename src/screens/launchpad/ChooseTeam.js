@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, SafeAreaView, Button, Modal, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, SafeAreaView, Button, Modal, View } from 'react-native'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -53,32 +53,30 @@ export default function ChooseTeamScreen(props) {
       </View>
 
       <View style={styles.cardView} >
-        <FlatList
+        {/* <FlatList
           data={userId}
-          renderItem={({ id }) => (
-            <Card>
-              <TouchableOpacity>
-                <View style={card_styles.container} >
-                  <View style={card_styles.circle} >
-                    <MaterialCommunityIcons
-                      name='trophy-outline'
-                      size={20}
-                      color='#5386e4'
-                      style={card_styles.icon} />
-                  </View>
-                  <View style={card_styles.textView} >
-                    {/* <DisplayTeams userId={userId} string='hello' /> */}
-                    <Text style={card_styles.textOne} >Sligo Rovers</Text>
-                    <Text style={card_styles.textTwo} >u24s</Text>
-                  </View>
-                  <View style={card_styles.more} >
-                    <MoreButton onPress={() => console.log('Tap')} />
-                  </View>
-                </View>
-              </TouchableOpacity>
-            </Card>
-          )}
-        />
+          renderItem={({ id }) => ( */}
+        <Card>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle} >
+              <MaterialCommunityIcons
+                name='trophy-outline'
+                size={20}
+                color='#5386e4'
+                style={card_styles.icon} />
+            </View>
+            <View style={card_styles.textView} >
+              {/* <DisplayTeams userId={userId} string='hello' /> */}
+              <Text style={card_styles.textOne} >Sligo Rovers</Text>
+              <Text style={card_styles.textTwo} >u24s</Text>
+            </View>
+            <View style={card_styles.more} >
+              <MoreButton onPress={() => console.log('Tap')} />
+            </View>
+          </View>
+        </Card>
+        {/* )}
+        /> */}
       </View>
 
       <FlatButton onPress={() => setModalOpen(true)} />
@@ -105,5 +103,6 @@ const styles = StyleSheet.create({
   },
   cardView: {
     marginTop: 30,
+    paddingHorizontal: 20,
   }
 });
