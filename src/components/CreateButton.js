@@ -33,15 +33,13 @@ const styles = StyleSheet.create({
     zIndex: 1,
     marginRight: 20,
     marginBottom: 100,
-    //Temp
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
+    shadowOpacity: 0.32,
+    shadowRadius: 2.62,
+    elevation: 4,
   }
 })
