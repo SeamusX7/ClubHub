@@ -23,7 +23,7 @@ export default StyleSheet.create({
     fontFamily: 'montserrat-bold',
   },
   textTwo: {
-    color: '#1D3557',
+    color: '#1d3557',
     fontFamily: 'montserrat-medium',
     fontSize: 12,
     marginTop: 1,
@@ -32,5 +32,12 @@ export default StyleSheet.create({
     position: 'absolute',
     right: 0,
     marginTop: 12,
+  },
+  playerNumber: {
+    color: '#1d3557',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 18,
+    marginTop: 10,
+    textAlign: 'center',
   }
 })

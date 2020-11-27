@@ -15,7 +15,7 @@ export default function SessionScreen({ navigation }) {
       navigation.setOptions({
         headerRight: () => (
           <View style={styles.icon} >
-            <Ionicons onPress={() => navigation.navigate('Message')} name="md-text" size={24} color={'#B7B7B7'} />
+            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#b7b7b7'} />
           </View>
         ),
       });
