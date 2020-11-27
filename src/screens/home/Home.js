@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function HomeScreen({ navigation }) {
 	return (
@@ -8,7 +8,7 @@ export default function HomeScreen({ navigation }) {
       navigation.setOptions({
         headerRight: () => (
           <View style={styles.icon} >
-            <Ionicons onPress={() => navigation.navigate('Message')} name="md-text" size={24} color={'#B7B7B7'} />
+            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#b7b7b7'} />
           </View>
         ),
       });
