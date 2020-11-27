@@ -66,7 +66,7 @@ export default function App() {
           <Stack.Screen name="TabNavigator" component={TabNavigator}></Stack.Screen>
           <Stack.Screen name="Login" component={LoginScreen} options={{ animationEnabled: false }} />
           <Stack.Screen name="Registration" component={RegistrationScreen} options={{ animationEnabled: false }} />
-          <Stack.Screen name="Message" component={MessageScreen} options={{ headerShown: true, headerBackTitleVisible: false, gestureEnabled: true, title: 'Message' }} ></Stack.Screen>
+          <Stack.Screen name="Message" component={MessageScreen} options={{ headerShown: true, headerBackTitleVisible: false, gestureEnabled: true, title: 'Messages' }} ></Stack.Screen>
           <Stack.Screen name="ViewMessage" component={ViewMessageScreen} options={{ headerShown: true, headerBackTitleVisible: false, gestureEnabled: true, title: 'View Message' }} ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
