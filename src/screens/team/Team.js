@@ -52,15 +52,15 @@ export default function TeamScreen({ navigation }) {
 
       <Text style={{...global_styles.title, marginBottom: 10}}>Team statistics</Text>
       <View style={large_card_style.container}>
-        <TouchableOpacity style={large_card_style.largeLeftCard}>
+        <View style={large_card_style.largeLeftCard}>
           
-        </TouchableOpacity>
-        <TouchableOpacity style={large_card_style.largeCenterCard}>
+        </View>
+        <View style={large_card_style.largeCenterCard}>
           
-        </TouchableOpacity>
-        <TouchableOpacity style={large_card_style.largeRightCard}>
+        </View>
+        <View style={large_card_style.largeRightCard}>
           
-        </TouchableOpacity>
+        </View>
       </View>
       <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Players</Text>
       <Card onPress={() => navigation.navigate('Player')}>
