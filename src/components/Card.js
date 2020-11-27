@@ -17,7 +17,6 @@ export default function Card(props) {
 }
 
 const styles = StyleSheet.create({
-  
   cardContent: {
     marginHorizontal: 20,
     marginVertical: 14,
