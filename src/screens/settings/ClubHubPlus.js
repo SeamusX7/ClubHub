@@ -1,10 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { StyleSheet, ImageBackground } from 'react-native';
 
- // Local File Imports
- import FlatButton from '../../components/Button';
- 
 export default function SettingsScreen() {
   return (
       <ImageBackground
@@ -23,5 +19,4 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '110%'
   },
-
 });
