@@ -1,4 +1,5 @@
 import React from 'react';
+import { firebase } from '../../firebase/config';
 import { StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -10,6 +11,16 @@ import card_styles from '../../assets/styles/CardStyle';
 import modal_styles from '../../assets/styles/ModalStyle';
 
 export default function SettingsScreen({ navigation }) {
+
+  signOutUser = async () => {
+    try {
+        await firebase.auth().signOut();
+        navigation.navigate('Login');
+    } catch (e) {
+        console.log(e);
+    }
+}
+
   return (
     <View style={styles.container}>
       <View style={large_card_style.container}>
@@ -56,7 +67,7 @@ export default function SettingsScreen({ navigation }) {
 
       <LogoutButton 
         text="Sign Out"
-        onPress={() => navigation.navigate('Login')} />
+        onPress={() => signOutUser()} />
     </View>
   )
 }
