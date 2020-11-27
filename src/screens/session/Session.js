@@ -68,6 +68,42 @@ export default function SessionScreen({ navigation }) {
           </View>
         </View>
       </Card>
+      {/* <Card>
+        <View style={card_styles.container}>
+          <View style={card_styles.circle}>
+            <MaterialCommunityIcons
+              name='md-football'
+              size={20}
+              color='#5386e4'
+              style={card_styles.icon} />
+          </View>
+          <View style={card_styles.textView}>
+            <Text style={card_styles.textOne}>Shooting drills</Text>
+            <Text style={card_styles.textTwo}>14:30 | 6th February</Text>
+          </View>
+          <View style={card_styles.more}>
+            <MoreButton onPress={() => console.log('Tap')} />
+          </View>
+        </View>
+      </Card> */}
+      {/* <Card>
+        <View style={card_styles.container}>
+          <View style={card_styles.circle}>
+            <MaterialCommunityIcons
+              name='dumbbell'
+              size={20}
+              color='#5386e4'
+              style={card_styles.icon} />
+          </View>
+          <View style={card_styles.textView}>
+            <Text style={card_styles.textOne}>Compound lifts</Text>
+            <Text style={card_styles.textTwo}>14:30 | 6th February</Text>
+          </View>
+          <View style={card_styles.more}>
+            <MoreButton onPress={() => console.log('Tap')} />
+          </View>
+        </View>
+      </Card> */}
     </View>
   )
 }

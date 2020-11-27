@@ -4,6 +4,33 @@ export default StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
+  card: {
+    borderRadius: 10,
+    // elevation: 3,
+    backgroundColor: '#fff',
+    marginVertical: 6,
+    height: 70,
+    borderLeftWidth: 10,
+    borderLeftColor: '#5386e4',
+  },
+  winCard: {
+    borderRadius: 10,
+    // elevation: 3,
+    backgroundColor: '#fff',
+    marginVertical: 6,
+    height: 70,
+    borderLeftWidth: 10,
+    borderLeftColor: '#72e453',
+  },
+  lossCard: {
+    borderRadius: 10,
+    // elevation: 3,
+    backgroundColor: '#fff',
+    marginVertical: 6,
+    height: 70,
+    borderLeftWidth: 10,
+    borderLeftColor: '#e45353',
+  },
   circle: {
     backgroundColor: '#F0F2F7',
     width: 42,
@@ -18,6 +45,14 @@ export default StyleSheet.create({
     marginLeft: 20,
     marginTop: 3,
   },
+  textViewNoCircle: {
+    marginTop: 3,
+  },
+  singleLineTextView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginLeft: 20,
+  },
   textOne: {
     color: '#1D3557',
     fontFamily: 'montserrat-bold',
@@ -27,6 +62,10 @@ export default StyleSheet.create({
     fontFamily: 'montserrat-medium',
     fontSize: 12,
     marginTop: 1,
+  },
+  singleText: {
+    color: '#1D3557',
+    fontFamily: 'montserrat-bold',
   },
   more: {
     position: 'absolute',
@@ -38,6 +77,13 @@ export default StyleSheet.create({
     fontFamily: 'montserrat-semibold',
     fontSize: 18,
     marginTop: 10,
+    textAlign: 'center',
+  },
+  matchScore: {
+    color: '#1d3557',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 14,
+    marginTop: 12,
     textAlign: 'center',
   }
 })
