@@ -8,7 +8,7 @@ import CustomisationScreen from '../screens/settings/Customisation';
 import LanguageScreen from '../screens/settings/Language';
 import TermsOfServiceScreen from '../screens/settings/TermsOfService';
 import PrivacyPolicyScreen from '../screens/settings/PrivacyPolicy';
-
+import PlayerProfileScreen from '../screens/settings/PlayerProfile';
 const SettingsStack = createStackNavigator();
 
 export default function SettingsStackScreen() {
@@ -21,6 +21,7 @@ export default function SettingsStackScreen() {
       <SettingsStack.Screen name="Language" component={LanguageScreen} options={{ title: 'Language' }} ></SettingsStack.Screen>
       <SettingsStack.Screen name="TermsOfService" component={TermsOfServiceScreen} options={{ title: 'Terms Of Service' }} ></SettingsStack.Screen>
       <SettingsStack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} options={{ title: 'Privacy Policy' }} ></SettingsStack.Screen>
+      <SettingsStack.Screen name="PlayerProfile" component={PlayerProfileScreen} options={{ title: 'Player Profile' }} ></SettingsStack.Screen>
     </SettingsStack.Navigator>
   )
 }
