@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, View, Button, Text, TouchableOpacity } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { StyleSheet, View, Button, Text, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
+import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
@@ -8,8 +8,16 @@ import large_card_style from '../../assets/styles/LargeCardStyle';
 import Card from '../../components/Card';
 import card_styles from '../../assets/styles/CardStyle';
 import MoreButton from '../../components/MoreButton';
+import FlatButton from '../../components/CreateButton';
+import modal_styles from '../../assets/styles/ModalStyle';
+import NewSessionModal from './NewSessionModal';
 
 export default function SessionScreen({ navigation }) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  }
+
   return (
     React.useLayoutEffect(() => {
       navigation.setOptions({
@@ -22,6 +30,26 @@ export default function SessionScreen({ navigation }) {
     }, [navigation]),
 
     <View style={styles.container}>
+
+      <Modal
+        visible={modalOpen}
+        animationType='slide'>
+        <SafeAreaView style={modal_styles.modalContent}>
+          <View style={modal_styles.modalContent}>
+            <View style={modal_styles.modalHeader}>
+              <Text style={modal_styles.modalTitle}>New session</Text>
+              <MaterialIcons
+                name='close'
+                color='#333'
+                size={24}
+                style={modal_styles.modalToggleExit}
+                onPress={() => setModalOpen(false)} />
+            </View>
+            <NewSessionModal closeModal={closeModal} />
+          </View>
+        </SafeAreaView>
+      </Modal>
+
       <Text style={{...global_styles.title, marginBottom: 10}}>Previous sessions</Text>
       <View style={large_card_style.container}>
         <TouchableOpacity onPress={() => navigation.navigate('PreviousMatchSessions')} style={large_card_style.largeLeftCard}>
@@ -104,6 +132,9 @@ export default function SessionScreen({ navigation }) {
           </View>
         </View>
       </Card> */}
+
+      <FlatButton onPress={() => setModalOpen(true)} />
+
     </View>
   )
 }
