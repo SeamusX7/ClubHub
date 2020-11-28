@@ -65,7 +65,7 @@ export default function SettingsScreen({ navigation }) {
         text="Privacy Policy"
         onPress={() => navigation.navigate('PrivacyPolicy')} />
 
-<SettingsButton
+      <SettingsButton
         text="TEMP Player Profile"
         onPress={() => navigation.navigate('PlayerProfile')} />
 
