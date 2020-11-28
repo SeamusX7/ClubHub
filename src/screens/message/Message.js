@@ -9,7 +9,7 @@ import SearchButton from '../../components/SearchButton';
 import Search from '../../components/Search';
 import SelectMessage from '../../components/SelectMessage';
 import global_styles from '../../assets/styles/GlobalStyle';
-import message_styles from '../../assets/styles/SelectMessageStyle';
+import message_styles from '../../assets/styles/MessageStyle';
 
 export default function MessageScreen({ navigation }) {
   return (

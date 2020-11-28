@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import message_styles from '../assets/styles/SelectMessageStyle';
+import message_styles from '../assets/styles/MessageStyle';
 
 export default function SelectMessage(props) {
   return (
