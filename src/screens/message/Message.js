@@ -9,12 +9,11 @@ import SearchButton from '../../components/SearchButton';
 import Search from '../../components/Search';
 import SelectMessage from '../../components/SelectMessage';
 import global_styles from '../../assets/styles/GlobalStyle';
-import message_styles from '../../assets/styles/SelectMessageStyle';
+import message_styles from '../../assets/styles/MessageStyle';
 
 export default function MessageScreen({ navigation }) {
   return (
-    <KeyboardAwareScrollView>
-      <View style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.searchContainer}>
           <View style={global_styles.searchSection}>
             <Search />
@@ -59,7 +58,6 @@ export default function MessageScreen({ navigation }) {
             </View>
           </View>
         </SelectMessage>
-      </View>
     </KeyboardAwareScrollView>
   )
 }
