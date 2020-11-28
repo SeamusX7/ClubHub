@@ -34,7 +34,7 @@ export default function SettingsScreen({ navigation }) {
             />
             <View style={card_styles.textView} >
               {/* <DisplayTeams userId={userId} string='hello' /> */}
-              <Text style={styles.textOne} >Brandon Kennedy</Text>
+              <Text style={styles.textOne} >Stephen Kenny</Text>
               <Text style={styles.textTwo} >View Profile</Text>
             </View>
             </View>
