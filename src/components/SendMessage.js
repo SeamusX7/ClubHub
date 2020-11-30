@@ -26,10 +26,9 @@ export default function Search() {
 
 const styles = StyleSheet.create({
   inputBox: {
-    // marginTop: 500,
     backgroundColor: '#fff',
     width: '100%',
-    height: 60,
+    height: 64,
     zIndex: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -37,8 +36,8 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   iconBox: {
-    width: 30,
-    height: 30,
+    width: 32,
+    height: 32,
     backgroundColor: '#F0F2F7',
     justifyContent: 'center',
     alignItems: 'center',
@@ -47,14 +46,14 @@ const styles = StyleSheet.create({
   },
   input: {
     width: 254,
-    height: 30,
+    height: 32,
     backgroundColor: '#F0F2F7',
     borderRadius: 4,
     marginLeft: 10,
   },
   inputMessage: {
     marginHorizontal: 10,
-    marginVertical: 6,
+    marginVertical: 8,
     fontFamily: 'montserrat-medium',
     color: "#333333",
     fontSize: 12,

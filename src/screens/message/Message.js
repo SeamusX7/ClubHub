@@ -68,6 +68,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   searchContainer: {
-    padding: 20
+    padding: 20,
   }
 });
