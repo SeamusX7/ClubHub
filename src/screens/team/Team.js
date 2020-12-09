@@ -45,7 +45,7 @@ export default function TeamScreen({ navigation }) {
                 style={modal_styles.modalToggleExit}
                 onPress={() => setModalOpen(false)} />
             </View>
-            <InvitePlayerModal closeModal={closeModal} closeModal={closeModal} />
+            <InvitePlayerModal closeModal={closeModal} />
           </View>
         </SafeAreaView>
       </Modal>

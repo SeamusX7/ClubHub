@@ -34,7 +34,7 @@ export default function SettingsScreen({ navigation }) {
             />
             <View style={card_styles.textView} >
               {/* <DisplayTeams userId={userId} string='hello' /> */}
-              <Text style={styles.textOne} >Brandon Kennedy</Text>
+              <Text style={styles.textOne} >Stephen Kenny</Text>
               <Text style={styles.textTwo} >View Profile</Text>
             </View>
             </View>
@@ -64,6 +64,10 @@ export default function SettingsScreen({ navigation }) {
       <SettingsButton
         text="Privacy Policy"
         onPress={() => navigation.navigate('PrivacyPolicy')} />
+
+      <SettingsButton
+        text="TEMP Player Profile"
+        onPress={() => navigation.navigate('PlayerProfile')} />
 
       <LogoutButton 
         text="Sign Out"

@@ -18,35 +18,35 @@ export default function SettingsScreen({ navigation }) {
             color="#5386e4"
             style={{alignSelf:"center", marginTop:5, marginBottom:0,}}
             />
-    <Text style={styles.textOne} >Stephen Kenny</Text>
-    <Text style={{...global_styles.title, marginBottom: 10}}>Team Rating</Text>
+    <Text style={styles.textOne} >Brandon Kennedy</Text>
+    <Text style={{...global_styles.title, marginBottom: 10}}>Performance Rating</Text>
 
     <View style={large_card_style.container}>
     <TouchableOpacity style={large_card_style.largeLeftCard}>
+          <MaterialCommunityIcons
+            name="numeric-5-circle"
+            size={36}
+            color="#5386e4"
+            style={{ alignSelf: 'center' }} />
+          <Text style={large_card_style.text}>Goals</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={large_card_style.largeCenterCard}>
           <MaterialCommunityIcons
             name="numeric-6-circle"
             size={36}
             color="#5386e4"
             style={{ alignSelf: 'center' }} />
-          <Text style={large_card_style.text}>Wins</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={large_card_style.largeCenterCard}>
-          <MaterialCommunityIcons
-            name="numeric-2-circle"
-            size={36}
-            color="#5386e4"
-            style={{ alignSelf: 'center' }} />
-          <Text style={large_card_style.text}>Losses</Text>
+          <Text style={large_card_style.text}>Matches</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={large_card_style.largeRightCard}>
           <MaterialCommunityIcons
-            name="numeric-8-circle"
+            name="numeric-9-circle"
             size={36}
             color="#5386e4"
             style={{ alignSelf: 'center' }} />
-          <Text style={large_card_style.text}>Goals</Text>
+          <Text style={large_card_style.text}>Attendance</Text>
         </TouchableOpacity>
         </View>
         <Text style={{...global_styles.title, marginBottom: 10, marginTop:10,}} >Your Details</Text>    
@@ -54,17 +54,17 @@ export default function SettingsScreen({ navigation }) {
         <View>
         <Text style={profile_style.text1}>Name</Text>
         <ProfileInfo
-        text="Stephen Kenny"
+        text="Brandon Kennedy"
         />
 
         <Text style={profile_style.text}>Date Of Birth</Text>
         <ProfileInfo
-        text="30 / 10 / 1971"
+        text="3 / 4 / 2000"
         />
 
-        <Text style={profile_style.text}>Role</Text>
+        <Text style={profile_style.text}>Position</Text>
         <ProfileInfo
-        text="Manager"
+        text="Forward"
         />
         </View>
         
@@ -87,14 +87,7 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-bold',
     fontSize:16,
     alignSelf:"center",
-    marginBottom:20,
-  },
-  textTwo: {
-    color: '#1D3557',
-    fontFamily: 'montserrat-bold',
-    fontSize:12,
-    alignSelf:"center",
-    marginBottom:20,
+    marginBottom: 20,
   },
   icon:{
     marginRight:20,
