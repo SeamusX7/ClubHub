@@ -15,6 +15,9 @@ import Card from '../../components/Card';
 export default function ChooseTeamScreen(props) {
   const userName = props.extraData.fullName;
   const userId = props.extraData.id;
+ // console.log("props.extradata : ",props.extraData)
+  //console.log("props.extradata.id : ",props.extraData.id)
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const closeModal = () => {
@@ -49,30 +52,9 @@ export default function ChooseTeamScreen(props) {
       </View>
 
       <View style={styles.cardView} >
-        {/* <FlatList
-          data={userId}
-          renderItem={({ id }) => ( */}
-        <Card onPress={() => props.navigation.navigate('TabNavigator')}>
-          <View style={card_styles.container}>
-            <View style={card_styles.circle} >
-              <MaterialCommunityIcons
-                name='trophy-outline'
-                size={20}
-                color='#5386e4'
-                style={card_styles.icon} />
-            </View>
-            <View style={card_styles.textView} >
-              {/* <DisplayTeams userId={userId} string='hello' /> */}
-              <Text style={card_styles.textOne} >Sligo Rovers</Text>
-              <Text style={card_styles.textTwo} >u24s</Text>
-            </View>
-            <View style={card_styles.more} >
-              <MoreButton onPress={() => console.log('Tap')} />
-            </View>
-          </View>
-        </Card>
-        {/* )}
-        /> */}
+
+        <DisplayTeams props={props} />
+
       </View>
 
       <FlatButton onPress={() => setModalOpen(true)} />

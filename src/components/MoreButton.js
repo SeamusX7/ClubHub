@@ -16,5 +16,13 @@ export default function MoreButton({ onPress }) {
 }
 
 const styles = StyleSheet.create({
+//   bottom: {
+// borderRadius: 25,
+// borderColor: '#5386e4',
+// borderWidth: 3,
+// padding: 8,
+// margin: -10
+//   }
+  
 
 })
