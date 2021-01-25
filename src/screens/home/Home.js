@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+// Local file imports
+import NewsFeedPost from '../../components/NewsFeedPost';
+
 export default function HomeScreen({ navigation }) {
 	return (
     React.useLayoutEffect(() => {
@@ -15,25 +18,16 @@ export default function HomeScreen({ navigation }) {
     }, [navigation]),
 
 		<View style={styles.container}>
-      <Button 
-        title="Upcoming Sessions"
-        onPress={() => navigation.navigate('Session')} />
-
-      <Button 
-        title="Notifications"
-        onPress={() => navigation.navigate('Notification')} />
-
-      <Button 
-        title="Settings"
-        onPress={() => navigation.navigate('Settings')} />
+      <NewsFeedPost />
     </View>
 	)
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#f0f2f7',
+    flex: 1,
+    padding: 20,
   },
   icon: {
     marginRight: 20,
