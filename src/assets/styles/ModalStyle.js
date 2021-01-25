@@ -30,6 +30,15 @@ export default StyleSheet.create({
 		paddingHorizontal: 16,
 		paddingVertical: 15,
   },
+  modalLargeInput: {
+		backgroundColor: '#f0f2f7',
+    borderRadius: 5,
+    fontFamily: 'montserrat-regular',
+    height: 80,
+    paddingHorizontal: 16,
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
   labelText: {
 		fontFamily: 'montserrat-regular',
 		fontSize: 14,
