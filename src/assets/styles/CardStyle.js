@@ -85,5 +85,11 @@ export default StyleSheet.create({
     fontSize: 14,
     marginTop: 12,
     textAlign: 'center',
+  },
+  newsFeedCard: {
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    marginVertical: 6,
+    height: 140,
   }
 })
