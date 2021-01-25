@@ -90,6 +90,6 @@ export default StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#fff',
     marginVertical: 6,
-    height: 140,
+    // height: 180,
   }
 })
