@@ -33,18 +33,18 @@ export default function MessageScreen({ navigation }) {
 
               </View>
               <View style={message_styles.textView} >
-                <Text style={message_styles.textOne} >Cheuk Wei Lin</Text>
-                <Text style={message_styles.textTwo} >You: Lorem ipsum dolor sit amet...</Text>
+                <Text style={message_styles.textOne} >Paul Pogba</Text>
+                <Text style={message_styles.textTwo} >You: Paul, can you come in for training...</Text>
               </View>
               <View style={message_styles.sent}>
                 <Text style={message_styles.time}>10:12</Text>
-                <View style={message_styles.alert}></View>
+                {/* <View style={message_styles.alert}></View> */}
               </View>
             </View>
           </SelectMessage>
         </View>
 
-        <SelectMessage onPress={() => navigation.navigate('ViewMessage')}>
+        {/* <SelectMessage onPress={() => navigation.navigate('ViewMessage')}>
           <View style={message_styles.container}>
             <View style={message_styles.circle}>
 
@@ -57,7 +57,7 @@ export default function MessageScreen({ navigation }) {
               <Text style={message_styles.time}>17 Nov</Text>
             </View>
           </View>
-        </SelectMessage>
+        </SelectMessage> */}
     </KeyboardAwareScrollView>
   )
 }
