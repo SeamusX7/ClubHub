@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { StyleSheet, View, Modal, SafeAreaView, Text } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import modal_styles from '../../assets/styles/ModalStyle';
 import InvitePlayerModal from './InvitePlayerModal';
+import mini_card_styles from '../../assets/styles/MiniCardStyle';
+
+// Local imports
+import MiniCardPending from '../../components/MiniCardPending'
+import MiniCardAccepted from '../../components/MiniCardAccepted'
+import MiniCardDeclined from '../../components/MiniCardDeclined'
 
 export default function ViewUpcomingMatchSessionScreen({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -39,7 +45,41 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
           </View>
         </SafeAreaView>
       </Modal>
+
+      <View style={styles.textContainer}>
+        <Text style={styles.textStyle}>Pending</Text>
+        <Ionicons 
+        name='ios-arrow-down'
+        size={20}
+        color='#333333'
+        style={styles.arrowIcon} />
+      </View>
+      <MiniCardPending><Text style={mini_card_styles.text}>Brandon Kennedy</Text></MiniCardPending>
+      <MiniCardPending><Text style={mini_card_styles.text}>Cheuk Wei Lin</Text></MiniCardPending>
+
+      <View style={styles.textContainer}>
+        <Text style={styles.textStyle}>Accepted</Text>
+        <Ionicons 
+        name='ios-arrow-down'
+        size={20}
+        color='#333333'
+        style={styles.arrowIcon} />
+      </View>
+      <MiniCardAccepted><Text style={mini_card_styles.text}>Joel Dyas Kelly</Text></MiniCardAccepted>
+      <MiniCardAccepted><Text style={mini_card_styles.text}>Lorcan Downey</Text></MiniCardAccepted>
+
+      <View style={styles.textContainer}>
+        <Text style={styles.textStyle}>Declined</Text>
+        <Ionicons 
+        name='ios-arrow-down'
+        size={20}
+        color='#333333'
+        style={styles.arrowIcon} />
+      </View>
+      <MiniCardDeclined><Text style={mini_card_styles.text}>Seamus Cummins</Text></MiniCardDeclined>
     </View>
+
+
   )
 }
 
@@ -51,5 +91,18 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 20,
+  },
+  textStyle: {
+    color: '#333333',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 16,
+    marginTop: 30,
+  },
+  textContainer: {
+    flexDirection: 'row'
+  },
+  arrowIcon: {
+    marginTop: 30,
+    marginLeft: 10,
   }
 });
