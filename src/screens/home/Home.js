@@ -46,7 +46,7 @@ export default function HomeScreen({ navigation }) {
         </SafeAreaView>
       </Modal>
 
-      <NewsFeedPost />
+      <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')} />
 
       <FlatButton onPress={() => setModalOpen(true)} />
     </View>
