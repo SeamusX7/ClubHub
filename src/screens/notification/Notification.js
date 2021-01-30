@@ -48,7 +48,7 @@ export default function NotificationScreen({ navigation }) {
         </View>
       </Card>
 
-      <Card onPress={() => navigation.navigate('ViewUpcomingMatchSession')}>
+      <Card onPress={() => navigation.navigate('Team')}>
         <View style={notification_styles.container}>
           <View style={notification_styles.circle}>
             <MaterialCommunityIcons
@@ -67,7 +67,7 @@ export default function NotificationScreen({ navigation }) {
         </View>
       </Card>
 
-      <Card>
+      <Card onPress={() => navigation.navigate('Team')}>
         <View style={notification_styles.container}>
           <View style={notification_styles.circle}>
             <MaterialCommunityIcons
