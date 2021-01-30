@@ -31,7 +31,7 @@ export default function NewSessionModal({ closeModal }) {
         placeholder='Enter time...' />
 
       <FlatButton
-        text="Create" />z
+        text="Create" />
 
     </View>
   )
