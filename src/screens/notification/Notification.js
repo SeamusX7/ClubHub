@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Button, Text, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text} from 'react-native';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 // Local File Imports
@@ -7,10 +7,10 @@ import Card from '../../components/NotificationCard';
 import notification_styles from '../../assets/styles/NotificationStyle';
 import MoreButton from '../../components/MoreButton';
 
-export default function NotificationScreen() {
+export default function NotificationScreen({ navigation }) {
   return (
     <View style={styles.container}>
-       <Card onPress={() => navigation.navigate('Home')}>
+       <Card onPress={() => navigation.navigate('Message')}>
         <View style={notification_styles.container}>
           <View style={notification_styles.circle}>
             <MaterialCommunityIcons
@@ -29,7 +29,7 @@ export default function NotificationScreen() {
         </View>
       </Card>
 
-      <Card onPress={() => navigation.navigate('ViewUpcomingMatchSession')}>
+      <Card onPress={() => navigation.navigate('Home')}>
         <View style={notification_styles.container}>
           <View style={notification_styles.circle}>
             <MaterialCommunityIcons
