@@ -15,10 +15,13 @@ import Card from '../../components/Card';
 export default function ChooseTeamScreen(props) {
   const userName = props.extraData.fullName;
   const userId = props.extraData.id;
- // console.log("props.extradata : ",props.extraData)
-  //console.log("props.extradata.id : ",props.extraData.id)
+
+
+  const userType = props.extraData.userType;
 
   const [modalOpen, setModalOpen] = useState(false);
+
+  const openModalButton = <FlatButton onPress={() => setModalOpen(true)} />
 
   const closeModal = () => {
     setModalOpen(false);
@@ -57,7 +60,7 @@ export default function ChooseTeamScreen(props) {
 
       </View>
 
-      <FlatButton onPress={() => setModalOpen(true)} />
+      {[userType === "coach" ? openModalButton : null]}
 
     </SafeAreaView >
   )
