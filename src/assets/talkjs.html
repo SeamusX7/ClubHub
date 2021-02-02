@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <script>
+        (function(t,a,l,k,j,s){
+        s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
+        ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
+        .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
+        </script>
+    
+    <!-- container element in which TalkJS will display a chat UI -->
+    <body>
+        <div>
+            <div id="talkjs-container" style="width: 100%; margin-top: 10px; height: 750px"></div>
+        </div>
+    </body>
+
+    <!-- TalkJS initialization code, which we'll customize in the next steps -->
+    <script>
+    Talk.ready.then(function() {
+        var me = new Talk.User({
+            id: "123456",
+            name: "Paul P.",
+            email: "alice@example.com",
+            photoUrl: "https://s.hs-data.com/bilder/spieler/gross/180976.jpg",
+            welcomeMessage: "Yeah, I'll be there.",
+            role: "Member"
+        });
+        window.talkSession = new Talk.Session({
+            appId: "tJOsPzNP",
+            me: me
+        });
+        
+        var other = new Talk.User({
+            id: "654321",
+            name: "Ole G.",
+            email: "oleg@utd.co.uk",
+            photoUrl: "https://static01.nyt.com/images/2019/03/28/world/28manunited/merlin_152712993_ffc76b9b-aa6e-49f4-9974-f4fb240717f5-superJumbo.jpg",
+            welcomeMessage: "Paul, can you come in for training tomorrow?",
+            role: "Member"
+        });
+    
+        var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
+
+        conversation.setParticipant(me);
+        conversation.setParticipant(other);
+
+        var inbox = talkSession.createInbox({selected: conversation});
+
+        inbox.mount(document.getElementById("talkjs-container"));
+    });
+    </script>
+</html>
