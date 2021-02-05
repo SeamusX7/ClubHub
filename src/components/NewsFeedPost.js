@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { WebView } from 'react-native-webview';
 
 // Local File Imports
 import card_styles from '../assets/styles/CardStyle';
@@ -14,7 +15,7 @@ export default function NewsFeedPost(props) {
           <View style={styles.topRow}>
             <View style={styles.circleTitle}>
               <View style={card_styles.circle}></View>
-              <Text style={styles.title}>Lorem ipsum</Text>
+              <Text style={styles.title}>Eamon Kavanagh</Text>
             </View>
             <View>
               <Text style={styles.postedOn}>09:15</Text>
@@ -22,7 +23,7 @@ export default function NewsFeedPost(props) {
           </View>
 
           <View style={styles.middleRow}>
-            <Text style={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+            <Text style={styles.description}>Hi lads, I came across this really cool attacking tactic on youtube. Check it out and let me know your thoughts.</Text>
           </View>
 
           <View style={styles.bottomRow}>
@@ -37,7 +38,7 @@ export default function NewsFeedPost(props) {
               </View>
             </View>
             <View>
-              <Text style={styles.commentCount}>2 comments</Text>
+              <Text style={styles.commentCount}>1 comment</Text>
             </View>
           </View>
 

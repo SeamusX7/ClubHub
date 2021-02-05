@@ -54,8 +54,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
         color='#333333'
         style={styles.arrowIcon} />
       </View>
-      <MiniCardPending><Text style={mini_card_styles.text}>Brandon Kennedy</Text></MiniCardPending>
-      <MiniCardPending><Text style={mini_card_styles.text}>Cheuk Wei Lin</Text></MiniCardPending>
+      <MiniCardPending><Text style={mini_card_styles.text}>Keane Callan</Text></MiniCardPending>
 
       <View style={styles.textContainer}>
         <Text style={styles.textStyle}>Accepted</Text>
@@ -65,8 +64,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
         color='#333333'
         style={styles.arrowIcon} />
       </View>
-      <MiniCardAccepted><Text style={mini_card_styles.text}>Joel Dyas Kelly</Text></MiniCardAccepted>
-      <MiniCardAccepted><Text style={mini_card_styles.text}>Lorcan Downey</Text></MiniCardAccepted>
+      <MiniCardAccepted><Text style={mini_card_styles.text}>Jack Lynch</Text></MiniCardAccepted>
 
       <View style={styles.textContainer}>
         <Text style={styles.textStyle}>Declined</Text>
@@ -76,7 +74,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
         color='#333333'
         style={styles.arrowIcon} />
       </View>
-      <MiniCardDeclined><Text style={mini_card_styles.text}>Seamus Cummins</Text></MiniCardDeclined>
+      <MiniCardDeclined><Text style={mini_card_styles.text}>Shane McCleary</Text></MiniCardDeclined>
     </View>
 
 

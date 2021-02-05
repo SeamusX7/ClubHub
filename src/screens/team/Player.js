@@ -13,59 +13,63 @@ export default function PlayerScreen() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <MaterialCommunityIcons
-          name="account-circle"
-          size={120}
-          color="#5386e4"
-          style={{ alignSelf: "center", marginTop: 5, marginBottom: 0, }}
-        />
-        <Text style={styles.textOne} >Seamus Cummins</Text>
+        <View style={styles.bigCircle}></View>
+        <Text style={styles.textOne} >Jack Lynch</Text>
         <Text style={{ ...global_styles.title, marginBottom: 10 }}>Performance Rating</Text>
 
         <View style={large_card_style.container}>
-          <TouchableOpacity style={large_card_style.largeLeftCard}>
-            <MaterialCommunityIcons
+          <View style={large_card_style.largeLeftCard}>
+            {/* <MaterialCommunityIcons
               name="numeric-5-circle"
               size={36}
               color="#5386e4"
-              style={{ alignSelf: 'center' }} />
+              style={{ alignSelf: 'center' }} /> */}
+            <View style={styles.cardCircle}>
+              <Text style={styles.cardCircleText}>5</Text>
+            </View>
             <Text style={large_card_style.text}>Matches</Text>
-          </TouchableOpacity>
+          </View>
 
-          <TouchableOpacity style={large_card_style.largeCenterCard}>
-            <MaterialCommunityIcons
+          <View style={large_card_style.largeCenterCard}>
+            {/* <MaterialCommunityIcons
               name="numeric-6-circle"
               size={36}
               color="#5386e4"
-              style={{ alignSelf: 'center' }} />
+              style={{ alignSelf: 'center' }} /> */}
+              <View style={styles.cardCircle}>
+              <Text style={styles.cardCircleText}>6</Text>
+            </View>
             <Text style={large_card_style.text}>Goals</Text>
-          </TouchableOpacity>
+          </View>
 
-          <TouchableOpacity style={large_card_style.largeRightCard}>
-            <MaterialCommunityIcons
+          <View style={large_card_style.largeRightCard}>
+            {/* <MaterialCommunityIcons
               name="numeric-4-circle"
               size={36}
               color="#5386e4"
-              style={{ alignSelf: 'center' }} />
+              style={{ alignSelf: 'center' }} /> */}
+              <View style={styles.cardCircle}>
+              <Text style={styles.cardCircleText}>4</Text>
+            </View>
             <Text style={large_card_style.text}>Assists</Text>
-          </TouchableOpacity>
+          </View>
         </View>
-        <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 10, }} >Your Details</Text>
+        <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 20, }} >Your Details</Text>
 
         <View>
           <Text style={profile_style.text1}>Name</Text>
           <ProfileInfo
-            text="Seamus Cummins"
+            text="Jack Lynch"
           />
 
           <Text style={profile_style.text}>Date Of Birth</Text>
           <ProfileInfo
-            text="12 / 12 / 1999"
+            text="24 / 12 / 2000"
           />
 
           <Text style={profile_style.text}>Position</Text>
           <ProfileInfo
-            text="Forward"
+            text="Full forward"
           />
         </View>
 
@@ -107,5 +111,27 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 160,
     borderRadius: 8
+  },
+  bigCircle: {
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 100 / 2,
+    height: 100,
+    marginBottom: 20,
+    width: 100,
+  },
+  cardCircle: {
+    alignSelf: 'center',
+    backgroundColor: '#f0f2f7',
+    borderRadius: 50 / 2,
+    height: 50,
+    width: 50,
+  },
+  cardCircleText: {
+    color: '#1d3557',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 22,
+    marginTop: 12,
+    textAlign: 'center',
   }
 });
