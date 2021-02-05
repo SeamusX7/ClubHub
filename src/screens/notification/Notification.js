@@ -21,7 +21,7 @@ export default function NotificationScreen({ navigation }) {
           </View>
           <View style={notification_styles.textView}>
             <Text style={notification_styles.textOne}>New Message</Text>
-            <Text style={notification_styles.textTwo}>Seamus has sent you a message</Text>
+            <Text style={notification_styles.textTwo}>Eamon has sent you a message</Text>
           </View>
           <View style={notification_styles.more}>
             <MoreButton onPress={() => console.log('Tap')} />
@@ -78,7 +78,7 @@ export default function NotificationScreen({ navigation }) {
           </View>
           <View style={notification_styles.textView}>
             <Text style={notification_styles.textOne}>Invitation</Text>
-            <Text style={notification_styles.textTwo}>You have been invited to join U21 Dundalk</Text>
+            <Text style={notification_styles.textTwo}>You have been invited to join Clan na Gael senior team.</Text>
           </View>
           <View style={notification_styles.more}>
             <MoreButton onPress={() => console.log('Tap')} />

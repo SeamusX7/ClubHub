@@ -62,21 +62,51 @@ export default function TeamScreen({ navigation }) {
           
         </View>
       </View>
+
       <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Players</Text>
       <Card onPress={() => navigation.navigate('Player')}>
         <View style={card_styles.container}>
           <View style={card_styles.circle}>
-            <Text style={card_styles.playerNumber}>7</Text>
+            <Text style={card_styles.playerNumber}>6</Text>
           </View>
           <View style={card_styles.textView}>
-            <Text style={card_styles.textOne}>Séamus Cummins</Text>
-            <Text style={card_styles.textTwo}>Forward</Text>
+            <Text style={card_styles.textOne}>Shane McCleary</Text>
+            <Text style={card_styles.textTwo}>Half back</Text>
           </View>
           <View style={card_styles.more}>
             <MoreButton />
           </View>
         </View>
       </Card>
+      <Card onPress={() => navigation.navigate('Player')}>
+        <View style={card_styles.container}>
+          <View style={card_styles.circle}>
+            <Text style={card_styles.playerNumber}>9</Text>
+          </View>
+          <View style={card_styles.textView}>
+            <Text style={card_styles.textOne}>Keane Callan</Text>
+            <Text style={card_styles.textTwo}>Midfield</Text>
+          </View>
+          <View style={card_styles.more}>
+            <MoreButton />
+          </View>
+        </View>
+      </Card>
+      <Card onPress={() => navigation.navigate('Player')}>
+        <View style={card_styles.container}>
+          <View style={card_styles.circle}>
+            <Text style={card_styles.playerNumber}>14</Text>
+          </View>
+          <View style={card_styles.textView}>
+            <Text style={card_styles.textOne}>Jack Lynch</Text>
+            <Text style={card_styles.textTwo}>Full forward</Text>
+          </View>
+          <View style={card_styles.more}>
+            <MoreButton />
+          </View>
+        </View>
+      </Card>
+      
 
       <FlatButton onPress={() => setModalOpen(true)} />
     </View>

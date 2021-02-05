@@ -16,8 +16,8 @@ export default function SpecificNewsFeedPost() {
         <View style={styles.commentGroup}>
           <View style={styles.circle}></View>
           <View style={styles.textBox}>
-            <Text style={styles.commentName}>Seamus Cummins</Text>
-            <Text style={styles.commentText}>Lorem ipsum dolor sit amet.</Text>
+            <Text style={styles.commentName}>Jack Lynch</Text>
+            <Text style={styles.commentText}>This might be worth looking into!</Text>
           </View>
         </View>
       </View>
@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
     paddingVertical: 8
   },
   commentName: {
-    color: '#3f3f43',
+    color: '#1d3557',
     fontFamily: 'montserrat-semibold',
     fontSize: 13,
   },
   commentText: {
     color: '#3f3f43',
     fontFamily: 'montserrat-regular',
-    fontSize: 11,
+    fontSize: 12,
     marginTop: 2,
   }
 });

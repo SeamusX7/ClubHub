@@ -66,8 +66,8 @@ export default function ChooseTeamScreen(props) {
             </View>
             <View style={card_styles.textView} >
               {/* <DisplayTeams userId={userId} string='hello' /> */}
-              <Text style={card_styles.textOne} >Sligo Rovers</Text>
-              <Text style={card_styles.textTwo} >u24s</Text>
+              <Text style={card_styles.textOne} >Clan na Gael</Text>
+              <Text style={card_styles.textTwo} >Seniors</Text>
             </View>
             <View style={card_styles.more} >
               <MoreButton onPress={() => console.log('Tap')} />
@@ -93,12 +93,12 @@ const styles = StyleSheet.create({
   greeting: {
     textAlign: 'center',
     fontFamily: 'montserrat-semibold',
-    fontSize: 18,
+    fontSize: 17,
   },
   text: {
     textAlign: 'center',
     fontFamily: 'montserrat-regular',
-    fontSize: 16,
+    fontSize: 15,
   },
   cardView: {
     marginTop: 30,

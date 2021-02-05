@@ -16,7 +16,7 @@ export default function NewSessionModal({ closeModal }) {
       <View style={modal_styles.invitePlayerMargin}>
         <View style={modal_styles.invitePlayerRow}>
           <View style={modal_styles.circle}></View>
-          <Text style={modal_styles.labelTextSemiBold}>Cheuk Wei Lin</Text>
+          <Text style={modal_styles.labelTextSemiBold}>Jack Lynch</Text>
           <View style={modal_styles.checkboxAlignment}>
             <Checkbox
               checked={false}
@@ -27,7 +27,18 @@ export default function NewSessionModal({ closeModal }) {
 
         <View style={modal_styles.invitePlayerRow}>
           <View style={modal_styles.circle}></View>
-          <Text style={modal_styles.labelTextSemiBold}>Cheuk Wei Lin</Text>
+          <Text style={modal_styles.labelTextSemiBold}>Keane Callan</Text>
+          <View style={modal_styles.checkboxAlignment}>
+            <Checkbox
+              checked={false}
+              style={modal_styles.checkbox}
+              size={22} />
+          </View>
+        </View>
+
+        <View style={modal_styles.invitePlayerRow}>
+          <View style={modal_styles.circle}></View>
+          <Text style={modal_styles.labelTextSemiBold}>Shane McCleary</Text>
           <View style={modal_styles.checkboxAlignment}>
             <Checkbox
               checked={false}

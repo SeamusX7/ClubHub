@@ -88,8 +88,8 @@ export default function SessionScreen({ navigation }) {
               style={card_styles.icon} />
           </View>
           <View style={card_styles.textView}>
-            <Text style={card_styles.textOne}>vs. Drogheda United</Text>
-            <Text style={card_styles.textTwo}>14:30 | 6th February</Text>
+            <Text style={card_styles.textOne}>vs. Na Fianna</Text>
+            <Text style={card_styles.textTwo}>14:30 | 20th February</Text>
           </View>
           <View style={card_styles.more}>
             <MoreButton onPress={() => console.log('Tap')} />
