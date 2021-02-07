@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { Formik } from 'formik';
 import { firebase } from '../../firebase/config';
@@ -7,7 +7,13 @@ import { firebase } from '../../firebase/config';
 import FlatButton from '../../components/ModalButton';
 import modal_styles from '../../assets/styles/ModalStyle';
 
+//redux
+import { useDispatch , useSelector } from 'react-redux';
+import { teamsAdded, getTeams } from '../../store/teams';
+
 export default function CreateTeamForm({ closeModal, userId }) {
+	const dispatch = useDispatch();
+	const [teams, setTeams] = useState({});
 	return (
 		<View>
 			<Formik
@@ -19,17 +25,29 @@ export default function CreateTeamForm({ closeModal, userId }) {
 						club: values.club,
 						managerId: userId,
 						sport: values.sport,
-						teamName: values.teamName
+						teamName: values.teamName,
+						win: 0,
+						draw: 0,
+						loss: 0,
 					})
-					db.collection('team').where('managerId', '==', userId).get()
-						.then(snapshot => {
-							snapshot.forEach(doc => {
-								const data = doc.data();
-								console.log(data.club);
-							});
-						})
-					.catch(err => {
-						console.log('Error getting documents', err);
+
+					db.collection('team')
+					.where('managerId', '==', userId)
+					.get()
+					.then(snapshot => {
+					  snapshot.forEach(doc => {			  
+						teams.push({
+						  ...doc.data(),
+						  key: doc.id,
+						});
+					  });
+			  
+					  setTeams(teams);
+					  dispatch(teamsAdded(teams));
+					 
+			  
+					  
+			  
 					});
 				}}>
 

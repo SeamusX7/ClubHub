@@ -7,6 +7,12 @@ import { decode, encode } from 'base-64';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
+//redux
+import configureStore from './src/store/configureStore'
+import { Provider } from 'react-redux';
+import {userAdded} from './src/store/user'
+
+
 // Local File Imports
 import { LoginScreen, RegistrationScreen } from './src/screens';
 import ChooseTeamScreen from './src/screens/launchpad/ChooseTeam';
@@ -32,6 +38,9 @@ const getFonts = () => Font.loadAsync({
 
 const Stack = createStackNavigator();
 
+const store = configureStore();
+
+
 export default function App() {
   const [user, setUser] = useState(null);
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -46,6 +55,7 @@ export default function App() {
           .then((document) => {
             const userData = document.data()
             setUser(userData)
+            store.dispatch(userAdded({userData}));
           })
           .catch((error) => {
 
@@ -57,7 +67,7 @@ export default function App() {
   }, []);
 
   if (fontsLoaded) {
-    return (
+    return (<Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false, gestureEnabled: false }} >
           <Stack.Screen name="ChooseTeam">
@@ -70,6 +80,7 @@ export default function App() {
           <Stack.Screen name="ViewMessage" component={ViewMessageScreen} options={{ headerShown: true, headerBackTitleVisible: false, gestureEnabled: true, title: 'View Message' }} ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
+      </Provider>
     )
   } else {
     return (

@@ -2,68 +2,156 @@ import react from 'react';
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, TextInput, FlatList, ScrollView, ActivityIndicator } from 'react-native'
 import { firebase } from '../../firebase/config'
-// import TeamItem from './TeamItem'
+import card_styles from '../../assets/styles/CardStyle';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import Card from '../../components/Card';
+import MoreButton from '../../components/MoreButton';
 
+import { SafeAreaView, Modal } from 'react-native'
 
-export default function DisplayTeams(userId) {
+// Local File Imports
+import CreateTeamForm from './CreateTeamForm';
+import modal_styles from '../../assets/styles/ModalStyle';
+import FlatButton from '../../components/CreateButton';
+
+//redux
+import { getUserId } from '../../store/user';
+import { useDispatch , useSelector } from 'react-redux';
+import { teamsAdded, getTeams } from '../../store/teams';
+import { activeTeamAdded, getActiveTeamKey } from '../../store/activeTeam';
+
+export default function DisplayTeams(prop) {
+
+  const userID = useSelector(getUserId);
+
+  console.log('=================================================');
+  console.log('display teams render ');
+  console.log('=================================================');
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [teamIdKey, setTeamIdKey] = useState('team id');
+
+  const activeModal = (fact, key) => {
+    setTeamIdKey(key.item.key);
+    throwFact(fact);
+  }
+
+  const throwFact = (fact) => {
+    setModalOpen(fact);
+  }
+  
   const db = firebase.firestore();
-  const [loading, setLoading] = useState(true); // Set loading to true on component mount
-  const [teams, setTeams] = useState([]); // Initial empty array of users
+  const [teams, setTeams] = useState([]); // Initial empty array of teams
+  const [activeTeam, setActiveTeam] = useState([]);
+  const dispatch = useDispatch();
 
-  const onGetTeams = (userId) => {
-    setTeams([]);
-    // const subscriber =
-    console.log('user id ', userId);
-    db.collection('team').where('managerId', '==', userId).get()
+ // const onGetTeams = (userID) => {
+    // db.collection('team')
+    //   .where('managerId', '==', userID)
+    //   .get()
+    //   .then(snapshot => {
+    //     snapshot.forEach(doc => {
+    //       teams.push({
+    //         ...doc.data(),
+    //         key: doc.id,
+    //       });
+    //     });
+
+    //     setTeams(teams);
+    //     dispatch(teamsAdded(teams));
+
+    //   });
+ // }
+  const teamsArray = useSelector(getTeams);
+  console.log('teamsArray ===> : ', teamsArray);
+ 
+
+  useEffect(() => {
+
+      //setTeams([])
+      // onGetTeams(userID);
+
+      db.collection('team')
+      .where('managerId', '==', userID)
+      .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
           teams.push({
             ...doc.data(),
             key: doc.id,
           });
-          console.log('key : ', doc.id)
         });
 
         setTeams(teams);
-        setLoading(false);
-        
+        dispatch(teamsAdded(teams));
+
       });
-  }
 
-  useEffect(() => {
-
-    onGetTeams(userId);
-    // Unsubscribe from events when no longer in use
-    // return () => subscriber();
-  }, []);
+   
+  }, [teams]);
 
 
 
-  if (loading) {
-    return (
-      <View style={[styles.container, styles.horizontal]}>
-        <ActivityIndicator size="large" color="#3b86eb" />
-      </View>
-    )
+
+  teamSelected = item =>
+  {
+    setActiveTeam(item);
+    dispatch(activeTeamAdded(item));
+    console.log('team selected ==> : ', item);
+    prop.props.navigation.navigate('TabNavigator')
   }
 
   return (
-    <FlatList
-      style={styles.list}
-      data={teams}
-      renderItem={({ item }) => (
-        <View style={{ fontSize: 20, height: 100, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View>
+      <FlatList
+        data={teams}
+        renderItem={({ item }) => (
+          <Card
+            // onPress={() => x.props.navigation.navigate('TabNavigator')}
+            onPress={() => this.teamSelected({item})}
+          >
+            <View style={card_styles.container}>
+              <View style={card_styles.circle} >
+                <MaterialCommunityIcons
+                  name='trophy-outline'
+                  size={20}
+                  color='#5386e4'
+                  style={card_styles.icon} />
+              </View>
+              <View style={card_styles.textView} >
+                {/* <DisplayTeams userId={userId} string='hello' /> */}
+                <Text style={card_styles.textOne} >{item.club}</Text>
+                <Text style={card_styles.textTwo} >{item.teamName}</Text>
+              </View>
+              <View style={card_styles.more} >
+                <MoreButton onPress={() => activeModal(true, { item })} />
+              </View>
+            </View>
+          </Card>
+        )}
+      />
 
-          <Text>Team Name: {item.teamName}</Text>
-          <Button
-            title={item.teamName}
-         //   props =  {...props} Team={item}
-         //onPress={() => props.navigation.navigate('TabNavigator')}
-          />
+      <Modal
+        visible={modalOpen}
+        animationType='slide'>
+        <SafeAreaView style={modal_styles.modalContent}>
+          <View style={modal_styles.modalContent}>
+            <View style={modal_styles.modalHeader}>
+              <Text style={modal_styles.modalTitle}>New team</Text>
+              <MaterialIcons
+                name='close'
+                color='#333'
+                size={24}
+                style={modal_styles.modalToggleExit}
+                onPress={() => setModalOpen(false)} />
+            </View>
+            <Text>{teamIdKey}</Text>
+          </View>
+        </SafeAreaView>
+      </Modal>
 
-        </View>
-      )}
-    />
+    </View>
+
   );
 
 }

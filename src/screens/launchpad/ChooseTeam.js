@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, SafeAreaView, Button, Modal, View } from 'react-native'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { FlatList } from 'react-native-gesture-handler';
+
+//redux
+import { getUserId } from '../../store/user';
+import { useDispatch , useSelector } from 'react-redux';
+
+
 
 // Local File Imports
 import CreateTeamForm from './CreateTeamForm';
@@ -14,19 +20,41 @@ import Card from '../../components/Card';
 
 export default function ChooseTeamScreen(props) {
   const userName = props.extraData.fullName;
-  const userId = props.extraData.id;
+ // const userId = props.extraData.id;
+ //const [teams, setTeams] = useState([]);
+
+//  useEffect(() => {
+
+//   console.log("================================"),
+//   console.log('teams changed'),
+//   console.log("================================")
+// }, [teams]);
+
+
   const userType = props.extraData.userType;
+   const userID = useSelector(getUserId);
+
+
   const [modalOpen, setModalOpen] = useState(false);
+  
+  console.log("=====================================================");
+  console.log('user id ----> : ',userID);
+  console.log("=====================================================");
+ 
+  
+  
 
   const openModalButton = <FlatButton onPress={() => setModalOpen(true)} />
 
   const closeModal = () => {
     setModalOpen(false);
+
   }
 
   return (
     <SafeAreaView style={styles.container}>
 
+     
       <Modal
         visible={modalOpen}
         animationType='slide'>
@@ -41,7 +69,7 @@ export default function ChooseTeamScreen(props) {
                 style={modal_styles.modalToggleExit}
                 onPress={() => setModalOpen(false)} />
             </View>
-            <CreateTeamForm userId={userId} closeModal={closeModal} />
+            <CreateTeamForm userId={userID} closeModal={closeModal}  />
           </View>
         </SafeAreaView>
       </Modal>
@@ -52,30 +80,9 @@ export default function ChooseTeamScreen(props) {
       </View>
 
       <View style={styles.cardView} >
-        {/* <FlatList
-          data={userId}
-          renderItem={({ id }) => ( */}
-        <Card onPress={() => props.navigation.navigate('TabNavigator')}>
-          <View style={card_styles.container}>
-            <View style={card_styles.circle} >
-              <MaterialCommunityIcons
-                name='trophy-outline'
-                size={20}
-                color='#5386e4'
-                style={card_styles.icon} />
-            </View>
-            <View style={card_styles.textView} >
-              {/* <DisplayTeams userId={userId} string='hello' /> */}
-              <Text style={card_styles.textOne} >Clan na Gael</Text>
-              <Text style={card_styles.textTwo} >Seniors</Text>
-            </View>
-            <View style={card_styles.more} >
-              <MoreButton onPress={() => console.log('Tap')} />
-            </View>
-          </View>
-        </Card>
-        {/* )}
-        /> */}
+
+        <DisplayTeams prop={props}/>
+
       </View>
 
       {[userType === "coach" ? openModalButton : null]}
