@@ -55,7 +55,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
         <Text style={styles.textOne}>Clan na Gael vs. Na Fianna</Text>
         <Text style={styles.textTwo}>Kick off</Text>
         <Text style={styles.textThree}>14:30</Text>
-        <Text style={styles.textFour}>The Showgrounds | 8th Feb</Text>
+        <Text style={styles.textFour}>The Showgrounds | 20th February</Text>
       </View>
 
       <TabView
