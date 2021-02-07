@@ -27,5 +27,6 @@ export const getUserName = createSelector(
 
 export const {
     userAdded,
+
     } = slice.actions;
 export default slice.reducer;
