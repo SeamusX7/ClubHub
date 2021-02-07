@@ -81,7 +81,7 @@ export default function ChooseTeamScreen(props) {
 
       <View style={styles.cardView} >
 
-        <DisplayTeams prop={props}/>
+        <DisplayTeams props={props}/>
 
       </View>
 
