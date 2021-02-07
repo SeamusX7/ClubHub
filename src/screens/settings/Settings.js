@@ -72,9 +72,9 @@ console.log('user name =====> : ', userFullName);
         text="Privacy Policy"
         onPress={() => navigation.navigate('PrivacyPolicy')} />
 
-      <SettingsButton
+      {/* <SettingsButton
         text="TEMP Player Profile"
-        onPress={() => navigation.navigate('PlayerProfile')} />
+        onPress={() => navigation.navigate('PlayerProfile')} /> */}
 
       <LogoutButton 
         text="Sign Out"

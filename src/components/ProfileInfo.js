@@ -3,11 +3,11 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 export default function ProfileButton({ text, onPress }) {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <View onPress={onPress}>
       <View style={styles.button}>
         <Text style={styles.buttonText}>{text}</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 

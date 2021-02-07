@@ -31,40 +31,29 @@ export default function SettingsScreen({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <MaterialCommunityIcons
-          name="account-circle"
-          size={120}
-          color="#5386e4"
-          style={{ alignSelf: "center", marginTop: 5, marginBottom: 0, }}
-        />
+      <View style={styles.bigCircle}></View>
         <Text style={styles.textOne} >{userFullName}</Text>
         <Text style={{ ...global_styles.title, marginBottom: 10 }}>Team Rating</Text>
 
         <View style={large_card_style.container}>
           <TouchableOpacity style={large_card_style.largeLeftCard}>
-            <MaterialCommunityIcons
-              name="numeric-6-circle"
-              size={36}
-              color="#5386e4"
-              style={{ alignSelf: 'center' }} />
+          <View style={styles.cardCircle}>
+              <Text style={styles.cardCircleText}>6</Text>
+            </View>
             <Text style={large_card_style.text}>Wins</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={large_card_style.largeCenterCard}>
-            <MaterialCommunityIcons
-              name="numeric-2-circle"
-              size={36}
-              color="#5386e4"
-              style={{ alignSelf: 'center' }} />
+          <View style={styles.cardCircle}>
+              <Text style={styles.cardCircleText}>2</Text>
+            </View>
             <Text style={large_card_style.text}>Losses</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={large_card_style.largeRightCard}>
-            <MaterialCommunityIcons
-              name="numeric-8-circle"
-              size={36}
-              color="#5386e4"
-              style={{ alignSelf: 'center' }} />
+          <View style={styles.cardCircle}>
+              <Text style={styles.cardCircleText}>8</Text>
+            </View>
             <Text style={large_card_style.text}>Goals</Text>
           </TouchableOpacity>
         </View>
@@ -78,12 +67,12 @@ export default function SettingsScreen({ navigation }) {
 
           <Text style={profile_style.text}>Date Of Birth</Text>
           <ProfileInfo
-            text="30 / 10 / 1971"
+            text="30 / 10 / 1990"
           />
 
           <Text style={profile_style.text}>Role</Text>
           <ProfileInfo
-            text="Manager"
+            text="Coach"
           />
         </View>
 
@@ -118,5 +107,27 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 20,
+  },
+  bigCircle: {
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 100 / 2,
+    height: 100,
+    marginBottom: 20,
+    width: 100,
+  },
+  cardCircle: {
+    alignSelf: 'center',
+    backgroundColor: '#f0f2f7',
+    borderRadius: 50 / 2,
+    height: 50,
+    width: 50,
+  },
+  cardCircleText: {
+    color: '#1d3557',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 22,
+    marginTop: 12,
+    textAlign: 'center',
   }
 });

@@ -30,8 +30,8 @@ export default function PreviousMatchSessionsScreen({ navigation }) {
               <Text style={card_styles.matchScore}>0-0</Text>
             </View>
             <View style={card_styles.textView}>
-              <Text style={card_styles.textOne}>vs. Derry City</Text>
-              <Text style={card_styles.textTwo}>3rd December 2019</Text>
+              <Text style={card_styles.textOne}>vs. Navan O'Mahonys</Text>
+              <Text style={card_styles.textTwo}>6th February 2021</Text>
             </View>
             <View style={card_styles.more}>
               <MoreButton />
@@ -44,8 +44,8 @@ export default function PreviousMatchSessionsScreen({ navigation }) {
               <Text style={card_styles.matchScore}>1-3</Text>
             </View>
             <View style={card_styles.textView}>
-              <Text style={card_styles.textOne}>vs. Sligo Rovers</Text>
-              <Text style={card_styles.textTwo}>3rd December 2019</Text>
+              <Text style={card_styles.textOne}>vs. Bective GFC</Text>
+              <Text style={card_styles.textTwo}>16th January 2021</Text>
             </View>
             <View style={card_styles.more}>
               <MoreButton />
@@ -58,8 +58,8 @@ export default function PreviousMatchSessionsScreen({ navigation }) {
               <Text style={card_styles.matchScore}>2-0</Text>
             </View>
             <View style={card_styles.textView}>
-              <Text style={card_styles.textOne}>vs. Drogheda United</Text>
-              <Text style={card_styles.textTwo}>3rd December 2019</Text>
+              <Text style={card_styles.textOne}>vs. Ratoath</Text>
+              <Text style={card_styles.textTwo}>26th December 2020</Text>
             </View>
             <View style={card_styles.more}>
               <MoreButton />

@@ -34,6 +34,7 @@ export default StyleSheet.create({
   },
   textView: {
     marginLeft: 20,
+    marginRight: 50,
     marginTop: 3,
   },
   textViewNoCircle: {

@@ -81,7 +81,7 @@ export default function ChooseTeamScreen(props) {
 
       <View style={styles.cardView} >
 
-        <DisplayTeams/>
+        <DisplayTeams prop={props}/>
 
       </View>
 
@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
   greeting: {
     textAlign: 'center',
     fontFamily: 'montserrat-semibold',
-    fontSize: 18,
+    fontSize: 17,
   },
   text: {
     textAlign: 'center',
     fontFamily: 'montserrat-regular',
-    fontSize: 16,
+    fontSize: 15,
   },
   cardView: {
     marginTop: 30,
