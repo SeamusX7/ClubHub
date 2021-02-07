@@ -14,35 +14,65 @@ import CreateTeamForm from './CreateTeamForm';
 import modal_styles from '../../assets/styles/ModalStyle';
 import FlatButton from '../../components/CreateButton';
 
-export default function DisplayTeams(x) {
+//redux
+import { getUserId } from '../../store/user';
+import { useDispatch , useSelector } from 'react-redux';
+import { teamsAdded, getTeams } from '../../store/teams';
+import { activeTeamAdded, getActiveTeamKey } from '../../store/activeTeam';
+
+export default function DisplayTeams(prop) {
+
+  const userID = useSelector(getUserId);
+
+  console.log('=================================================');
+  console.log('display teams render ');
+  console.log('=================================================');
 
   const [modalOpen, setModalOpen] = useState(false);
   const [teamIdKey, setTeamIdKey] = useState('team id');
 
   const activeModal = (fact, key) => {
     setTeamIdKey(key.item.key);
-    console.log('key ID : ', teamIdKey);
     throwFact(fact);
   }
 
   const throwFact = (fact) => {
     setModalOpen(fact);
   }
-
-
-  console.log("x.props.extraData.id: ", x.props.extraData.id);
-  //  userId = x.props.extraData.id
+  
   const db = firebase.firestore();
-  const [loading, setLoading] = useState(true); // Set loading to true on component mount
   const [teams, setTeams] = useState([]); // Initial empty array of teams
-  //const userId = props.extraData.id;
+  const [activeTeam, setActiveTeam] = useState([]);
+  const dispatch = useDispatch();
 
+ // const onGetTeams = (userID) => {
+    // db.collection('team')
+    //   .where('managerId', '==', userID)
+    //   .get()
+    //   .then(snapshot => {
+    //     snapshot.forEach(doc => {
+    //       teams.push({
+    //         ...doc.data(),
+    //         key: doc.id,
+    //       });
+    //     });
 
-  const onGetTeams = (x) => {
-    //setTeams([]);
-    console.log('(userId) user id 1 : ', x.props.extraData.id, "\n");
-    db.collection('team')
-      .where('managerId', '==', x.props.extraData.id)
+    //     setTeams(teams);
+    //     dispatch(teamsAdded(teams));
+
+    //   });
+ // }
+  const teamsArray = useSelector(getTeams);
+  console.log('teamsArray ===> : ', teamsArray);
+ 
+
+  useEffect(() => {
+
+      //setTeams([])
+      // onGetTeams(userID);
+
+      db.collection('team')
+      .where('managerId', '==', userID)
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
@@ -50,31 +80,26 @@ export default function DisplayTeams(x) {
             ...doc.data(),
             key: doc.id,
           });
-          console.log('key : ', doc.id)
         });
 
         setTeams(teams);
-        setLoading(false);
+        dispatch(teamsAdded(teams));
 
       });
+
+   
+  }, [teams]);
+
+
+
+
+  teamSelected = item =>
+  {
+    setActiveTeam(item);
+    dispatch(activeTeamAdded(item));
+    console.log('team selected ==> : ', item);
+    prop.props.navigation.navigate('TabNavigator')
   }
-
-  useEffect(() => {
-
-    return () => console.log("effect   "),
-      setTeams([]), onGetTeams(x);
-    // Unsubscribe from events when no longer in use
-  }, []);
-
-
-
-  // if (loading) {
-  //   return (
-  //     <View style={[styles.container, styles.horizontal]}>
-  //       <ActivityIndicator size="large" color="#3b86eb" />
-  //     </View>
-  //   )
-  // }
 
   return (
     <View>
@@ -82,7 +107,8 @@ export default function DisplayTeams(x) {
         data={teams}
         renderItem={({ item }) => (
           <Card
-            onPress={() => x.props.navigation.navigate('TabNavigator')}
+            // onPress={() => x.props.navigation.navigate('TabNavigator')}
+            onPress={() => this.teamSelected({item})}
           >
             <View style={card_styles.container}>
               <View style={card_styles.circle} >

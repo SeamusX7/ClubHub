@@ -9,7 +9,25 @@ import ProfileInfo from '../../components/ProfileInfo';
 import profile_style from '../../assets/styles/ProfileStyle';
 import FlatButton from '../../components/Button';
 
+//redux
+//redux
+import { getUserName } from '../../store/user';
+import { useDispatch , useSelector } from 'react-redux';
+import { getActiveTeamWin, getActiveTeamLoss, getActiveTeamDraw } from '../../store/activeTeam';
+
 export default function SettingsScreen({ navigation }) {
+
+  const userFullName = useSelector(getUserName);
+  console.log('user name =====> : ', userFullName);
+
+  let activeTeamWin = useSelector(getActiveTeamWin);
+  // let activeTeamLoss = useSelector(getActiveTeamLoss);
+  // let activeTeamDraw = useSelector(getActiveTeamDraw);
+
+  console.log('wins =====> : ', activeTeamWin);
+  // console.log('losses =====> : ', activeTeamLoss);
+  // console.log('Draws =====> : ', activeTeamDraw);
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -19,7 +37,7 @@ export default function SettingsScreen({ navigation }) {
           color="#5386e4"
           style={{ alignSelf: "center", marginTop: 5, marginBottom: 0, }}
         />
-        <Text style={styles.textOne} >Stephen Kenny</Text>
+        <Text style={styles.textOne} >{userFullName}</Text>
         <Text style={{ ...global_styles.title, marginBottom: 10 }}>Team Rating</Text>
 
         <View style={large_card_style.container}>
@@ -55,7 +73,7 @@ export default function SettingsScreen({ navigation }) {
         <View>
           <Text style={profile_style.text1}>Name</Text>
           <ProfileInfo
-            text="Stephen Kenny"
+            text={userFullName}
           />
 
           <Text style={profile_style.text}>Date Of Birth</Text>

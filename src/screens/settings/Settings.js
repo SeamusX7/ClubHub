@@ -10,6 +10,10 @@ import large_card_style from '../../assets/styles/LargeCardStyle';
 import card_styles from '../../assets/styles/CardStyle';
 import modal_styles from '../../assets/styles/ModalStyle';
 
+//redux
+import { getUserName } from '../../store/user';
+import { useDispatch , useSelector } from 'react-redux';
+
 export default function SettingsScreen({ navigation }) {
 
   signOutUser = async () => {
@@ -20,6 +24,9 @@ export default function SettingsScreen({ navigation }) {
         console.log(e);
     }
 }
+
+const userFullName = useSelector(getUserName);
+console.log('user name =====> : ', userFullName);
 
   return (
     <View style={styles.container}>
@@ -34,7 +41,7 @@ export default function SettingsScreen({ navigation }) {
             />
             <View style={card_styles.textView} >
               {/* <DisplayTeams userId={userId} string='hello' /> */}
-              <Text style={styles.textOne} >Stephen Kenny</Text>
+              <Text style={styles.textOne} >{userFullName}</Text>
               <Text style={styles.textTwo} >View Profile</Text>
             </View>
             </View>
