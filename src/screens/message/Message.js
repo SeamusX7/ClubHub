@@ -33,8 +33,8 @@ export default function MessageScreen({ navigation }) {
 
               </View>
               <View style={message_styles.textView} >
-                <Text style={message_styles.textOne} >Paul Pogba</Text>
-                <Text style={message_styles.textTwo} >You: Paul, can you come in for training...</Text>
+                <Text style={message_styles.textOne} >Eamon Kavanagh</Text>
+                <Text style={message_styles.textTwo} >You: Jack, can you come in for training...</Text>
               </View>
               <View style={message_styles.sent}>
                 <Text style={message_styles.time}>10:12</Text>
