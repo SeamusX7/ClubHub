@@ -17,7 +17,7 @@ const slice = createSlice({
 
 export const getActiveTeamKey = createSelector(
     state => state.entities.activeTeam,
-    (activeTeam) => activeTeam.item.key
+    (activeTeam) => activeTeam[0].item.key
 )
 
 export const getActiveTeamWin = createSelector(

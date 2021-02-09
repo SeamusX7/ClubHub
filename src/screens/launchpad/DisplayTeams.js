@@ -91,8 +91,6 @@ export default function DisplayTeams(prop) {
   }, [teams]);
 
 
-
-
   teamSelected = item =>
   {
     setActiveTeam(item);

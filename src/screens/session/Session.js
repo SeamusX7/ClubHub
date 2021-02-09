@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Button, Text, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, FlatList, ScrollView, ActivityIndicator } from 'react-native';
+import { firebase } from '../../firebase/config';
+import { SafeAreaView, Modal } from 'react-native';
 
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
@@ -12,11 +14,74 @@ import FlatButton from '../../components/CreateButton';
 import modal_styles from '../../assets/styles/ModalStyle';
 import NewSessionModal from './NewSessionModal';
 
-export default function SessionScreen({ navigation }) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const closeModal = () => {
-    setModalOpen(false);
+//redux
+import { getUserId } from '../../store/user';
+import { useDispatch , useSelector } from 'react-redux';
+import { teamsAdded, getTeams } from '../../store/teams';
+import { activeTeamAdded, getActiveTeamKey } from '../../store/activeTeam';
+import { sessionsAdded, getSessions } from '../../store/sessions';
+import { activeSessionAdded, getActiveSessionKey } from '../../store/activeSession';
+
+
+export default function SessionScreen({navigation}) {
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const closeModal = () => {
+  //   setModalOpen(false);
+    const teamID = useSelector(getActiveTeamKey);
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const [sessionIdKey, setSessionIdKey] = useState('session id');
+
+    const activeModal = (fact, key) => {
+      setSessionIdKey(key.item.key);
+      closeModal(fact);
+    }
+
+    const closeModal = (fact) => {
+      setModalOpen(false);
+    }
+
+    const db = firebase.firestore();
+    const [sessions, setSessions] = useState([]); // Initial empty array of sessions
+    const [activeSession, setActiveSession] = useState([]);
+    const dispatch = useDispatch();
+
+    const sessionsArray = useSelector(getSessions);
+    console.log('sessionsArray ===> : ', sessionsArray);
+
+
+    useEffect(() => {
+
+      //setTeams([])
+      // onGetTeams(userID);
+
+      db.collection('sessions')
+      .where('teamId', '==', teamID)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          sessions.push({
+            ...doc.data(),
+            key: doc.id,
+          });
+        });
+
+        setSessions(sessions);
+        dispatch(sessionsAdded(sessions));
+
+      });
+
+   
+  }, [sessions]);
+
+  sessionSelected = item =>
+  {
+    setActiveSession(item);
+    dispatch(activeSessionAdded(item));
+    console.log('session selected ==> : ', item);
+    prop.props.navigation.navigate('TabNavigator')
   }
+
 
   return (
     React.useLayoutEffect(() => {
@@ -50,6 +115,10 @@ export default function SessionScreen({ navigation }) {
         </SafeAreaView>
       </Modal>
 
+
+      
+
+
       <Text style={{...global_styles.title, marginBottom: 10}}>Previous sessions</Text>
       <View style={large_card_style.container}>
         <TouchableOpacity onPress={() => navigation.navigate('PreviousMatchSessions')} style={large_card_style.largeLeftCard}>
@@ -60,6 +129,8 @@ export default function SessionScreen({ navigation }) {
             style={{ alignSelf: 'center' }} />
           <Text style={large_card_style.text}>Matches</Text>
         </TouchableOpacity>
+
+
         <TouchableOpacity onPress={() => navigation.navigate('PreviousTrainingSessions')} style={large_card_style.largeCenterCard}>
           <Ionicons
             name="md-football"
@@ -68,6 +139,8 @@ export default function SessionScreen({ navigation }) {
             style={{ alignSelf: 'center' }} />
           <Text style={large_card_style.text}>Training</Text>
         </TouchableOpacity>
+
+
         <TouchableOpacity onPress={() => navigation.navigate('PreviousGymSessions')} style={large_card_style.largeRightCard}>
           <MaterialCommunityIcons
             name="dumbbell"
@@ -77,63 +150,40 @@ export default function SessionScreen({ navigation }) {
           <Text style={large_card_style.text}>Gym</Text>
         </TouchableOpacity>
       </View>
-      <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Upcoming sessions</Text>
-      <Card onPress={() => navigation.navigate('ViewUpcomingMatchSession')}>
-        <View style={card_styles.container}>
-          <View style={card_styles.circle}>
-            <MaterialCommunityIcons
-              name='trophy-outline'
-              size={20}
-              color='#5386e4'
-              style={card_styles.icon} />
-          </View>
-          <View style={card_styles.textView}>
-            <Text style={card_styles.textOne}>vs. Na Fianna</Text>
-            <Text style={card_styles.textTwo}>14:30 | 20th February</Text>
-          </View>
-          <View style={card_styles.more}>
-            <MoreButton onPress={() => console.log('Tap')} />
-          </View>
-        </View>
-      </Card>
-      {/* <Card>
-        <View style={card_styles.container}>
-          <View style={card_styles.circle}>
-            <MaterialCommunityIcons
-              name='md-football'
-              size={20}
-              color='#5386e4'
-              style={card_styles.icon} />
-          </View>
-          <View style={card_styles.textView}>
-            <Text style={card_styles.textOne}>Shooting drills</Text>
-            <Text style={card_styles.textTwo}>14:30 | 6th February</Text>
-          </View>
-          <View style={card_styles.more}>
-            <MoreButton onPress={() => console.log('Tap')} />
-          </View>
-        </View>
-      </Card> */}
-      {/* <Card>
-        <View style={card_styles.container}>
-          <View style={card_styles.circle}>
-            <MaterialCommunityIcons
-              name='dumbbell'
-              size={20}
-              color='#5386e4'
-              style={card_styles.icon} />
-          </View>
-          <View style={card_styles.textView}>
-            <Text style={card_styles.textOne}>Compound lifts</Text>
-            <Text style={card_styles.textTwo}>14:30 | 6th February</Text>
-          </View>
-          <View style={card_styles.more}>
-            <MoreButton onPress={() => console.log('Tap')} />
-          </View>
-        </View>
-      </Card> */}
 
-      <FlatButton onPress={() => setModalOpen(true)} />
+
+
+
+
+      <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Upcoming sessions</Text>
+
+      <FlatList
+        data={sessions}
+        renderItem={({ item }) => (
+          <Card
+            // onPress={() => x.props.navigation.navigate('TabNavigator')}
+            onPress={() => this.sessionSelected({item})}
+          >
+            <View style={card_styles.container}>
+              <View style={card_styles.circle} >
+                <MaterialCommunityIcons
+                  name='trophy-outline'
+                  size={20}
+                  color='#5386e4'
+                  style={card_styles.icon} />
+              </View>
+              <View style={card_styles.textView} >
+                <Text style={card_styles.textOne} >{item.opposition}</Text>
+                <Text style={card_styles.textTwo} >{item.timeStamp.toDate().toDateString()}</Text>
+                <Text style={card_styles.textTwo} >{item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
+              </View>
+              <View style={card_styles.more} >
+                <MoreButton onPress={() => activeModal(true, { item })} />
+              </View>
+            </View>
+          </Card>
+        )}
+      />
 
     </View>
   )

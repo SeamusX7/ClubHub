@@ -17,6 +17,12 @@ export const getTeams = createSelector(
     (teams) => teams
 )
 
+export const getTeamId = createSelector(
+    state => state.entities.teams,
+    (teams) => teams[0].teamsData.id
+)
+
+
 export const {
     teamsAdded,
     } = slice.actions;
