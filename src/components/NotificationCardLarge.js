@@ -7,7 +7,7 @@ import notification_styles from '../assets/styles/NotificationStyle';
 export default function NotiCard(props) {
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <View style={notification_styles.card}>
+      <View style={notification_styles.card2}>
         <View style={styles.cardContent}>
           {props.children}
         </View>
