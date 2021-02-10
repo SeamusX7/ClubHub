@@ -4,7 +4,7 @@ import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { FlatList } from 'react-native-gesture-handler';
 
 //redux
-import { getUserId } from '../../store/user';
+import { getUserId, getUserType } from '../../store/user';
 import { useDispatch , useSelector } from 'react-redux';
 
 
@@ -33,6 +33,12 @@ export default function ChooseTeamScreen(props) {
 
   const userType = props.extraData.userType;
    const userID = useSelector(getUserId);
+
+   const uType = useSelector(getUserType);
+
+  console.log("=====================================================");
+  console.log('user type ----> : ',uType);
+  console.log("=====================================================");
 
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -85,7 +91,7 @@ export default function ChooseTeamScreen(props) {
 
       </View>
 
-      {[userType === "coach" ? openModalButton : null]}
+      {[userType === uType ? openModalButton : null]}
 
     </SafeAreaView >
   )
