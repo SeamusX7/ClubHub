@@ -3,10 +3,10 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   logo: {
 		alignSelf: 'center',
-		height: 52,
+		height: 104,
 		resizeMode:'contain',
 		marginBottom: 21,
-		width: 52,
+		width: 104,
 	},
   titleContainer: {
 		marginBottom: 11,

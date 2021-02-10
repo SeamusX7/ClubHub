@@ -74,24 +74,7 @@ export default function NotificationScreen({ navigation }) {
         </View>
       </Card>
 
-      <Card onPress={() => navigation.navigate('Team')}>
-        <View style={notification_styles.container}>
-          <View style={notification_styles.circle}>
-            <MaterialCommunityIcons
-              name='account-multiple-plus'
-              size={20}
-              color='#5386e4'
-              style={notification_styles.icon} />
-          </View>
-          <View style={notification_styles.textView}>
-            <Text style={notification_styles.textOne}>Invitation</Text>
-            <Text style={notification_styles.textTwo}>You have been invited to join Clan na Gael senior team.</Text>
-          </View>
-          <View style={notification_styles.more}>
-            <MoreButton onPress={() => console.log('Tap')} />
-          </View>
-        </View>
-      </Card>
+      
 
       <Card2 style={notification_styles.card2}>
         <View style={notification_styles.container}>
