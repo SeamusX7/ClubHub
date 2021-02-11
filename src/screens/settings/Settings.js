@@ -57,10 +57,6 @@ console.log('user name =====> : ', userFullName);
         onPress={() => navigation.navigate('ChooseTeam')} />
 
       <SettingsButton
-        text="Customisation"
-        onPress={() => navigation.navigate('Customisation')} />
-
-      <SettingsButton
         text="Language"
         onPress={() => navigation.navigate('Language')} />
 

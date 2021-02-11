@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, SafeAreaView, Button, Modal, View } from 'react-native'
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, SafeAreaView, Modal, View } from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons';
 import { FlatList } from 'react-native-gesture-handler';
 
-//redux
-import { getUserId } from '../../store/user';
+// Redux
+import { getUserId, getUserType } from '../../store/user';
 import { useDispatch , useSelector } from 'react-redux';
-
 
 
 // Local File Imports
 import CreateTeamForm from './CreateTeamForm';
+import JoinTeamForm from './JoinTeamForm';
 import DisplayTeams from './DisplayTeams';
 import modal_styles from '../../assets/styles/ModalStyle';
 import card_styles from '../../assets/styles/CardStyle';
@@ -32,31 +32,33 @@ export default function ChooseTeamScreen(props) {
 
 
   const userType = props.extraData.userType;
-   const userID = useSelector(getUserId);
+  const userID = useSelector(getUserId);
+  const uType = useSelector(getUserType);
 
-
-  const [modalOpen, setModalOpen] = useState(false);
+  console.log("=====================================================");
+  console.log('user type ----> : ',uType);
+  console.log("=====================================================");
   
   console.log("=====================================================");
   console.log('user id ----> : ',userID);
   console.log("=====================================================");
- 
-  
-  
 
-  const openModalButton = <FlatButton onPress={() => setModalOpen(true)} />
-
-  const closeModal = () => {
-    setModalOpen(false);
-
+  const [managerModalOpen, setManagerModalOpen] = useState(false);
+  const [playerModalOpen, setPlayerModalOpen] = useState(false);
+  const openManagerModalButton = <FlatButton onPress={() => setManagerModalOpen(true)} />
+  const openPlayerModalButton = <FlatButton onPress={() => setPlayerModalOpen(true)} />
+  const closeManagerModal = () => {
+    setManagerModalOpen(false);
+  }
+  const closePlayerModal = () => {
+    setPlayerModalOpen(false);
   }
 
   return (
     <SafeAreaView style={styles.container}>
 
-     
       <Modal
-        visible={modalOpen}
+        visible={managerModalOpen}
         animationType='slide'>
         <SafeAreaView style={modal_styles.modalContent}>
           <View style={modal_styles.modalContent}>
@@ -67,9 +69,28 @@ export default function ChooseTeamScreen(props) {
                 color='#333'
                 size={24}
                 style={modal_styles.modalToggleExit}
-                onPress={() => setModalOpen(false)} />
+                onPress={() => setManagerModalOpen(false)} />
             </View>
-            <CreateTeamForm userId={userID} closeModal={closeModal}  />
+            <CreateTeamForm userId={userID} closeModal={closeManagerModal}  />
+          </View>
+        </SafeAreaView>
+      </Modal>
+
+      <Modal
+        visible={playerModalOpen}
+        animationType='slide'>
+        <SafeAreaView style={modal_styles.modalContent}>
+          <View style={modal_styles.modalContent}>
+            <View style={modal_styles.modalHeader}>
+              <Text style={modal_styles.modalTitle}>Join team</Text>
+              <MaterialIcons
+                name='close'
+                color='#333'
+                size={24}
+                style={modal_styles.modalToggleExit}
+                onPress={() => setPlayerModalOpen(false)} />
+            </View>
+            <JoinTeamForm closeModal={closePlayerModal}  />
           </View>
         </SafeAreaView>
       </Modal>
@@ -85,7 +106,7 @@ export default function ChooseTeamScreen(props) {
 
       </View>
 
-      {[userType === "coach" ? openModalButton : null]}
+      {[uType === "coach" ? openManagerModalButton : openPlayerModalButton]}
 
     </SafeAreaView >
   )

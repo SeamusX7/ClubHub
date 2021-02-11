@@ -23,6 +23,11 @@ export const getUserName = createSelector(
     (user) => user[0].userData.fullName
 )
 
+export const getUserType = createSelector(
+    state => state.entities.user,
+    (user) => user[0].userData.userType
+)
+
 
 
 export const {
