@@ -22,7 +22,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'Formation' },
+    { key: 'first', title: 'Overview' },
     { key: 'second', title: 'Attendance' },
     { key: 'third', title: 'Invitations' },
   ]);
