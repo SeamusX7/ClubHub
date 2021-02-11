@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Button, Text, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
@@ -8,15 +8,8 @@ import large_card_style from '../../assets/styles/LargeCardStyle';
 import Card from '../../components/Card';
 import card_styles from '../../assets/styles/CardStyle';
 import MoreButton from '../../components/MoreButton';
-import FlatButton from '../../components/CreateButton';
-import modal_styles from '../../assets/styles/ModalStyle';
-import InvitePlayerModal from './InvitePlayerModal';
 
 export default function TeamScreen({ navigation }) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const closeModal = () => {
-    setModalOpen(false);
-  }
 
   return (
     React.useLayoutEffect(() => {
@@ -30,25 +23,6 @@ export default function TeamScreen({ navigation }) {
     }, [navigation]),
 
     <View style={styles.container}>
-
-      <Modal
-        visible={modalOpen}
-        animationType='slide'>
-        <SafeAreaView style={modal_styles.modalContent}>
-          <View style={modal_styles.modalContent}>
-            <View style={modal_styles.modalHeader}>
-              <Text style={modal_styles.modalTitle}>Invite player</Text>
-              <MaterialIcons
-                name='close'
-                color='#333'
-                size={24}
-                style={modal_styles.modalToggleExit}
-                onPress={() => setModalOpen(false)} />
-            </View>
-            <InvitePlayerModal closeModal={closeModal} />
-          </View>
-        </SafeAreaView>
-      </Modal>
 
       <Text style={{...global_styles.title, marginBottom: 10}}>Team statistics</Text>
       <View style={large_card_style.container}>
@@ -107,8 +81,6 @@ export default function TeamScreen({ navigation }) {
         </View>
       </Card>
       
-
-      <FlatButton onPress={() => setModalOpen(true)} />
     </View>
   )
 }
