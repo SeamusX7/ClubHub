@@ -27,13 +27,22 @@ export default function TeamScreen({ navigation }) {
       <Text style={{...global_styles.title, marginBottom: 10}}>Team statistics</Text>
       <View style={large_card_style.container}>
         <View style={large_card_style.largeLeftCard}>
-          
+          <View style={styles.cardCircle}>
+            <Text style={styles.cardCircleText}>0</Text>
+          </View>
+          <Text style={large_card_style.text}>Wins</Text>
         </View>
         <View style={large_card_style.largeCenterCard}>
-          
+          <View style={styles.cardCircle}>
+            <Text style={styles.cardCircleText}>0</Text>
+          </View>
+          <Text style={large_card_style.text}>Losses</Text>
         </View>
         <View style={large_card_style.largeRightCard}>
-          
+          <View style={styles.cardCircle}>
+            <Text style={styles.cardCircleText}>0</Text>
+          </View>
+          <Text style={large_card_style.text}>Draws</Text>
         </View>
       </View>
 
@@ -93,5 +102,27 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 20,
+  },
+  bigCircle: {
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 100 / 2,
+    height: 100,
+    marginBottom: 20,
+    width: 100,
+  },
+  cardCircle: {
+    alignSelf: 'center',
+    backgroundColor: '#f0f2f7',
+    borderRadius: 50 / 2,
+    height: 50,
+    width: 50,
+  },
+  cardCircleText: {
+    color: '#1d3557',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 22,
+    marginTop: 12,
+    textAlign: 'center',
   }
 });
