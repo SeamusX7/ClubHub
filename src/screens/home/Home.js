@@ -139,7 +139,7 @@ export default function HomeScreen({ navigation }) {
             <View style={news_feed_styles.bottomRow}>
               <View style={news_feed_styles.likeComment}>
                 <View style={news_feed_styles.likeGroup}>
-                  <MaterialCommunityIcons name="thumb-up" size={20} color={'#58'} />
+                  <MaterialCommunityIcons name="thumb-up-outline" size={20} color={'#b7b7b7'} />
                   <Text style={news_feed_styles.iconText}>Like</Text>
                 </View>
                 <View style={news_feed_styles.commentGroup}>
