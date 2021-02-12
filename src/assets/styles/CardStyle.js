@@ -89,6 +89,7 @@ export default StyleSheet.create({
   newsFeedCard: {
     borderRadius: 10,
     backgroundColor: '#fff',
+    marginBottom:10,
     marginVertical: 6,
     // height: 180,
   }
