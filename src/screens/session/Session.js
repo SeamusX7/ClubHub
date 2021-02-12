@@ -153,7 +153,7 @@ export default function SessionScreen({navigation}) {
             <View style={card_styles.container}>
               <View style={card_styles.circle} >
                 {item.sessionType=="match" ? <MaterialCommunityIcons name='trophy-outline' size={20} color='#5386e4' style={card_styles.icon} />
-                  : item.sessionType=="training" ? <Ionicons name='md-football' size={20} color='#5386e4' style={card_styles.icon} />
+                  : item.sessionType=="training" ? <Ionicons name='md-football' size={20} color='#5386e4' style={{...card_styles.icon, marginTop:11, marginLeft:2}} />
                   : <MaterialCommunityIcons name='dumbbell' size={20} color='#5386e4' style={card_styles.icon} /> }
               </View>
               <View style={card_styles.textView} >
