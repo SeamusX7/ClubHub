@@ -10,7 +10,6 @@ import profile_style from '../../assets/styles/ProfileStyle';
 import FlatButton from '../../components/Button';
 
 //redux
-//redux
 import { getUserName } from '../../store/user';
 import { useDispatch , useSelector } from 'react-redux';
 import { getActiveTeamWin, getActiveTeamLoss, getActiveTeamDraw } from '../../store/activeTeam';
@@ -21,8 +20,8 @@ export default function SettingsScreen({ navigation }) {
   console.log('user name =====> : ', userFullName);
 
   let activeTeamWin = useSelector(getActiveTeamWin);
-  // let activeTeamLoss = useSelector(getActiveTeamLoss);
-  // let activeTeamDraw = useSelector(getActiveTeamDraw);
+  let activeTeamLoss = useSelector(getActiveTeamLoss);
+  let activeTeamDraw = useSelector(getActiveTeamDraw);
 
   console.log('wins =====> : ', activeTeamWin);
   // console.log('losses =====> : ', activeTeamLoss);
@@ -38,23 +37,23 @@ export default function SettingsScreen({ navigation }) {
         <View style={large_card_style.container}>
           <TouchableOpacity style={large_card_style.largeLeftCard}>
           <View style={styles.cardCircle}>
-              <Text style={styles.cardCircleText}>6</Text>
+              <Text style={styles.cardCircleText}>{activeTeamWin}</Text>
             </View>
             <Text style={large_card_style.text}>Wins</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={large_card_style.largeCenterCard}>
           <View style={styles.cardCircle}>
-              <Text style={styles.cardCircleText}>2</Text>
+              <Text style={styles.cardCircleText}>{activeTeamLoss}</Text>
             </View>
             <Text style={large_card_style.text}>Losses</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={large_card_style.largeRightCard}>
           <View style={styles.cardCircle}>
-              <Text style={styles.cardCircleText}>8</Text>
+              <Text style={styles.cardCircleText}>{activeTeamDraw}</Text>
             </View>
-            <Text style={large_card_style.text}>Goals</Text>
+            <Text style={large_card_style.text}>Draws</Text>
           </TouchableOpacity>
         </View>
         <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 10, }} >Your Details</Text>

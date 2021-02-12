@@ -20,6 +20,11 @@ export const getActiveTeamKey = createSelector(
     (activeTeam) => activeTeam[0].item.key
 )
 
+export const getActiveTeamName = createSelector(
+    state => state.entities.activeTeam,
+    (activeTeam) => activeTeam[0].item.club
+)
+
 export const getActiveTeamWin = createSelector(
     state => state.entities.activeTeam,
     (activeTeam) => activeTeam[0].item.win

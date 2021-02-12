@@ -20,7 +20,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
 import { activeTeamAdded, getActiveTeamKey } from '../../store/activeTeam';
 import { sessionsAdded, getSessions } from '../../store/sessions';
-import { activeSessionAdded, getActiveSessionKey } from '../../store/activeSession';
+import { activeSessionAdded, getactiveSessionKey, activeSessionRemove } from '../../store/activeSession';
 
 
 export default function SessionScreen({navigation}) {
@@ -28,6 +28,11 @@ export default function SessionScreen({navigation}) {
   // const closeModal = () => {
   //   setModalOpen(false);
     const teamID = useSelector(getActiveTeamKey);
+   
+
+    // console.log('----------------------------------------');
+    // console.log('navigation => ', navigation);
+    // console.log('----------------------------------------');
 
     const [modalOpen, setModalOpen] = useState(false);
     const [sessionIdKey, setSessionIdKey] = useState('session id');
@@ -47,13 +52,14 @@ export default function SessionScreen({navigation}) {
     const dispatch = useDispatch();
 
     const sessionsArray = useSelector(getSessions);
-    console.log('sessionsArray ===> : ', sessionsArray);
+    //console.log('sessionsArray ===> : ', sessionsArray);
+
+    dispatch(activeSessionRemove());
 
 
     useEffect(() => {
 
-      //setTeams([])
-      // onGetTeams(userID);
+      dispatch(activeSessionRemove());
 
       db.collection('sessions')
       .where('teamId', '==', teamID)
@@ -77,9 +83,16 @@ export default function SessionScreen({navigation}) {
   sessionSelected = item =>
   {
     setActiveSession(item);
+    dispatch(activeSessionRemove());
     dispatch(activeSessionAdded(item));
-    console.log('session selected ==> : ', item);
-    prop.props.navigation.navigate('TabNavigator')
+    // const activeSessionKey = useSelector(getactiveSessionKey);
+     console.log('session selected item ==> : ', item);
+     //console.log('session selected item.item ==> : ', item.item);
+     let sessionType = item.item.sessionType;
+     if(sessionType === 'match')
+     {
+      navigation.navigate('ViewUpcomingMatchSession')
+     }
   }
 
 
