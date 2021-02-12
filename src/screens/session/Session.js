@@ -177,7 +177,7 @@ export default function SessionScreen({navigation}) {
                   : <MaterialCommunityIcons name='dumbbell' size={20} color='#5386e4' style={card_styles.icon} /> }
               </View>
               <View style={card_styles.textView} >
-                {item.sessionType=="match" ? <Text style={card_styles.textOne}>{item.opposition}</Text> : <Text style={card_styles.textOne}>{item.title}</Text>}
+                {item.sessionType=="match" ? <Text style={card_styles.textOne}>vs. {item.opposition}</Text> : <Text style={card_styles.textOne}>{item.title}</Text>}
                 <Text style={card_styles.textTwo}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
               </View>
               <View style={card_styles.more} >
