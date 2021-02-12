@@ -101,7 +101,7 @@ export default function NotificationScreen({ navigation }) {
             <DeclineButton
               text="Decline"
               onPress={() => {
-              alert('You have declined training!');
+              alert('You have declined training!                        Please provide a reason you cannot attend:');
             }}
             />
           </View>
