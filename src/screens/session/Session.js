@@ -27,7 +27,7 @@ export default function SessionScreen({navigation}) {
   // const [modalOpen, setModalOpen] = useState(false);
   // const closeModal = () => {
   //   setModalOpen(false);
-    const teamID = useSelector(getActiveTeamKey);
+  const teamID = useSelector(getActiveTeamKey);
    
 
     // console.log('----------------------------------------');
