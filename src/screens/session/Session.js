@@ -46,6 +46,8 @@ export default function SessionScreen({navigation}) {
     setModalOpen(false);
   }
 
+  const dispatch = useDispatch();
+
     const sessionsArray = useSelector(getSessions);
     //console.log('sessionsArray ===> : ', sessionsArray);
 
@@ -53,9 +55,8 @@ export default function SessionScreen({navigation}) {
   const db = firebase.firestore();
   const [sessions, setSessions] = useState([]); // Initial empty array of sessions
   const [activeSession, setActiveSession] = useState([]);
-  const dispatch = useDispatch();
 
-  const sessionsArray = useSelector(getSessions);
+  
   console.log('sessionsArray ===> : ', sessionsArray);
 
   useEffect(() => {
