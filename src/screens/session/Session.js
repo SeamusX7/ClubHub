@@ -152,14 +152,13 @@ export default function SessionScreen({navigation}) {
             onPress={() => this.sessionSelected({item})}>
             <View style={card_styles.container}>
               <View style={card_styles.circle} >
-                {item.sessionType == "match" ? <MaterialCommunityIcons name='trophy-outline' size={20} color='#5386e4' style={card_styles.icon} />
-                  : item.sessionType == "training" ? <Ionicons name='md-football' size={20} color='#5386e4' style={card_styles.icon} />
+                {item.sessionType=="match" ? <MaterialCommunityIcons name='trophy-outline' size={20} color='#5386e4' style={card_styles.icon} />
+                  : item.sessionType=="training" ? <Ionicons name='md-football' size={20} color='#5386e4' style={card_styles.icon} />
                   : <MaterialCommunityIcons name='dumbbell' size={20} color='#5386e4' style={card_styles.icon} /> }
               </View>
               <View style={card_styles.textView} >
-                <Text style={card_styles.textOne} >{item.opposition}</Text>
-                <Text style={card_styles.textTwo} >{item.timeStamp.toDate().toDateString()}</Text>
-                <Text style={card_styles.textTwo} >{item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
+                {item.sessionType=="match" ? <Text style={card_styles.textOne}>{item.opposition}</Text> : <Text style={card_styles.textOne}>{item.title}</Text>}
+                <Text style={card_styles.textTwo}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
               </View>
               <View style={card_styles.more} >
                 <MoreButton onPress={() => activeModal(true, { item })} />
