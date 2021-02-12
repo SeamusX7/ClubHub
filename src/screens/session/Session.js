@@ -15,12 +15,12 @@ import modal_styles from '../../assets/styles/ModalStyle';
 import NewSessionModal from './NewSessionModal';
 
 //redux
-import { getUserId } from '../../store/user';
 import { useDispatch , useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
 import { activeTeamAdded, getActiveTeamKey } from '../../store/activeTeam';
 import { sessionsAdded, getSessions } from '../../store/sessions';
 import { activeSessionAdded, getactiveSessionKey, activeSessionRemove } from '../../store/activeSession';
+import { getUserType } from '../../store/user';
 
 
 export default function SessionScreen({navigation}) {
@@ -36,6 +36,10 @@ export default function SessionScreen({navigation}) {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [sessionIdKey, setSessionIdKey] = useState('session id');
+
+  const openModalButton = <FlatButton onPress={() => setModalOpen(true)}/>
+  const uType = useSelector(getUserType);
+
 
   const activeModal = (fact, key) => {
     setSessionIdKey(key.item.key);
@@ -183,6 +187,9 @@ export default function SessionScreen({navigation}) {
           </Card>
         )}
       />
+
+
+{[uType === "coach" ? openModalButton : null]}
 
     </View>
   )
