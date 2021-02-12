@@ -27,49 +27,48 @@ export default function SessionScreen({navigation}) {
   // const [modalOpen, setModalOpen] = useState(false);
   // const closeModal = () => {
   //   setModalOpen(false);
-    const teamID = useSelector(getActiveTeamKey);
+  const teamID = useSelector(getActiveTeamKey);
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const [sessionIdKey, setSessionIdKey] = useState('session id');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [sessionIdKey, setSessionIdKey] = useState('session id');
 
-    const activeModal = (fact, key) => {
-      setSessionIdKey(key.item.key);
-      closeModal(fact);
-    }
+  const activeModal = (fact, key) => {
+    setSessionIdKey(key.item.key);
+    closeModal(fact);
+  }
 
-    const closeModal = (fact) => {
-      setModalOpen(false);
-    }
+  const closeModal = (fact) => {
+    setModalOpen(false);
+  }
 
-    const db = firebase.firestore();
-    const [sessions, setSessions] = useState([]); // Initial empty array of sessions
-    const [activeSession, setActiveSession] = useState([]);
-    const dispatch = useDispatch();
+  const db = firebase.firestore();
+  const [sessions, setSessions] = useState([]); // Initial empty array of sessions
+  const [activeSession, setActiveSession] = useState([]);
+  const dispatch = useDispatch();
 
-    const sessionsArray = useSelector(getSessions);
-    console.log('sessionsArray ===> : ', sessionsArray);
+  const sessionsArray = useSelector(getSessions);
+  console.log('sessionsArray ===> : ', sessionsArray);
 
+  useEffect(() => {
 
-    useEffect(() => {
+    //setTeams([])
+    // onGetTeams(userID);
 
-      //setTeams([])
-      // onGetTeams(userID);
-
-      db.collection('sessions')
-      .where('teamId', '==', teamID)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          sessions.push({
-            ...doc.data(),
-            key: doc.id,
-          });
+    db.collection('sessions')
+    .where('teamId', '==', teamID)
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        sessions.push({
+          ...doc.data(),
+          key: doc.id,
         });
-
-        setSessions(sessions);
-        dispatch(sessionsAdded(sessions));
-
       });
+
+      setSessions(sessions);
+      dispatch(sessionsAdded(sessions));
+
+    });
 
    
   }, [sessions]);
@@ -81,7 +80,6 @@ export default function SessionScreen({navigation}) {
     console.log('session selected ==> : ', item);
     prop.props.navigation.navigate('TabNavigator')
   }
-
 
   return (
     React.useLayoutEffect(() => {
@@ -115,10 +113,6 @@ export default function SessionScreen({navigation}) {
         </SafeAreaView>
       </Modal>
 
-
-      
-
-
       <Text style={{...global_styles.title, marginBottom: 10}}>Previous sessions</Text>
       <View style={large_card_style.container}>
         <TouchableOpacity onPress={() => navigation.navigate('PreviousMatchSessions')} style={large_card_style.largeLeftCard}>
@@ -130,7 +124,6 @@ export default function SessionScreen({navigation}) {
           <Text style={large_card_style.text}>Matches</Text>
         </TouchableOpacity>
 
-
         <TouchableOpacity onPress={() => navigation.navigate('PreviousTrainingSessions')} style={large_card_style.largeCenterCard}>
           <Ionicons
             name="md-football"
@@ -139,7 +132,6 @@ export default function SessionScreen({navigation}) {
             style={{ alignSelf: 'center' }} />
           <Text style={large_card_style.text}>Training</Text>
         </TouchableOpacity>
-
 
         <TouchableOpacity onPress={() => navigation.navigate('PreviousGymSessions')} style={large_card_style.largeRightCard}>
           <MaterialCommunityIcons
@@ -151,26 +143,18 @@ export default function SessionScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
-
-
-
-
       <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Upcoming sessions</Text>
-
       <FlatList
         data={sessions}
         renderItem={({ item }) => (
           <Card
             // onPress={() => x.props.navigation.navigate('TabNavigator')}
-            onPress={() => this.sessionSelected({item})}
-          >
+            onPress={() => this.sessionSelected({item})}>
             <View style={card_styles.container}>
               <View style={card_styles.circle} >
-                <MaterialCommunityIcons
-                  name='trophy-outline'
-                  size={20}
-                  color='#5386e4'
-                  style={card_styles.icon} />
+                {item.sessionType == "match" ? <MaterialCommunityIcons name='trophy-outline' size={20} color='#5386e4' style={card_styles.icon} />
+                  : item.sessionType == "training" ? <Ionicons name='md-football' size={20} color='#5386e4' style={card_styles.icon} />
+                  : <MaterialCommunityIcons name='dumbbell' size={20} color='#5386e4' style={card_styles.icon} /> }
               </View>
               <View style={card_styles.textView} >
                 <Text style={card_styles.textOne} >{item.opposition}</Text>
@@ -193,7 +177,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f0f2f7',
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingTop: 20,
   },
   icon: {
     marginRight: 20,
