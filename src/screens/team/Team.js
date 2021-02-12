@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Local File Imports
@@ -24,7 +24,7 @@ export default function TeamScreen({ navigation }) {
 
     <View style={styles.container}>
 
-      <Text style={{...global_styles.title, marginBottom: 10}}>Team statistics</Text>
+      <Text style={{ ...global_styles.title, marginBottom: 10 }}>Team statistics</Text>
       <View style={large_card_style.container}>
         <View style={large_card_style.largeLeftCard}>
           <View style={styles.cardCircle}>
@@ -46,50 +46,308 @@ export default function TeamScreen({ navigation }) {
         </View>
       </View>
 
-      <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Players</Text>
-      <Card onPress={() => navigation.navigate('Player')}>
-        <View style={card_styles.container}>
-          <View style={card_styles.circle}>
-            <Text style={card_styles.playerNumber}>6</Text>
+      <Text style={{ ...global_styles.title, marginBottom: 4, marginTop: 30 }}>Players</Text>
+      <ScrollView>
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>6</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Shane McCleary</Text>
+              <Text style={card_styles.textTwo}>Half back</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-          <View style={card_styles.textView}>
-            <Text style={card_styles.textOne}>Shane McCleary</Text>
-            <Text style={card_styles.textTwo}>Half back</Text>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>9</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Keane Callan</Text>
+              <Text style={card_styles.textTwo}>Midfield</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-          <View style={card_styles.more}>
-            <MoreButton />
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>14</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Jack Lynch</Text>
+              <Text style={card_styles.textTwo}>Full forward</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-        </View>
-      </Card>
-      <Card onPress={() => navigation.navigate('Player')}>
-        <View style={card_styles.container}>
-          <View style={card_styles.circle}>
-            <Text style={card_styles.playerNumber}>9</Text>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>1</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Ciaran Whelan</Text>
+              <Text style={card_styles.textTwo}>Goalkeeper</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-          <View style={card_styles.textView}>
-            <Text style={card_styles.textOne}>Keane Callan</Text>
-            <Text style={card_styles.textTwo}>Midfield</Text>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>3</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Joe McNally</Text>
+              <Text style={card_styles.textTwo}>Full back</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-          <View style={card_styles.more}>
-            <MoreButton />
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>8</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Tomas Brady</Text>
+              <Text style={card_styles.textTwo}>Midfielder</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-        </View>
-      </Card>
-      <Card onPress={() => navigation.navigate('Player')}>
-        <View style={card_styles.container}>
-          <View style={card_styles.circle}>
-            <Text style={card_styles.playerNumber}>14</Text>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>10</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Kevin Nolan</Text>
+              <Text style={card_styles.textTwo}>Right half-forward</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-          <View style={card_styles.textView}>
-            <Text style={card_styles.textOne}>Jack Lynch</Text>
-            <Text style={card_styles.textTwo}>Full forward</Text>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>15</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Stefan Dennis</Text>
+              <Text style={card_styles.textTwo}>Left corner-forward</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-          <View style={card_styles.more}>
-            <MoreButton />
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>2</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Roy Carroll</Text>
+              <Text style={card_styles.textTwo}>Right corner-back</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
           </View>
-        </View>
-      </Card>
-      
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>11</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Michael Donnellan</Text>
+              <Text style={card_styles.textTwo}>Centre forward</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>13</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Frank Clarke</Text>
+              <Text style={card_styles.textTwo}>Right corner-forward</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>22</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Jason Molumby</Text>
+              <Text style={card_styles.textTwo}>Full-forward</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>12</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Derek O'Neill</Text>
+              <Text style={card_styles.textTwo}>Left half-forward</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>19</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>James McCarthy</Text>
+              <Text style={card_styles.textTwo}>Goalkeeper</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>2</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Tony Kelly</Text>
+              <Text style={card_styles.textTwo}>Right corner-back</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>2</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Tony Kelly</Text>
+              <Text style={card_styles.textTwo}>Right corner-back</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>30</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Mike Denver</Text>
+              <Text style={card_styles.textTwo}>Midfielder</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>24</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Jimmy Dunne</Text>
+              <Text style={card_styles.textTwo}>Full back</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>33</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Ben Hart</Text>
+              <Text style={card_styles.textTwo}>Left corner-forward</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+
+        <Card onPress={() => navigation.navigate('Player')}>
+          <View style={card_styles.container}>
+            <View style={card_styles.circle}>
+              <Text style={card_styles.playerNumber}>25</Text>
+            </View>
+            <View style={card_styles.textView}>
+              <Text style={card_styles.textOne}>Json McAteer</Text>
+              <Text style={card_styles.textTwo}>Left half-back</Text>
+            </View>
+            <View style={card_styles.more}>
+              <MoreButton />
+            </View>
+          </View>
+        </Card>
+      </ScrollView>
     </View>
   )
 }
