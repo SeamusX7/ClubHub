@@ -12,6 +12,14 @@ import Formation from './Formation'
 import Attendance from './Attendance'
 import Invitations from './Invitations'
 
+//redux
+import { getUserId } from '../../store/user';
+import { useDispatch , useSelector } from 'react-redux';
+import { teamsAdded, getTeams } from '../../store/teams';
+import { activeTeamAdded, getActiveTeamKey, getActiveTeamName } from '../../store/activeTeam';
+import { sessionsAdded, getSessions } from '../../store/sessions';
+import { getactiveSessionDate, getactiveSessionTime, getactiveSessionOpposition, getactiveSessionLocation, activeSessionRemove } from '../../store/activeSession';
+
 const initialLayout = { width: Dimensions.get('window').width };
 
 export default function ViewUpcomingMatchSessionScreen({ navigation }) {
@@ -19,6 +27,16 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
   const closeModal = () => {
     setModalOpen(false);
   }
+
+  const teamName = useSelector(getActiveTeamName);
+  const opposition = useSelector(getactiveSessionOpposition);
+  const date = useSelector(getactiveSessionDate);
+  const time = useSelector(getactiveSessionTime);
+  const location = useSelector(getactiveSessionLocation);
+
+  const dispatch = useDispatch();
+  dispatch(activeSessionRemove());
+  
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -52,10 +70,10 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
     <View style={styles.container}>
 
       <View style={styles.descriptionContainer}>
-        <Text style={styles.textOne}>Clan na Gael vs. Na Fianna</Text>
+        <Text style={styles.textOne}>{teamName} vs. {opposition}</Text>
         <Text style={styles.textTwo}>Kick off</Text>
-        <Text style={styles.textThree}>14:30</Text>
-        <Text style={styles.textFour}>The Showgrounds | 20th February</Text>
+        <Text style={styles.textThree}>{time}</Text>
+        <Text style={styles.textFour}>{location} | {date}</Text>
       </View>
 
       <TabView
