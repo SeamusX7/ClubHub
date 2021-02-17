@@ -28,19 +28,19 @@ export default function TeamScreen({ navigation }) {
       <View style={large_card_style.container}>
         <View style={large_card_style.largeLeftCard}>
           <View style={styles.cardCircle}>
-            <Text style={styles.cardCircleText}>0</Text>
+            <Text style={styles.cardCircleText}>5</Text>
           </View>
           <Text style={large_card_style.text}>Wins</Text>
         </View>
         <View style={large_card_style.largeCenterCard}>
           <View style={styles.cardCircle}>
-            <Text style={styles.cardCircleText}>0</Text>
+            <Text style={styles.cardCircleText}>2</Text>
           </View>
           <Text style={large_card_style.text}>Losses</Text>
         </View>
         <View style={large_card_style.largeRightCard}>
           <View style={styles.cardCircle}>
-            <Text style={styles.cardCircleText}>0</Text>
+            <Text style={styles.cardCircleText}>1</Text>
           </View>
           <Text style={large_card_style.text}>Draws</Text>
         </View>
