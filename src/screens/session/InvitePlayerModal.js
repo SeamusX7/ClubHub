@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { firebase } from '../../firebase/config';
 // import Checkbox from 'react-native-custom-checkbox';
 import { CheckBox } from 'react-native-elements'
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 // Local File Imports
@@ -16,7 +17,8 @@ export default class NewSessionModal extends Component {
     super(props);
     this.state = {
       checked: false,
-      checked2: false
+      checked2: false,
+      checked3: false
     }
   }
 
@@ -30,6 +32,10 @@ export default class NewSessionModal extends Component {
             <View style={modal_styles.checkboxAlignment}>
               <CheckBox
                 checked={this.state.checked}
+                checkedColour='#5386E4'
+                uncheckedColor='#F0F2F7'
+                checkedIcon='check-square'
+                uncheckedIcon='square'
                 onPress={() => this.setState({ checked: !this.state.checked })}
               />
             </View>
@@ -41,6 +47,10 @@ export default class NewSessionModal extends Component {
             <View style={modal_styles.checkboxAlignment}>
               <CheckBox
                 checked={this.state.checked2}
+                checkedColour='#5386E4'
+                uncheckedColor='#F0F2F7'
+                checkedIcon='check-square'
+                uncheckedIcon='square'
                 onPress={() => this.setState({ checked2: !this.state.checked2 })}
               />
             </View>
@@ -50,10 +60,14 @@ export default class NewSessionModal extends Component {
             <View style={modal_styles.circle}></View>
             <Text style={modal_styles.labelTextSemiBold}>Shane McCleary</Text>
             <View style={modal_styles.checkboxAlignment}>
-              {/* <Checkbox
-                checked={false}
-                style={modal_styles.checkbox}
-                size={22} /> */}
+            <CheckBox
+                checked={this.state.checked3}
+                checkedColour='#5386E4'
+                uncheckedColor='#F0F2F7'
+                checkedIcon='check-square'
+                uncheckedIcon='square'
+                onPress={() => this.setState({ checked3: !this.state.checked3 })}
+              />
             </View>
           </View>
         </View>
@@ -78,5 +92,5 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
     bottom: 0,
-  }
+  },
 });
