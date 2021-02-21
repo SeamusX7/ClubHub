@@ -35,7 +35,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
   const location = useSelector(getactiveSessionLocation);
 
   const dispatch = useDispatch();
-  dispatch(activeSessionRemove());
+  
   
 
   const [index, setIndex] = React.useState(0);
