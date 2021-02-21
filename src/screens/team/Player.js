@@ -7,7 +7,6 @@ import global_styles from '../../assets/styles/GlobalStyle';
 import large_card_style from '../../assets/styles/LargeCardStyle';
 import ProfileInfo from '../../components/ProfileInfo';
 import profile_style from '../../assets/styles/ProfileStyle';
-import FlatButton from '../../components/Button';
 
 export default function PlayerScreen() {
   return (
@@ -62,9 +61,9 @@ export default function PlayerScreen() {
             text="Jack Lynch"
           />
 
-          <Text style={profile_style.text}>Date Of Birth</Text>
+          <Text style={profile_style.text}>Age</Text>
           <ProfileInfo
-            text="24 / 12 / 2000"
+            text="21"
           />
 
           <Text style={profile_style.text}>Position</Text>
@@ -72,14 +71,41 @@ export default function PlayerScreen() {
             text="Full forward"
           />
         </View>
-
+        
         <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 10, }} >Attendance 2020/21</Text>
-
-        <View>
         <Image
           source={require('../../assets/images/attendance.jpg')}
           style={styles.attendance}>
         </Image>
+              <View style={{marginTop:20}}>
+        <View style={large_card_style.container}>
+          <View style={large_card_style.largeLeftCard}>
+            {/* <MaterialCommunityIcons
+              name="numeric-5-circle"
+              size={36}
+              color="#5386e4"
+              style={{ alignSelf: 'center' }} /> */}
+            <View style={styles.cardCircle2}>
+              <Text style={styles.cardCircleText2}>60%</Text>
+            </View>
+            <Text style={large_card_style.text}>Overall Attendance</Text>
+          </View>
+
+          <View style={large_card_style.largeCenterCard}>
+            {/* <MaterialCommunityIcons
+              name="numeric-6-circle"
+              size={36}
+              color="#5386e4"
+              style={{ alignSelf: 'center' }} /> */}
+              <View style={styles.cardCircle2}>
+              <Text style={styles.cardCircleText2}>20%</Text>
+            </View>
+            <Text style={large_card_style.text}>Last 5 Sessions</Text>
+          </View>
+        </View>
+        <View>
+        </View>
+
         </View>
 
         {/* <FlatButton
@@ -127,11 +153,25 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
+  cardCircle2: {
+    alignSelf: 'center',
+    backgroundColor: '#f0f2f7',
+    borderRadius: 55 / 2,
+    height: 55,
+    width: 55,
+  },
   cardCircleText: {
     color: '#1d3557',
     fontFamily: 'montserrat-semibold',
     fontSize: 22,
     marginTop: 12,
+    textAlign: 'center',
+  },
+  cardCircleText2: {
+    color: '#1d3557',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 18,
+    marginTop: 16,
     textAlign: 'center',
   }
 });

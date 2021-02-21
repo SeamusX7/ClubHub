@@ -1,16 +1,49 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 // Local file imports
 import NewsFeedPost from '../../components/NewsFeedPost';
+import news_feed_styles from '../../assets/styles/NewsFeedStyle';
+import card_styles from '../../assets/styles/CardStyle';
 
 export default function SpecificNewsFeedPost() {
 
 	return (
 		<View style={styles.container}>
 
-      <NewsFeedPost />
+      <NewsFeedPost>
+        <View style={news_feed_styles.topRow}>
+          <View style={news_feed_styles.circleTitle}>
+            <View style={card_styles.circle}></View>
+            <Text style={news_feed_styles.title}>Eamon Kavanagh</Text>
+          </View>
+          <View>
+            <Text style={news_feed_styles.postedOn}>09:15</Text>
+          </View>
+        </View>
+
+        <View style={news_feed_styles.middleRow}>
+          <Text style={news_feed_styles.description}>Hi lads, I came across this really cool attacking tactic on youtube. Check it out and let me know your thoughts.</Text>
+          <Image source={require('../../assets/images/kickout-video.png')} style={news_feed_styles.image}></Image>
+        </View>
+
+        <View style={news_feed_styles.bottomRow}>
+          <View style={news_feed_styles.likeComment}>
+            <View style={news_feed_styles.likeGroup}>
+              <MaterialCommunityIcons name="thumb-up-outline" size={20} color={'#b7b7b7'} />
+              <Text style={news_feed_styles.iconText}>Like</Text>
+            </View>
+            <View style={news_feed_styles.commentGroup}>
+              <MaterialCommunityIcons name="comment-outline" size={20} color={'#b7b7b7'} />
+              <Text style={news_feed_styles.iconText}>Comment</Text>
+            </View>
+          </View>
+          <View>
+            <Text style={news_feed_styles.commentCount}>1 comment</Text>
+          </View>
+        </View>
+      </NewsFeedPost>
 
       <View style={styles.commentSection}>
         <View style={styles.commentGroup}>

@@ -65,9 +65,9 @@ export default StyleSheet.create({
     borderRadius: 38 / 2,
   },
   checkboxAlignment: {
-    marginTop: 8,
+    marginTop: -10,
     position: 'absolute',
-    right: 0,
+    right: -22,
   },
   checkbox: {
     backgroundColor: '#F0F2F7',

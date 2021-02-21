@@ -80,20 +80,20 @@ export default function NotificationScreen({ navigation }) {
         <View style={notification_styles.container}>
           <View style={notification_styles.circle}>
             <MaterialCommunityIcons
-              name='soccer'
+              name='trophy-outline'
               size={20}
               color='#5386e4'
               style={notification_styles.icon} />
           </View>
           <View style={notification_styles.textView}>
-            <Text style={notification_styles.textOne}>Training Session</Text>
-            <Text style={notification_styles.textSpace}>Are you able to attend training tomorrow at 6pm?</Text>
+            <Text style={notification_styles.textOne}>Match Session</Text>
+            <Text style={notification_styles.textSpace}>Are you able to attend the match vs Clan Na Gael? |20th Feb at 15:30|</Text>
             <View style={{ flexDirection:"row" }}>
           <View>
             <AcceptButton
               text="Accept"
               onPress={() => {
-              alert('You have accepted training!');
+              alert('You have accepted the invite!');
             }}
             />
           </View>
@@ -101,7 +101,7 @@ export default function NotificationScreen({ navigation }) {
             <DeclineButton
               text="Decline"
               onPress={() => {
-              alert('You have declined training!');
+              alert('You have declined the invite!                        Please provide a reason you cannot attend:');
             }}
             />
           </View>
