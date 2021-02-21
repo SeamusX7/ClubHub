@@ -55,7 +55,7 @@ export default function SessionScreen({navigation}) {
     const sessionsArray = useSelector(getSessions);
     //console.log('sessionsArray ===> : ', sessionsArray);
 
-    dispatch(activeSessionRemove());
+    //dispatch(activeSessionRemove());
   const db = firebase.firestore();
   const [sessions, setSessions] = useState([]); // Initial empty array of sessions
   const [activeSession, setActiveSession] = useState([]);
@@ -65,7 +65,7 @@ export default function SessionScreen({navigation}) {
 
   useEffect(() => {
 
-      dispatch(activeSessionRemove());
+     // dispatch(activeSessionRemove());
 
     db.collection('sessions')
     .where('teamId', '==', teamID)
