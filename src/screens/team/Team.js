@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
 import large_card_style from '../../assets/styles/LargeCardStyle';
-import Card from '../../components/Card';
+import PlayerCard from '../../components/PlayerCard';
 import card_styles from '../../assets/styles/CardStyle';
 import MoreButton from '../../components/MoreButton';
 
@@ -48,7 +48,7 @@ export default function TeamScreen({ navigation }) {
 
       <Text style={{ ...global_styles.title, marginBottom: 4, marginTop: 30 }}>Players</Text>
       <ScrollView>
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>6</Text>
@@ -61,9 +61,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>9</Text>
@@ -76,9 +76,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>14</Text>
@@ -91,9 +91,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>1</Text>
@@ -106,9 +106,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>3</Text>
@@ -121,9 +121,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>8</Text>
@@ -136,9 +136,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>10</Text>
@@ -151,9 +151,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>15</Text>
@@ -166,9 +166,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>2</Text>
@@ -181,9 +181,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>11</Text>
@@ -196,9 +196,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>13</Text>
@@ -211,9 +211,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>22</Text>
@@ -226,9 +226,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>12</Text>
@@ -241,9 +241,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>19</Text>
@@ -256,9 +256,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>2</Text>
@@ -271,9 +271,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>2</Text>
@@ -286,9 +286,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>30</Text>
@@ -301,9 +301,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>24</Text>
@@ -316,9 +316,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>33</Text>
@@ -331,9 +331,9 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
 
-        <Card onPress={() => navigation.navigate('Player')}>
+        <PlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={card_styles.container}>
             <View style={card_styles.circle}>
               <Text style={card_styles.playerNumber}>25</Text>
@@ -346,7 +346,7 @@ export default function TeamScreen({ navigation }) {
               <MoreButton />
             </View>
           </View>
-        </Card>
+        </PlayerCard>
       </ScrollView>
     </View>
   )
