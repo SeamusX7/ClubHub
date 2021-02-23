@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Keyboard, Text, TextInput, View, StyleSheet, Image } from 'react-native';
+import { Keyboard, Text, TextInput, View, StyleSheet, Image, Switch } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { firebase } from '../../firebase/config';
 
@@ -12,6 +12,11 @@ export default function RegistrationScreen({ navigation }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+
+	const [isSwitchOn, setIsSwitchOn] = useState(false);
+	const onSwitchChange = () => {
+		setIsSwitchOn(!isSwitchOn);
+	}
 
 	const onFooterLinkPress = () => {
 		navigation.navigate('Login');
@@ -62,6 +67,18 @@ export default function RegistrationScreen({ navigation }) {
 				<Text style={auth_styles.titleText}>Sign up</Text>
 				<Text style={auth_styles.subtitleText}>Sign up to use our app</Text>
 			</View>
+
+			<View style={auth_styles.switchGroup}>
+				<Text style={{...auth_styles.switchText, marginRight: 10}}>Player</Text>
+				<Switch
+					ios_backgroundColor='#f0f2f7'
+					thumbColor='#fff'
+					trackColor={{ true: '#5386e4', false: '#f0f2f7' }}
+					value={isSwitchOn}
+					onValueChange={onSwitchChange} />
+				<Text style={{...auth_styles.switchText, marginLeft: 10}}>Manager</Text>
+			</View>
+			
 
 			<Text style={auth_styles.authLabelText}>Full name</Text>
 			<TextInput

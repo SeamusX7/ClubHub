@@ -49,4 +49,13 @@ export default StyleSheet.create({
 		marginTop: 11,
 		marginBottom: 4
 	},
+	switchText: {
+		fontFamily: 'montserrat-regular',
+		fontSize: 14,
+		marginTop: 7,
+	},
+	switchGroup: {
+		flexDirection: 'row',
+		marginTop: 10,
+	}
 })
