@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, FlatList, ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, FlatList, ScrollView, ActivityIndicator } from 'react-native';
 import { firebase } from '../../firebase/config';
 import { SafeAreaView, Modal } from 'react-native';
 
