@@ -8,6 +8,7 @@
 ClubHub is a mobile application designed to be the central point of communication between player and manager in any team-based sport, enabling daily team communications to be carried out in a smooth and professional manner.
 
 ## Demo Preview
+![preview-gif](https://media.giphy.com/media/zzu3g1BbY1QAGZ84af/giphy.gif)
 
 ## Table of Contents
 [ClubHub](#title)  
