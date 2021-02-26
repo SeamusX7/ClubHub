@@ -8,22 +8,13 @@ const slice = createSlice({
     initialState,
     reducers: {
 
-        activeSessionAdded: (activeSession, action) => {
-            console.log('-=-=-=-=-=-= active session added =-=-=-=-=-=-');
-            activeSession.push(action.payload);
-            console.log(activeSession);
+        activeSessionAdded: (activeSession, action) => {       
+            activeSession.push(action.payload);           
         },
 
         activeSessionRemove: () => {index++;initialState;}, 
 
-        // activeSessionRemove: (activeSession = initialState, action) => {
-        //     console.log('-=-=-=-=-=-= active session removed =-=-=-=-=-=-', action.payload);
-        //     //activeSession = action.payload;
-        //     //activeSession.items.filter(item => item !== action.payload),
-        //     return initialState;
-        //     console.log(activeSession);
-        // },
-
+        
     }
 })
 
@@ -50,6 +41,21 @@ export const getactiveSessionTime = createSelector(
 export const getactiveSessionLocation = createSelector(
     state => state.entities.activeSession,
     (activeSession) => activeSession[index-1].item.location
+)
+
+export const getactiveSessionPending = createSelector(
+    state => state.entities.activeSession,
+    (activeSession) => activeSession[index-1].item.Pending
+)
+
+export const getactiveSessionDeclined = createSelector(
+    state => state.entities.activeSession,
+    (activeSession) => activeSession[index-1].item.Declined
+)
+
+export const getactiveSessionAccepted = createSelector(
+    state => state.entities.activeSession,
+    (activeSession) => activeSession[index-1].item.Accepted
 )
 
 

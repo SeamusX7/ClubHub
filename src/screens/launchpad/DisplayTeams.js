@@ -18,16 +18,14 @@ import FlatButton from '../../components/CreateButton';
 import { getUserId } from '../../store/user';
 import { useDispatch , useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
-import { activeTeamAdded, getActiveTeamKey } from '../../store/activeTeam';
+import { activeTeamAdded, activeTeamRemove } from '../../store/activeTeam';
 
 export default function DisplayTeams(prop) {
 
   const userID = useSelector(getUserId);
 
-  console.log('=================================================');
-  console.log('display teams render ');
-  console.log('=================================================');
 
+  
   const [modalOpen, setModalOpen] = useState(false);
   const [teamIdKey, setTeamIdKey] = useState('team id');
 
@@ -63,8 +61,8 @@ export default function DisplayTeams(prop) {
     //   });
  // }
   const teamsArray = useSelector(getTeams);
-  console.log('teamsArray ===> : ', teamsArray);
  
+
 
   useEffect(() => {
 
@@ -94,8 +92,9 @@ export default function DisplayTeams(prop) {
   teamSelected = item =>
   {
     setActiveTeam(item);
+    dispatch(activeTeamRemove());
     dispatch(activeTeamAdded(item));
-    console.log('team selected ==> : ', item);
+
     prop.props.navigation.navigate('TabNavigator')
   }
 

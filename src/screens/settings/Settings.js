@@ -26,7 +26,6 @@ export default function SettingsScreen({ navigation }) {
 }
 
 const userFullName = useSelector(getUserName);
-console.log('user name =====> : ', userFullName);
 
   return (
     <View style={styles.container}>
