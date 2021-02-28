@@ -25,9 +25,7 @@ export default function ChooseTeamScreen(props) {
 
 //  useEffect(() => {
 
-//   console.log("================================"),
-//   console.log('teams changed'),
-//   console.log("================================")
+
 // }, [teams]);
 
 
@@ -35,13 +33,7 @@ export default function ChooseTeamScreen(props) {
   const userID = useSelector(getUserId);
   const uType = useSelector(getUserType);
 
-  console.log("=====================================================");
-  console.log('user type ----> : ',uType);
-  console.log("=====================================================");
   
-  console.log("=====================================================");
-  console.log('user id ----> : ',userID);
-  console.log("=====================================================");
 
   const [managerModalOpen, setManagerModalOpen] = useState(false);
   const [playerModalOpen, setPlayerModalOpen] = useState(false);

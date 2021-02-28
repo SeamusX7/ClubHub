@@ -1,48 +1,50 @@
 import {createSlice } from '@reduxjs/toolkit';
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 
+const initialState = [];
+let index = 0;
 const slice = createSlice({
     name: 'activeTeam',
-    initialState: [],
+    initialState,
     reducers: {
 
-        activeTeamAdded: (activeTeam, action) => {
-            console.log('-=-=-=-=-=-= active team added =-=-=-=-=-=-');
+        activeTeamAdded: (activeTeam, action) => {           
             activeTeam.push(action.payload);
-            console.log(activeTeam);
         },
 
+        activeTeamRemove: () => {index++;initialState;},
     }
 })
 
 export const getActiveTeamKey = createSelector(
     state => state.entities.activeTeam,
-    (activeTeam) => activeTeam[0].item.key
+    (activeTeam) => activeTeam[index-1].item.key
 )
 
 export const getActiveTeamName = createSelector(
     state => state.entities.activeTeam,
-    (activeTeam) => activeTeam[0].item.club
+    (activeTeam) => activeTeam[index-1].item.club
 )
 
 export const getActiveTeamWin = createSelector(
     state => state.entities.activeTeam,
-    (activeTeam) => activeTeam[0].item.win
+    (activeTeam) => activeTeam[index-1].item.win
 )
 
 export const getActiveTeamLoss = createSelector(
     state => state.entities.activeTeam,
-    (activeTeam) => activeTeam[0].item.loss
+    (activeTeam) => activeTeam[index-1].item.loss
 )
 
 export const getActiveTeamDraw = createSelector(
     state => state.entities.activeTeam,
-    (activeTeam) => activeTeam[0].item.draw
+    (activeTeam) => activeTeam[index-1].item.draw
 )
 
 
 
 export const {
     activeTeamAdded,
+    activeTeamRemove,
     } = slice.actions;
 export default slice.reducer;

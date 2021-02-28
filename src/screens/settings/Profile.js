@@ -17,15 +17,11 @@ import { getActiveTeamWin, getActiveTeamLoss, getActiveTeamDraw } from '../../st
 export default function SettingsScreen({ navigation }) {
 
   const userFullName = useSelector(getUserName);
-  console.log('user name =====> : ', userFullName);
-
+  
   let activeTeamWin = useSelector(getActiveTeamWin);
   let activeTeamLoss = useSelector(getActiveTeamLoss);
   let activeTeamDraw = useSelector(getActiveTeamDraw);
 
-  console.log('wins =====> : ', activeTeamWin);
-  // console.log('losses =====> : ', activeTeamLoss);
-  // console.log('Draws =====> : ', activeTeamDraw);
 
   return (
     <ScrollView>

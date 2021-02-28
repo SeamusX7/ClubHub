@@ -30,10 +30,7 @@ export default function SessionScreen({navigation}) {
   const teamID = useSelector(getActiveTeamKey);
    
 
-    // console.log('----------------------------------------');
-    // console.log('navigation => ', navigation);
-    // console.log('----------------------------------------');
-
+    
   const [modalOpen, setModalOpen] = useState(false);
   const [sessionIdKey, setSessionIdKey] = useState('session id');
 
@@ -52,18 +49,15 @@ export default function SessionScreen({navigation}) {
 
   const dispatch = useDispatch();
 
-    const sessionsArray = useSelector(getSessions);
-    //console.log('sessionsArray ===> : ', sessionsArray);
 
     //dispatch(activeSessionRemove());
   const db = firebase.firestore();
   const [sessions, setSessions] = useState([]); // Initial empty array of sessions
   const [activeSession, setActiveSession] = useState([]);
 
-  
-  console.log('sessionsArray ===> : ', sessionsArray);
+   
 
-  useEffect(() => {
+   useEffect(() => {
 
      // dispatch(activeSessionRemove());
 
@@ -72,19 +66,21 @@ export default function SessionScreen({navigation}) {
     .get()
     .then(snapshot => {
       snapshot.forEach(doc => {
+        
         sessions.push({
           ...doc.data(),
           key: doc.id,
         });
+        
       });
 
       setSessions(sessions);
-      dispatch(sessionsAdded(sessions));
+      dispatch(sessionsAdded({sessions}));
 
     });
-
-   
-  }, [sessions]);
+    
+    
+   }, [sessions]);
 
   sessionSelected = item =>
   {
@@ -92,8 +88,6 @@ export default function SessionScreen({navigation}) {
     dispatch(activeSessionRemove());
     dispatch(activeSessionAdded(item));
     // const activeSessionKey = useSelector(getactiveSessionKey);
-     console.log('session selected item ==> : ', item);
-     //console.log('session selected item.item ==> : ', item.item);
      let sessionType = item.item.sessionType;
      if(sessionType === 'match')
      {
