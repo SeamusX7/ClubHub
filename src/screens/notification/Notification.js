@@ -1,124 +1,85 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text,} from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 // Local File Imports
 import Card from '../../components/NotificationCard';
 import Card2 from '../../components/NotificationCardLarge';
-import notification_styles from '../../assets/styles/NotificationStyle';
+// import notification_styles from '../../assets/styles/NotificationStyle';
 import MoreButton from '../../components/MoreButton';
 import AcceptButton from '../../components/AcceptButton';
 import DeclineButton from '../../components/DeclineButton';
+import global_styles from '../../assets/styles/GlobalStyle';
+import NotificationCard from '../../components/cards/NotificationCard';
+import notifications_styles from '../../assets/styles/NotificationCardStyle';
+import AcceptInvitationButton from '../../components/buttons/AcceptInvitationButton';
+import DeclineInvitationButton from '../../components/buttons/DeclineInvitationButton';
+import ExpiredInvitationButton from '../../components/buttons/ExpiredInvitationButton';
 
 export default function NotificationScreen({ navigation }) {
 
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
   return (
-    <View style={styles.container}>
-       <Card onPress={() => navigation.navigate('Message')}>
-        <View style={notification_styles.container}>
-          <View style={notification_styles.circle}>
-            <MaterialCommunityIcons
-              name='message-processing'
-              size={20}
-              color='#5386e4'
-              style={notification_styles.icon} />
-          </View>
-          <View style={notification_styles.textView}>
-            <Text style={notification_styles.textOne}>New Message</Text>
-            <Text style={notification_styles.textTwo}>Eamon has sent you a message</Text>
-          </View>
-          <View style={notification_styles.more}>
-            <MoreButton onPress={() => console.log('Tap')} />
+    <View style={global_styles.screen_container}>
+      <Text style={{...global_styles.title, marginBottom: 10}}>New</Text>
+      <NotificationCard>
+        <View style={{height: 36}}>
+          <View style={notifications_styles.notification_card_top_container}>
+            <MaterialCommunityIcons name='trophy-outline' size={26} color='#5386e4' />
+            <View style={notifications_styles.notification_card_info_container}>
+              <Text style={notifications_styles.notification_card_primary_text}>Match invitation</Text>
+              <Text style={notifications_styles.notification_card_secondary_text}>18:00 | 21st Jan.</Text>
+            </View>
+            <View style={notifications_styles.notification_card_time_status_container}>
+              <Text style={notifications_styles.notification_card_secondary_text}>09:15</Text>
+              <View style={notifications_styles.notification_card_status}></View>
+            </View>
           </View>
         </View>
-      </Card>
+        <View style={notifications_styles.notification_card_button_container}>
+          <AcceptInvitationButton text="Accept" onPress={ () => { alert('You have accepted the invite!'); } } />
+          <DeclineInvitationButton text="Decline" onPress={ () => { alert('You have declined the invite!\nPlease provide a reason you cannot attend:'); } } />
+        </View>
+      </NotificationCard>
 
-      <Card onPress={() => navigation.navigate('Home')}>
-        <View style={notification_styles.container}>
-          <View style={notification_styles.circle}>
-            <MaterialCommunityIcons
-              name='rss'
-              size={20}
-              color='#5386e4'
-              style={notification_styles.icon} />
-          </View>
-          <View style={notification_styles.textView}>
-            <Text style={notification_styles.textOne}>News Feed</Text>
-            <Text style={notification_styles.textTwo}>You have been tagged in 3 new posts.</Text>
-          </View>
-          <View style={notification_styles.more}>
-            <MoreButton onPress={() => console.log('Tap')} />
+      <Text style={{...global_styles.title, marginBottom: 10, marginTop: 20}}>Earlier</Text>
+      <NotificationCard>
+        <View style={{height: 36}}>
+          <View style={notifications_styles.notification_card_top_container}>
+            <Ionicons name='md-football' size={26} color='#5386e4' />
+            <View style={notifications_styles.notification_card_info_container}>
+              <Text style={notifications_styles.notification_card_primary_text}>Training invitation</Text>
+              <Text style={notifications_styles.notification_card_secondary_text}>18:00 | 21st Jan.</Text>
+            </View>
+            <View style={notifications_styles.notification_card_time_status_container}>
+              <Text style={notifications_styles.notification_card_secondary_text}>09:15</Text>
+            </View>
           </View>
         </View>
-      </Card>
+        <View style={notifications_styles.notification_card_button_container}>
+          <ExpiredInvitationButton text="Accept" />
+          <ExpiredInvitationButton text="Decline" />
+        </View>
+      </NotificationCard>
 
-      <Card onPress={() => navigation.navigate('Team')}>
-        <View style={notification_styles.container}>
-          <View style={notification_styles.circle}>
-            <MaterialCommunityIcons
-              name='message-alert'
-              size={20}
-              color='#5386e4'
-              style={notification_styles.icon} />
-          </View>
-          <View style={notification_styles.textView}>
-            <Text style={notification_styles.textOne}>Feedback</Text>
-            <Text style={notification_styles.textTwo}>Your coach has provided feedback.</Text>
-          </View>
-          <View style={notification_styles.more}>
-            <MoreButton onPress={() => console.log('Tap')} />
+      <NotificationCard>
+        <View style={{height: 36}}>
+          <View style={notifications_styles.notification_card_top_container}>
+            <MaterialCommunityIcons name='dumbbell' size={26} color='#5386e4' />
+            <View style={notifications_styles.notification_card_info_container}>
+              <Text style={notifications_styles.notification_card_primary_text}>Gym invitation</Text>
+              <Text style={notifications_styles.notification_card_secondary_text}>18:00 | 21st Jan.</Text>
+            </View>
+            <View style={notifications_styles.notification_card_time_status_container}>
+              <Text style={notifications_styles.notification_card_secondary_text}>09:15</Text>
+            </View>
           </View>
         </View>
-      </Card>
-
-      
-
-      <Card2 style={notification_styles.card2}>
-        <View style={notification_styles.container}>
-          <View style={notification_styles.circle}>
-            <MaterialCommunityIcons
-              name='trophy-outline'
-              size={20}
-              color='#5386e4'
-              style={notification_styles.icon} />
-          </View>
-          <View style={notification_styles.textView}>
-            <Text style={notification_styles.textOne}>Match Session</Text>
-            <Text style={notification_styles.textSpace}>Are you able to attend the match vs Clan Na Gael? |20th Feb at 15:30|</Text>
-            <View style={{ flexDirection:"row" }}>
-          <View>
-            <AcceptButton
-              text="Accept"
-              onPress={() => {
-              alert('You have accepted the invite!');
-            }}
-            />
-          </View>
-          <View>
-            <DeclineButton
-              text="Decline"
-              onPress={() => {
-              alert('You have declined the invite!                        Please provide a reason you cannot attend:');
-            }}
-            />
-          </View>
-          </View>
-          </View>
-          <View style={notification_styles.more}>
-            <MoreButton onPress={() => console.log('Tap')} />
-          </View>
+        <View style={notifications_styles.notification_card_button_container}>
+          <ExpiredInvitationButton text="Accept" />
+          <ExpiredInvitationButton text="Decline" />
         </View>
-      </Card2>
+      </NotificationCard>
+
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0f2f7',
-  },
-});

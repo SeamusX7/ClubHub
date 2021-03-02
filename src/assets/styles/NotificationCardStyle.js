@@ -1,42 +1,50 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  medium_card: {
+  notification_card: {
     backgroundColor: '#fff',
     borderRadius: 8,
     elevation: 8,
-    height: 64,
     marginBottom: 10,
+    padding: 20,
     shadowColor: "#000",
-    shadowOffset: { height: 0, width: 0 },
+    shadowOffset: { height: 0, width: 0, },
     shadowOpacity: 0.05,
     shadowRadius: 3,
   },
-  medium_card_content: {
-    alignItems: 'center',
+  notification_card_top_container: {
+    // backgroundColor: 'red',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  medium_card_icon_container: {
-    marginLeft: 20,
+  notification_card_button_container: {
+    flexDirection: 'row',
+    marginLeft: 59,
+    marginTop: 10,
   },
-  medium_card_info_container: {
+  notification_card_info_container: {
     left: -28,
   },
-  medium_card_overflow_container: {
-    marginRight: 20,
-  },
-  medium_card_primary_text: {
+  notification_card_primary_text: {
     color: '#0c1821',
     fontFamily: 'montserrat-semibold',
     fontSize: 14,
     marginBottom: 1,
   },
-  medium_card_secondary_text: {
+  notification_card_secondary_text: {
     color: '#0c1821',
     fontFamily: 'montserrat-medium',
     fontSize: 12,
     marginTop: 1,
+  },
+  notification_card_status: {
+    backgroundColor: '#5386e4',
+    borderRadius: 10/2,
+    height: 10,
+    marginTop: 20,
+    position: 'absolute',
+    right: 0,
+    width: 10,
   }
 })

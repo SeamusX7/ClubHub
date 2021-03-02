@@ -45,7 +45,7 @@ export default function TabNavigator({ navigation }) {
       })}
       tabBarOptions={{
         activeTintColor: '#5386e4',
-        inactiveTintColor: '#b7b7b7',
+        inactiveTintColor: '#caccd0',
         showLabel: false,
         tabStyle: {
           borderRadius: 8,
