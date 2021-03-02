@@ -35,7 +35,7 @@ const userFullName = useSelector(getUserName);
           <MaterialCommunityIcons
             name="account-circle"
             size={70}
-            color="#5386e4"
+            color="#0C1821"
             style={{marginLeft:20}}
             />
             <View style={card_styles.textView} >
@@ -48,12 +48,12 @@ const userFullName = useSelector(getUserName);
         </View>
 
       <SettingsButton
-        text="ClubHubPlus"
-        onPress={() => navigation.navigate('ClubHubPlus')} />
-
-      <SettingsButton
         text="Switch Team"
         onPress={() => navigation.navigate('ChooseTeam')} />
+
+      <SettingsButton
+        text="ClubHubPlus"
+        onPress={() => navigation.navigate('ClubHubPlus')} />
 
       <SettingsButton
         text="Language"
@@ -67,11 +67,7 @@ const userFullName = useSelector(getUserName);
         text="Privacy Policy"
         onPress={() => navigation.navigate('PrivacyPolicy')} />
 
-      {/* <SettingsButton
-        text="TEMP Player Profile"
-        onPress={() => navigation.navigate('PlayerProfile')} /> */}
-
-      <LogoutButton 
+      <SettingsButton 
         text="Sign Out"
         onPress={() => signOutUser()} />
     </View>
@@ -81,18 +77,18 @@ const userFullName = useSelector(getUserName);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f2f7',
+    backgroundColor: '#F0F2F7',
     marginTop:10,
   },
   textOne: {
-    color: '#1D3557',
-    fontFamily: 'montserrat-bold',
+    color: '#0C1821',
+    fontFamily: 'montserrat-semibold',
     fontSize:16,
     marginTop:14,
     marginRight:200,
   },
   textTwo: {
-    color: '#1D3557',
+    color: '#0C1821',
     fontFamily: 'montserrat-medium',
     fontSize: 12,
     marginTop: 1,
