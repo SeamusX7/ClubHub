@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
   },
   buttonText: {
-    color: '#333333',
+    color: '#0C1821',
     fontSize: 16,
     fontFamily: 'montserrat-medium',
     textAlign: 'left',
