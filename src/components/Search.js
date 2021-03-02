@@ -4,34 +4,35 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export default function Search() {
   return (
-    <View style={styles.searchContainer}>
-      <MaterialIcons name="search" size={22} color="#B7B7B7" style={styles.searchIcon} />
+    <View style={search_styles.search_container}>
+      <MaterialIcons name="search" size={24} color="#caccd0" style={search_styles.search_icon} />
       <TextInput
-        style={styles.searchInput}
+        style={search_styles.search_text_input}
         placeholder="Search"
-        placeholderTextColor="#B7B7B7" 
-      />
+        placeholderTextColor="#caccd0"
+        clearButtonMode="while-editing" />
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  searchContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    backgroundColor: '#ffffff',
-    flex: 1,
-    // width: 270,
-    height: 46,
+const search_styles = StyleSheet.create({
+  search_container: {
+    backgroundColor: '#fff',
     borderRadius: 8,
-  },
-  searchIcon: {
-    marginHorizontal: 10,
-    marginVertical: 12,
-  },
-  searchInput: {
     flex: 1,
-    fontFamily: 'montserrat-regular',
-    color: "#333333"
+    flexDirection: 'row',
+    height: 46,
+    justifyContent: 'flex-start',
+  },
+  search_icon: {
+    marginLeft: 20,
+    marginRight: 14,
+    marginTop: 11,
+  },
+  search_text_input: {
+    color: "#0c1821",
+    fontFamily: 'montserrat-medium',
+    flex: 1,
+    marginRight: 10,
   }
 })

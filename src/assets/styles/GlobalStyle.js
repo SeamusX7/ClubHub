@@ -12,7 +12,7 @@ export default StyleSheet.create({
     fontFamily: 'montserrat-medium',
     fontSize: 13,
   },
-  searchSection: {
+  search_section: {
     flexDirection: 'row',
   }
 })
