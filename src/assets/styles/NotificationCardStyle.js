@@ -13,18 +13,16 @@ export default StyleSheet.create({
     shadowRadius: 3,
   },
   notification_card_top_container: {
-    // backgroundColor: 'red',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   notification_card_button_container: {
     flexDirection: 'row',
-    marginLeft: 59,
+    marginLeft: 44,
     marginTop: 10,
   },
   notification_card_info_container: {
-    left: -28,
+    left: 20,
   },
   notification_card_primary_text: {
     color: '#0c1821',
@@ -46,5 +44,9 @@ export default StyleSheet.create({
     position: 'absolute',
     right: 0,
     width: 10,
+  },
+  notification_card_time_status_container: {
+    position: 'absolute',
+    right: 0,
   }
 })
