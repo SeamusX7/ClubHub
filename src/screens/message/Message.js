@@ -15,7 +15,7 @@ export default function MessageScreen({ navigation }) {
   return (
     <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.searchContainer}>
-          <View style={global_styles.searchSection}>
+          <View style={global_styles.search_section}>
             <Search />
             <SearchButton>
               <MaterialCommunityIcons

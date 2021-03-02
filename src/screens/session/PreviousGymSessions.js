@@ -6,15 +6,12 @@ import { SafeAreaView, Modal } from 'react-native';
 
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
-import large_card_style from '../../assets/styles/LargeCardStyle';
-import Card from '../../components/Card';
-import card_styles from '../../assets/styles/CardStyle';
-import MoreButton from '../../components/MoreButton';
 import FlatButton from '../../components/CreateButton';
-import modal_styles from '../../assets/styles/ModalStyle';
-import NewSessionModal from './NewSessionModal';
 import Search from '../../components/Search';
 import SearchButton from '../../components/SearchButton';
+import MediumCard from '../../components/cards/MediumCard';
+import medium_card_styles from '../../assets/styles/MediumCardStyle';
+import OverflowMenuButton from '../../components/OverflowMenuButton';
 
 //redux
 import { useDispatch , useSelector } from 'react-redux';
@@ -93,45 +90,42 @@ export default function PreviousMatchSessionsScreen({navigation}) {
     React.useLayoutEffect(() => {
       navigation.setOptions({
         headerRight: () => (
-          <View style={styles.icon} >
-            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#b7b7b7'} />
+          <View style={{marginRight: 20}} >
+            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#caccd0'} />
           </View>
         ),
       });
     }, [navigation]),
 
-    <View style={styles.container}>
-      <View style={global_styles.searchSection}>
+    <View style={global_styles.screen_container}>
+      <View style={global_styles.search_section}>
         <Search />
         <SearchButton>
           <MaterialIcons
             name='filter-list'
             size={24}
-            color="#b7b7b7" />
+            color="#caccd0" />
         </SearchButton>
       </View>
       
-      <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Previous matches</Text>
+      <Text style={{...global_styles.title, marginBottom: 10, marginTop: 30 }}>Previous gym</Text>
       <FlatList
         data={sessions}
         renderItem={({ item }) => (
-          <Card
-            onPress={() => this.sessionSelected({item})}>
-            <View style={card_styles.container}>
-              <View style={card_styles.circle} >
-                {item.sessionType=="match" ? <MaterialCommunityIcons name='trophy-outline' size={20} color='#5386e4' style={card_styles.icon} />
-                  : item.sessionType=="training" ? <Ionicons name='md-football' size={20} color='#5386e4' style={{...card_styles.icon, marginTop:11, marginLeft:2}} />
-                  : <MaterialCommunityIcons name='dumbbell' size={20} color='#5386e4' style={card_styles.icon} /> }
-              </View>
-              <View style={card_styles.textView} >
-                {item.sessionType=="match" ? <Text style={card_styles.textOne}>vs. {item.opposition}</Text> : <Text style={card_styles.textOne}>{item.title}</Text>}
-                <Text style={card_styles.textTwo}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
-              </View>
-              <View style={card_styles.more} >
-                <MoreButton onPress={() => activeModal(true, { item })} />
-              </View>
+          <MediumCard onPress={() => this.sessionSelected({ item })}>
+            <View style={medium_card_styles.medium_card_icon_container}>
+              {item.sessionType=="match" ? <MaterialCommunityIcons name='trophy-outline' size={24} color='#5386e4' />
+                : item.sessionType=="training" ? <Ionicons name='md-football' size={24} color='#5386e4' />
+                : <MaterialCommunityIcons name='dumbbell' size={24} color='#5386e4' /> }
             </View>
-          </Card>
+            <View style={medium_card_styles.medium_card_info_container}>
+              {item.sessionType=="match" ? <Text style={medium_card_styles.medium_card_primary_text}>vs. {item.opposition}</Text> : <Text style={medium_card_styles.medium_card_primary_text}>{item.title}</Text>}
+              <Text style={medium_card_styles.medium_card_secondary_text}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
+            </View>
+            <View style={medium_card_styles.medium_card_overflow_container}>
+              <OverflowMenuButton onPress={() => activeModal(true, { item })} />
+            </View>
+          </MediumCard>
         )}
       />
 
@@ -139,18 +133,3 @@ export default function PreviousMatchSessionsScreen({navigation}) {
   )
   
 }
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f0f2f7',
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  icon: {
-    marginRight: 20,
-  }
-});

@@ -6,11 +6,6 @@ import { SafeAreaView, Modal } from 'react-native';
 
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
-import large_card_style from '../../assets/styles/LargeCardStyle';
-import Card from '../../components/Card';
-import card_styles from '../../assets/styles/CardStyle';
-import MoreButton from '../../components/MoreButton';
-import FlatButton from '../../components/CreateButton';
 import modal_styles from '../../assets/styles/ModalStyle';
 import NewSessionModal from './NewSessionModal';
 
@@ -19,6 +14,7 @@ import square_card_styles from '../../assets/styles/SquareCardStyle';
 import MediumCard from '../../components/cards/MediumCard';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import OverflowMenuButton from '../../components/OverflowMenuButton';
+import FloatingModalButton from '../../components/buttons/FloatingModalButton';
 
 //redux
 import { useDispatch , useSelector } from 'react-redux';
@@ -40,7 +36,7 @@ export default function SessionScreen({navigation}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [sessionIdKey, setSessionIdKey] = useState('session id');
 
-  const openModalButton = <FlatButton onPress={() => setModalOpen(true)}/>
+  const openModalButton = <FloatingModalButton onPress={() => setModalOpen(true)}/>
   const uType = useSelector(getUserType);
 
 
@@ -170,7 +166,7 @@ export default function SessionScreen({navigation}) {
       <FlatList
         data={sessions}
         renderItem={({ item }) => (
-          <MediumCard onPress={() => this.sessionSelected({item})}>
+          <MediumCard onPress={() => this.sessionSelected({ item })}>
             <View style={medium_card_styles.medium_card_icon_container}>
               {item.sessionType=="match" ? <MaterialCommunityIcons name='trophy-outline' size={24} color='#5386e4' />
                 : item.sessionType=="training" ? <Ionicons name='md-football' size={24} color='#5386e4' />
@@ -181,40 +177,13 @@ export default function SessionScreen({navigation}) {
               <Text style={medium_card_styles.medium_card_secondary_text}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
             </View>
             <View style={medium_card_styles.medium_card_overflow_container}>
-              <OverflowMenuButton />
+              <OverflowMenuButton onPress={() => activeModal(true, { item })} />
             </View>
           </MediumCard>
         )}
       />
 
-      
-      {/* <FlatList
-        data={sessions}
-        renderItem={({ item }) => (
-          <Card
-            // onPress={() => x.props.navigation.navigate('TabNavigator')}
-            onPress={() => this.sessionSelected({item})}>
-            <View style={card_styles.container}>
-              <View style={card_styles.circle} >
-                {item.sessionType=="match" ? <MaterialCommunityIcons name='trophy-outline' size={20} color='#5386e4' style={card_styles.icon} />
-                  : item.sessionType=="training" ? <Ionicons name='md-football' size={20} color='#5386e4' style={{...card_styles.icon, marginTop:11, marginLeft:2}} />
-                  : <MaterialCommunityIcons name='dumbbell' size={20} color='#5386e4' style={card_styles.icon} /> }
-              </View>
-              <View style={card_styles.textView} >
-                {item.sessionType=="match" ? <Text style={card_styles.textOne}>vs. {item.opposition}</Text> : <Text style={card_styles.textOne}>{item.title}</Text>}
-                <Text style={card_styles.textTwo}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
-              </View>
-              <View style={card_styles.more} >
-                <MoreButton onPress={() => activeModal(true, { item })} />
-              </View>
-            </View>
-          </Card>
-        )}
-      /> */}
-
-
-{[uType === "coach" ? openModalButton : null]}
-
+      {[uType === "coach" ? openModalButton : null]}
     </View>
   )
 }
