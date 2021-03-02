@@ -14,6 +14,12 @@ import FlatButton from '../../components/CreateButton';
 import modal_styles from '../../assets/styles/ModalStyle';
 import NewSessionModal from './NewSessionModal';
 
+import SquareCard from '../../components/cards/SquareCard';
+import square_card_styles from '../../assets/styles/SquareCardStyle';
+import MediumCard from '../../components/cards/MediumCard';
+import medium_card_styles from '../../assets/styles/MediumCardStyle';
+import OverflowMenuButton from '../../components/OverflowMenuButton';
+
 //redux
 import { useDispatch , useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
@@ -99,14 +105,14 @@ export default function SessionScreen({navigation}) {
     React.useLayoutEffect(() => {
       navigation.setOptions({
         headerRight: () => (
-          <View style={styles.icon} >
-            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#b7b7b7'} />
+          <View style={{marginRight: 20}} >
+            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#caccd0'} />
           </View>
         ),
       });
     }, [navigation]),
 
-    <View style={styles.container}>
+    <View style={global_styles.screen_container}>
 
       <Modal
         visible={modalOpen}
@@ -128,37 +134,61 @@ export default function SessionScreen({navigation}) {
       </Modal>
 
       <Text style={{...global_styles.title, marginBottom: 10}}>Previous sessions</Text>
-      <View style={large_card_style.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('PreviousMatchSessions')} style={large_card_style.largeLeftCard}>
+      <View style={square_card_styles.square_card_container}>
+        <SquareCard onPress={() => navigation.navigate('PreviousMatchSessions')}>
           <MaterialCommunityIcons
             name="trophy-outline"
-            size={36}
+            size={34}
             color="#5386e4"
-            style={{ alignSelf: 'center' }} />
-          <Text style={large_card_style.text}>Matches</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate('PreviousTrainingSessions')} style={large_card_style.largeCenterCard}>
+            style={square_card_styles.square_card_icon} />
+          <Text style={square_card_styles.square_card_title}>Matches</Text>
+        </SquareCard>
+        <SquareCard onPress={() => navigation.navigate('PreviousTrainingSessions')}>
           <Ionicons
             name="md-football"
-            size={36}
+            size={34}
             color="#5386e4"
-            style={{ alignSelf: 'center' }} />
-          <Text style={large_card_style.text}>Training</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate('PreviousGymSessions')} style={large_card_style.largeRightCard}>
+            style={square_card_styles.square_card_icon} />
+          <Text style={square_card_styles.square_card_title}>Training</Text>
+        </SquareCard>
+        <SquareCard onPress={() => navigation.navigate('PreviousGymSessions')}>
           <MaterialCommunityIcons
             name="dumbbell"
-            size={36}
+            size={34}
             color="#5386e4"
-            style={{ alignSelf: 'center' }} />
-          <Text style={large_card_style.text}>Gym</Text>
-        </TouchableOpacity>
+            style={square_card_styles.square_card_icon} />
+          <Text style={square_card_styles.square_card_title}>Gym</Text>
+        </SquareCard>
       </View>
 
-      <Text style={{...global_styles.title, marginBottom: 4, marginTop: 30 }}>Upcoming sessions</Text>
+      <Text style={{...global_styles.title, marginBottom: 10, marginTop: 30 }}>Upcoming sessions</Text>
+
+      {/* <MediumCard>
+            
+      </MediumCard> */}
+
       <FlatList
+        data={sessions}
+        renderItem={({ item }) => (
+          <MediumCard onPress={() => this.sessionSelected({item})}>
+            <View style={medium_card_styles.medium_card_icon_container}>
+              {item.sessionType=="match" ? <MaterialCommunityIcons name='trophy-outline' size={24} color='#5386e4' />
+                : item.sessionType=="training" ? <Ionicons name='md-football' size={24} color='#5386e4' />
+                : <MaterialCommunityIcons name='dumbbell' size={24} color='#5386e4' /> }
+            </View>
+            <View style={medium_card_styles.medium_card_info_container}>
+              {item.sessionType=="match" ? <Text style={medium_card_styles.medium_card_primary_text}>vs. {item.opposition}</Text> : <Text style={medium_card_styles.medium_card_primary_text}>{item.title}</Text>}
+              <Text style={medium_card_styles.medium_card_secondary_text}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
+            </View>
+            <View style={medium_card_styles.medium_card_overflow_container}>
+              <OverflowMenuButton />
+            </View>
+          </MediumCard>
+        )}
+      />
+
+      
+      {/* <FlatList
         data={sessions}
         renderItem={({ item }) => (
           <Card
@@ -180,7 +210,7 @@ export default function SessionScreen({navigation}) {
             </View>
           </Card>
         )}
-      />
+      /> */}
 
 
 {[uType === "coach" ? openModalButton : null]}
@@ -188,15 +218,3 @@ export default function SessionScreen({navigation}) {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f0f2f7',
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  icon: {
-    marginRight: 20,
-  }
-});
