@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 10,
     marginLeft: 20,
+    color:'#91999E',
   },
   text: {
     fontFamily: 'montserrat-medium',
