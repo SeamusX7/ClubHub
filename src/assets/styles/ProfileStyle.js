@@ -1,65 +1,27 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  logo: {
-		alignSelf: 'center',
-		height: 52,
-		resizeMode:'contain',
-		marginBottom: 21,
-		width: 52,
+	profile_container: {
+		flexDirection: 'row',
 	},
-  titleContainer: {
-		marginBottom: 11,
+	profile_content: {
+		marginLeft: 20,
+		marginTop: 15,
 	},
-	titleText: {
-		color: '#333',
+	profile_image: {
+		height: 64,
+		width: 64,
+	},
+	profile_primary_text: {
+		color: '#0c1821',
 		fontFamily: 'montserrat-semibold',
-		fontSize: 20,
-		textAlign: 'center',
+		fontSize: 14,
+		marginBottom: 1,
 	},
-	subtitleText: {
-		color: '#898989',
+	profile_secondary_text: {
+		color: '#91999E',
 		fontFamily: 'montserrat-medium',
-		fontSize: 14,
-		marginTop: 2,
-		textAlign: 'center',
+		fontSize: 12,
+		marginTop: 1,
 	},
-	footerText: {
-		color: '#333',
-		fontFamily: 'montserrat-regular',
-		fontSize: 14,
-		marginTop: 21,
-		textAlign: 'center',
-	},
-	footerLink: {
-		color: "#5386e4",
-		fontSize: 14,
-		fontFamily: 'montserrat-semibold'
-	},
-	authInput: {
-		backgroundColor: '#fff',
-    borderRadius: 5,
-    fontFamily: 'montserrat-regular',
-		paddingHorizontal: 16,
-		paddingVertical: 15,
-	},
-	authLabelText: {
-		fontFamily: 'montserrat-regular',
-		fontSize: 14,
-		marginTop: 11,
-		marginBottom: 4
-	},
-	text1: {
-		color: '#1d3557',
-		fontFamily: 'montserrat-semibold',
-		fontSize: 13,
-		textAlign: 'left',
-	  },
-	text: {
-		marginTop:10,
-		color: '#1d3557',
-		fontFamily: 'montserrat-semibold',
-		fontSize: 13,
-		textAlign: 'left',
-	  }
 })
