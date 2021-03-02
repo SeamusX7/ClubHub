@@ -13,7 +13,7 @@ const SettingsStack = createStackNavigator();
 
 export default function SettingsStackScreen() {
   return (
-    <SettingsStack.Navigator screenOptions={{ headerTitleStyle: { color: '#333', fontFamily: 'montserrat-semibold' }, headerBackTitleVisible: false }}>
+    <SettingsStack.Navigator screenOptions={{ headerTitleStyle: { color: '#0c1821', fontFamily: 'montserrat-medium' }, headerBackTitleVisible: false }}>
       <SettingsStack.Screen name="Settings" component={SettingsScreen} options={{ title: 'Settings', headerLeft: null }} ></SettingsStack.Screen>
       <SettingsStack.Screen name="Profile" component={ProfileScreen} options={{ title: 'Profile' }} ></SettingsStack.Screen>
       <SettingsStack.Screen name="ClubHubPlus" component={ClubHubPlusScreen} options={{ title: 'ClubHubPlus' }} ></SettingsStack.Screen>

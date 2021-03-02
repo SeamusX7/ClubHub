@@ -8,9 +8,9 @@ const HomeStack = createStackNavigator();
 
 export default function HomeStackScreen() {
   return (
-    <HomeStack.Navigator screenOptions={{ headerTitleStyle: { color: '#333', fontFamily: 'montserrat-semibold' }, headerBackTitleVisible: false }}>
+    <HomeStack.Navigator screenOptions={{ headerTitleStyle: { color: '#0c1821', fontFamily: 'montserrat-medium' }, headerBackTitleVisible: false }}>
       <HomeStack.Screen name="Home" component={HomeScreen} options={{ title: 'Home', headerLeft: null }} ></HomeStack.Screen>
-      <HomeStack.Screen name="SpecificNewsFeedPost" component={SpecificNewsFeedPost} options={{ title: 'Specific Post' }} ></HomeStack.Screen>
+      <HomeStack.Screen name="SpecificNewsFeedPost" component={SpecificNewsFeedPost} options={{ title: 'Post' }} ></HomeStack.Screen>
     </HomeStack.Navigator>
   )
 }

@@ -27,7 +27,7 @@ export default function HomeScreen({ navigation }) {
       navigation.setOptions({
         headerRight: () => (
           <View style={styles.icon} >
-            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#b7b7b7'} />
+            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#caccd0'} />
           </View>
         ),
       });
