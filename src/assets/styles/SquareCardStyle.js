@@ -24,10 +24,15 @@ export default StyleSheet.create({
   square_card_icon: {
     marginBottom: 6,
   },
+  square_card_statistics: {
+    color: '#5386E4',
+    fontFamily: 'montserrat-bold',
+    fontSize: 30,
+  },
   square_card_title: {
     color: '#0c1821',
     fontFamily: 'montserrat-semibold',
     fontSize: 13,
     marginTop: 6,
-  },
+  }
 })

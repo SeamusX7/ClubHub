@@ -1,46 +1,36 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
-    alignItems: 'flex-start',
+  large_card: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    elevation: 8,
+    height: 130,
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { height: 0, width: 0, },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+  },
+  large_card_container: {
+    marginLeft: 20,
+    marginTop: 20,
+  },
+  large_card_content: {
     flexDirection: 'row',
-    height: 120,
-    justifyContent: 'space-between',
+    marginBottom: 10,
   },
-  largeLeftCard: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    borderTopColor: '#5386e4',
-    borderTopWidth: 8,
-    flex: 1,
-    height: '100%',
-    justifyContent: 'space-evenly',
-    marginRight: 5,
+  large_card_primary_text: {
+    color: '#91999E',
+    fontFamily: 'montserrat-medium',
+    fontSize: 12,
   },
-  largeCenterCard: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    borderTopColor: '#5386e4',
-    borderTopWidth: 8,
-    flex: 1,
-    height: '100%',
-    justifyContent: 'space-evenly',
-    marginHorizontal: 5,
-  },
-  largeRightCard: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    borderTopColor: '#5386e4',
-    borderTopWidth: 8,
-    flex: 1,
-    height: '100%',
-    justifyContent: 'space-evenly',
-    marginLeft: 5,
-  },
-  text: {
-    color: '#1d3557',
+  large_card_secondary_text: {
+    color: '#0C1821',
     fontFamily: 'montserrat-semibold',
-    fontSize: 13,
-    textAlign: 'center',
+    fontSize: 12,
+    marginRight: 20,
+    position: 'absolute',
+    right: 0,
   }
 })
