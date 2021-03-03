@@ -1,11 +1,31 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import global_styles from '../../assets/styles/GlobalStyle';
+
+import MediumCard from '../../components/cards/MediumCard';
+import medium_card_styles from '../../assets/styles/MediumCardStyle';
+import OverflowMenuButton from '../../components/OverflowMenuButton';
 export default function SettingsScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <View style={global_styles.screen_container}>
+      
       <Text style={styles.selectLanguageText}>Select Language</Text>
+
+      <View style={styles.selectLanguage}>
+        <Image
+          source={require('../../assets/images/english.png')}
+          size={10}
+          style={styles.languageImage}>
+        </Image>
+        <Text style={styles.text}>English</Text>
+        <Ionicons
+          name='ios-checkmark'
+          size={40}
+          color='#5386E4'
+          style={styles.check} />
+      </View>
 
       <View style={styles.selectLanguage}>
         <Image
@@ -14,11 +34,6 @@ export default function SettingsScreen({ navigation }) {
           style={styles.languageImage}>
         </Image>
         <Text style={styles.text}>Irish</Text>
-        <Ionicons
-          name='ios-checkmark'
-          size={40}
-          color='#5386E4'
-          style={styles.check} />
       </View>
 
       <View style={styles.selectLanguage}>
@@ -52,10 +67,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#ffffff',
     width: '100%',
-    height: 58,
+    height: 64,
     marginTop: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: 8,
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { height: 0, width: 0 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
   },
   languageImage: {
     width: 30,
@@ -68,7 +89,7 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-medium',
     fontSize: 14,
     marginBottom: 10,
-    marginLeft: 20,
+    marginLeft: 0,
     color:'#91999E',
   },
   text: {

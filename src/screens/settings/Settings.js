@@ -5,8 +5,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Local File Imports
 import SettingsButton from '../../components/SettingsButton';
-import LogoutButton from '../../components/LogoutButton';
+import TopButton from '../../components/TopButton';
 import large_card_style from '../../assets/styles/LargeCardStyle';
+import settings_card_style from '../../assets/styles/SettingsCardDesign';
 import card_styles from '../../assets/styles/CardStyle';
 import modal_styles from '../../assets/styles/ModalStyle';
 
@@ -47,7 +48,16 @@ const userFullName = useSelector(getUserName);
         </TouchableOpacity>
         </View>
 
-      <SettingsButton
+        {/* <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={settings_card_style.button}>
+        <MaterialCommunityIcons
+            name="account-circle"
+            size={25}
+            color="#0C1821"
+            style={{}}
+            />
+          <Text style={settings_card_style.buttonText} >View Profile</Text>
+        </TouchableOpacity> */}
+      <TopButton
         text="Switch Team"
         onPress={() => navigation.navigate('ChooseTeam')} />
 
@@ -78,7 +88,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F0F2F7',
-    marginTop:10,
+    marginTop:20,
   },
   textOne: {
     color: '#0C1821',

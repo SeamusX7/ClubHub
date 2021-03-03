@@ -188,7 +188,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f2f7',
-    backgroundColor: '#fff',
     borderRadius: 8,
     marginHorizontal: 10,
     paddingHorizontal: 12,
