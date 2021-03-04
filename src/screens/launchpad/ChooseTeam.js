@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, SafeAreaView, Modal, View } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { FlatList } from 'react-native-gesture-handler';
 
 // Redux
-import { getUserId, getUserType } from '../../store/user';
+import { getUserId, getUserType, getUserName } from '../../store/user';
 import { useDispatch , useSelector } from 'react-redux';
 
 
@@ -17,9 +17,10 @@ import card_styles from '../../assets/styles/CardStyle';
 import FlatButton from '../../components/CreateButton';
 import MoreButton from '../../components/MoreButton';
 import Card from '../../components/Card';
+import global_styles from '../../assets/styles/GlobalStyle';
 
 export default function ChooseTeamScreen(props) {
-  const userName = props.extraData.fullName;
+  // const userName = props.extraData.fullName;
  // const userId = props.extraData.id;
  //const [teams, setTeams] = useState([]);
 
@@ -32,6 +33,7 @@ export default function ChooseTeamScreen(props) {
   const userType = props.extraData.userType;
   const userID = useSelector(getUserId);
   const uType = useSelector(getUserType);
+  const userName = useSelector(getUserName);
 
   
 
@@ -47,7 +49,7 @@ export default function ChooseTeamScreen(props) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={global_styles.screen_container}>
 
       <Modal
         visible={managerModalOpen}
@@ -77,7 +79,7 @@ export default function ChooseTeamScreen(props) {
               <Text style={modal_styles.modalTitle}>Join team</Text>
               <MaterialIcons
                 name='close'
-                color='#333'
+                color='#0c1821'
                 size={24}
                 style={modal_styles.modalToggleExit}
                 onPress={() => setPlayerModalOpen(false)} />
@@ -87,41 +89,38 @@ export default function ChooseTeamScreen(props) {
         </SafeAreaView>
       </Modal>
 
-      <View>
-        <Text style={styles.greeting} >Welcome back, {userName}!</Text>
-        <Text style={styles.text}>Select a team to get started.</Text>
+      <View style={styles.greeting_container}>
+        <Text style={styles.greeting_heading} >Welcome back, {userName}!</Text>
+        <Text style={styles.greeting_body}>Select a team to get started.</Text>
       </View>
 
-      <View style={styles.cardView} >
-
-        <DisplayTeams props={props}/>
-
+      <View style={styles.team_card_container}>
+        <DisplayTeams props={props} />
       </View>
 
       {[uType === "coach" ? openManagerModalButton : openPlayerModalButton]}
 
-    </SafeAreaView >
+    </View >
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0f2f7',
-    marginTop: 150,
+  greeting_container: {
+    marginTop: '25%',
   },
-  greeting: {
-    textAlign: 'center',
+  greeting_heading: {
+    color: '#0c1821',
     fontFamily: 'montserrat-semibold',
-    fontSize: 17,
+    fontSize: 16,
+    textAlign: 'center',
   },
-  text: {
+  greeting_body: {
+    color: '#91999e',
     textAlign: 'center',
     fontFamily: 'montserrat-regular',
-    fontSize: 15,
+    fontSize: 14,
   },
-  cardView: {
+  team_card_container: {
     marginTop: 30,
-    paddingHorizontal: 20,
   }
 });

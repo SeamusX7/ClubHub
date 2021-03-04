@@ -79,7 +79,6 @@ export default function RegistrationScreen({ navigation }) {
 				<Text style={{...auth_styles.switchText, marginLeft: 10}}>Manager</Text>
 			</View>
 			
-
 			<Text style={auth_styles.authLabelText}>Full name</Text>
 			<TextInput
 				style={auth_styles.authInput}
