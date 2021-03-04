@@ -8,7 +8,7 @@ import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import { useSelector } from 'react-redux';
 import { getUserType } from '../../store/user';
 
-export default function MediumCard(props) {
+export default function MediumPlayerCard(props) {
   const uType = useSelector(getUserType);
 
   return (
