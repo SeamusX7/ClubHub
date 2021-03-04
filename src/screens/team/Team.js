@@ -7,7 +7,7 @@ import global_styles from '../../assets/styles/GlobalStyle';
 
 import SquareCard from '../../components/cards/SquareCard';
 import square_card_styles from '../../assets/styles/SquareCardStyle';
-import MediumCard from '../../components/cards/MediumCard';
+import MediumPlayerCard from '../../components/cards/MediumPlayerCard';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import OverflowMenuButton from '../../components/OverflowMenuButton';
 
@@ -44,7 +44,7 @@ export default function TeamScreen({ navigation }) {
 
       <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 30 }}>Players</Text>
       <ScrollView>
-        <MediumCard onPress={() => navigation.navigate('Player')}>
+        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={medium_card_styles.medium_card_icon_container}>
             <Image
               style={medium_card_styles.medium_card_image}
@@ -58,9 +58,9 @@ export default function TeamScreen({ navigation }) {
           <View style={medium_card_styles.medium_card_overflow_container}>
             <OverflowMenuButton />
           </View>
-        </MediumCard>
+        </MediumPlayerCard>
 
-        <MediumCard onPress={() => navigation.navigate('Player')}>
+        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={medium_card_styles.medium_card_icon_container}>
             <Image
               style={medium_card_styles.medium_card_image}
@@ -74,9 +74,9 @@ export default function TeamScreen({ navigation }) {
           <View style={medium_card_styles.medium_card_overflow_container}>
             <OverflowMenuButton />
           </View>
-        </MediumCard>
+        </MediumPlayerCard>
 
-        <MediumCard onPress={() => navigation.navigate('Player')}>
+        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={medium_card_styles.medium_card_icon_container}>
             <Image
               style={medium_card_styles.medium_card_image}
@@ -90,9 +90,9 @@ export default function TeamScreen({ navigation }) {
           <View style={medium_card_styles.medium_card_overflow_container}>
             <OverflowMenuButton />
           </View>
-        </MediumCard>
+        </MediumPlayerCard>
 
-        <MediumCard onPress={() => navigation.navigate('Player')}>
+        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={medium_card_styles.medium_card_icon_container}>
             <Image
               style={medium_card_styles.medium_card_image}
@@ -106,9 +106,9 @@ export default function TeamScreen({ navigation }) {
           <View style={medium_card_styles.medium_card_overflow_container}>
             <OverflowMenuButton />
           </View>
-        </MediumCard>
+        </MediumPlayerCard>
 
-        <MediumCard onPress={() => navigation.navigate('Player')}>
+        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
           <View style={medium_card_styles.medium_card_icon_container}>
             <Image
               style={medium_card_styles.medium_card_image}
@@ -122,7 +122,7 @@ export default function TeamScreen({ navigation }) {
           <View style={medium_card_styles.medium_card_overflow_container}>
             <OverflowMenuButton />
           </View>
-        </MediumCard>
+        </MediumPlayerCard>
       </ScrollView>
     </View>
   )
