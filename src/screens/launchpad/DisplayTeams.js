@@ -6,6 +6,9 @@ import card_styles from '../../assets/styles/CardStyle';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Card from '../../components/Card';
 import MoreButton from '../../components/MoreButton';
+import MediumCard from '../../components/cards/MediumCard';
+import medium_card_styles from '../../assets/styles/MediumCardStyle';
+import OverflowMenuButton from '../../components/OverflowMenuButton';
 
 import { SafeAreaView, Modal } from 'react-native'
 
@@ -103,28 +106,18 @@ export default function DisplayTeams(prop) {
       <FlatList
         data={teams}
         renderItem={({ item }) => (
-          <Card
-            // onPress={() => x.props.navigation.navigate('TabNavigator')}
-            onPress={() => this.teamSelected({item})}
-          >
-            <View style={card_styles.container}>
-              <View style={card_styles.circle} >
-                <MaterialCommunityIcons
-                  name='trophy-outline'
-                  size={20}
-                  color='#5386e4'
-                  style={card_styles.icon} />
-              </View>
-              <View style={card_styles.textView} >
-                {/* <DisplayTeams userId={userId} string='hello' /> */}
-                <Text style={card_styles.textOne} >{item.club}</Text>
-                <Text style={card_styles.textTwo} >{item.teamName}</Text>
-              </View>
-              <View style={card_styles.more} >
-                <MoreButton onPress={() => activeModal(true, { item })} />
-              </View>
+          <MediumCard onPress={() => this.teamSelected({item})}>
+            <View style={medium_card_styles.medium_card_icon_container}>
+              <MaterialCommunityIcons name='medal-outline' size={24} color='#5386e4' />
             </View>
-          </Card>
+            <View style={medium_card_styles.medium_card_info_container}>
+              <Text style={medium_card_styles.medium_card_primary_text}>{item.club}</Text>
+              <Text style={medium_card_styles.medium_card_secondary_text}>{item.teamName}</Text>
+            </View>
+            <View style={medium_card_styles.medium_card_overflow_container}>
+              <OverflowMenuButton onPress={() => activeModal(true, { item })} />
+            </View>
+          </MediumCard>
         )}
       />
 

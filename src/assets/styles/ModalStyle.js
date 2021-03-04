@@ -18,9 +18,9 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   modalTitle: {
-    color: '#333',
+    color: '#0c1821',
     fontFamily: 'montserrat-semibold',
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 10,
   },
   modalInput: {
