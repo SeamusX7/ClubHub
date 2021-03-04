@@ -20,7 +20,7 @@ export default function MediumPlayerCard(props) {
           </View>
         </TouchableOpacity>
         :
-        <View style={medium_card_styles.medium_card} onPress={props.onPress}>
+        <View style={medium_card_styles.medium_card}>
           <View style={medium_card_styles.medium_card_content}>
             {props.children}
           </View>
