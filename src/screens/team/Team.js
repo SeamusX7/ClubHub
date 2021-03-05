@@ -2,14 +2,15 @@ import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-// Local File Imports
-import global_styles from '../../assets/styles/GlobalStyle';
-
+// Component Imports
 import SquareCard from '../../components/cards/SquareCard';
-import square_card_styles from '../../assets/styles/SquareCardStyle';
 import MediumPlayerCard from '../../components/cards/MediumPlayerCard';
+import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
+
+// Style Imports
+import global_styles from '../../assets/styles/GlobalStyle';
+import square_card_styles from '../../assets/styles/SquareCardStyle';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
-import OverflowMenuButton from '../../components/OverflowMenuButton';
 
 export default function TeamScreen({ navigation }) {
 
@@ -17,7 +18,7 @@ export default function TeamScreen({ navigation }) {
     React.useLayoutEffect(() => {
       navigation.setOptions({
         headerRight: () => (
-          <View style={styles.icon} >
+          <View style={{ marginRight: 20 }} >
             <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#caccd0'} />
           </View>
         ),
@@ -127,9 +128,3 @@ export default function TeamScreen({ navigation }) {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    marginRight: 20,
-  },
-});

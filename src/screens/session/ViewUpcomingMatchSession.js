@@ -71,7 +71,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
 
       <View style={styles.descriptionContainer}>
         <Text style={styles.textOne}>{teamName} vs. {opposition}</Text>
-        <Text style={styles.textTwo}>Kick off</Text>
+        <Text style={styles.text_two}>Kick off</Text>
         <Text style={styles.textThree}>{time}</Text>
         <Text style={styles.textFour}>{location} | {date}</Text>
       </View>
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-semibold',
     fontSize: 16,
   },
-  textTwo: {
+  text_two: {
     fontFamily: 'montserrat-bold',
     fontSize: 14,
     marginTop: 10,

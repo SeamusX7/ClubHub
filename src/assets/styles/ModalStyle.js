@@ -7,12 +7,6 @@ export default StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 20,
   },
-  modalToggleExit: {
-
-  },
-  modalToggleCreate: {
-
-  },
   modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -25,31 +19,31 @@ export default StyleSheet.create({
   },
   modalInput: {
     backgroundColor: '#f0f2f7',
-    borderRadius: 5,
+    borderRadius: 8,
     fontFamily: 'montserrat-regular',
     paddingHorizontal: 16,
     paddingVertical: 15,
   },
   modalLargeInput: {
     backgroundColor: '#f0f2f7',
-    borderRadius: 5,
+    borderRadius: 8,
     fontFamily: 'montserrat-regular',
     height: 80,
+    paddingBottom: 15,
     paddingHorizontal: 16,
     paddingTop: 15,
-    paddingBottom: 15,
   },
   labelText: {
     fontFamily: 'montserrat-regular',
     fontSize: 14,
+    marginBottom: 4,
     marginTop: 20,
-    marginBottom: 4
   },
   labelTextSemiBold: {
     fontFamily: 'montserrat-semibold',
     fontSize: 14,
-    marginTop: 10,
     marginLeft: 20,
+    marginTop: 10,
   },
   invitePlayerMargin: {
     marginTop: 10,
@@ -59,10 +53,10 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   circle: {
-    backgroundColor: '#F0F2F7',
-    width: 38,
-    height: 38,
+    backgroundColor: '#f0f2f7',
     borderRadius: 38 / 2,
+    height: 38,
+    width: 38,
   },
   checkboxAlignment: {
     marginTop: -10,
@@ -70,9 +64,9 @@ export default StyleSheet.create({
     right: -22,
   },
   checkbox: {
-    backgroundColor: '#F0F2F7',
-    color: '#5386E4',
+    backgroundColor: '#f0f2f7',
     borderRadius: 4,
     borderWidth: 0,
+    color: '#5386e4',
   },
 })

@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, FlatList, ScrollView, ActivityIndicator } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import { firebase } from '../../firebase/config';
-import { SafeAreaView, Modal } from 'react-native';
 
-// Local File Imports
-import global_styles from '../../assets/styles/GlobalStyle';
-import FlatButton from '../../components/CreateButton';
+// Component Imports
 import Search from '../../components/Search';
-import SearchButton from '../../components/SearchButton';
+import SearchButton from '../../components/buttons/SearchButton';
 import MediumCard from '../../components/cards/MediumCard';
-import medium_card_styles from '../../assets/styles/MediumCardStyle';
-import OverflowMenuButton from '../../components/OverflowMenuButton';
+import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
 
-//redux
+// Style Imports
+import global_styles from '../../assets/styles/GlobalStyle';
+import medium_card_styles from '../../assets/styles/MediumCardStyle';
+
+// Redux Imports
 import { useDispatch , useSelector } from 'react-redux';
-import { teamsAdded, getTeams } from '../../store/teams';
-import { activeTeamAdded, getActiveTeamKey } from '../../store/activeTeam';
+import { getActiveTeamKey } from '../../store/activeTeam';
 import { sessionsAdded, getSessions } from '../../store/sessions';
-import { activeSessionAdded, getactiveSessionKey, activeSessionRemove } from '../../store/activeSession';
+import { activeSessionAdded, activeSessionRemove } from '../../store/activeSession';
 import { getUserType } from '../../store/user';
 
 
@@ -27,7 +26,6 @@ export default function PreviousMatchSessionsScreen({navigation}) {
   const teamID = useSelector(getActiveTeamKey);
   const [modalOpen, setModalOpen] = useState(false);
   const [sessionIdKey, setSessionIdKey] = useState('session id');
-  const openModalButton = <FlatButton onPress={() => setModalOpen(true)}/>
   const uType = useSelector(getUserType);
 
 
@@ -126,10 +124,7 @@ export default function PreviousMatchSessionsScreen({navigation}) {
               <OverflowMenuButton onPress={() => activeModal(true, { item })} />
             </View>
           </MediumCard>
-        )}
-      />
-
+        )} />
     </View>
-  )
-  
+  ) 
 }

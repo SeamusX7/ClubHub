@@ -3,8 +3,10 @@ import { Text, View, TextInput } from 'react-native';
 import { Formik } from 'formik';
 import { firebase } from '../../firebase/config';
 
-// Local File Imports
-import FlatButton from '../../components/ModalButton';
+// Component Imports
+import CustomButton from '../../components/buttons/CustomButton';
+
+// Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
 
 export default function NewSessionModal({ closeModal }) {
@@ -116,9 +118,11 @@ export default function NewSessionModal({ closeModal }) {
 							onChangeText={props.handleChange('time')}
 							value={props.values.sport} />
 							
-						<FlatButton
-							text="Create"
-							onPress={props.handleSubmit} />
+						<View style={{ marginTop: 30 }}>
+							<CustomButton
+								text="Create"
+								onPress={props.handleSubmit} />
+						</View>
 					</View>
 				)}
 			</Formik>

@@ -53,7 +53,7 @@ export default function ViewPreviousMatchSessionScreen({ navigation }) {
 
       <View style={styles.descriptionContainer}>
         <Text style={styles.textOne}>Clan na Gael vs. Na Fianna</Text>
-        <Text style={styles.textTwo}>Kick off</Text>
+        <Text style={styles.text_two}>Kick off</Text>
         <Text style={styles.textThree}>14:30</Text>
         <Text style={styles.textFour}>The Showgrounds | 20th February</Text>
       </View>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-semibold',
     fontSize: 16,
   },
-  textTwo: {
+  text_two: {
     fontFamily: 'montserrat-bold',
     fontSize: 14,
     marginTop: 10,

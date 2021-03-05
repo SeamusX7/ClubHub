@@ -1,21 +1,21 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
-export default function FlatButton({ text, onPress }) {
+export default function CustomButton({ text, onPress }) {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={styles.button}>
-        <Text style={styles.buttonText}>{text}</Text>
+      <View style={custom_button_styles.custom_button}>
+        <Text style={custom_button_styles.buttonText}>{text}</Text>
       </View>
     </TouchableOpacity>
   )
 }
 
-const styles = StyleSheet.create({
-  button: {
+const custom_button_styles = StyleSheet.create({
+  custom_button: {
     backgroundColor: '#5386e4',
-    borderRadius: 5,
-    marginTop: 21,
+    borderRadius: 8,
+    // marginTop: 20,
     paddingHorizontal: 8,
     paddingVertical: 14,
   },

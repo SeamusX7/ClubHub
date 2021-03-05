@@ -4,58 +4,69 @@ export default StyleSheet.create({
   logo: {
 		alignSelf: 'center',
 		height: 104,
-		resizeMode:'contain',
 		marginBottom: 21,
+		resizeMode:'contain',
 		width: 104,
 	},
-  titleContainer: {
+  title_container: {
 		marginBottom: 11,
 	},
-	titleText: {
-		color: '#333',
+	title_text: {
+		color: '#0c1821',
 		fontFamily: 'montserrat-semibold',
 		fontSize: 20,
 		textAlign: 'center',
 	},
-	subtitleText: {
-		color: '#898989',
+	subtitle_text: {
+		color: '#91999e',
 		fontFamily: 'montserrat-medium',
 		fontSize: 14,
 		marginTop: 2,
 		textAlign: 'center',
 	},
-	footerText: {
-		color: '#333',
+	footer_text: {
+		color: '#0c1821',
 		fontFamily: 'montserrat-regular',
 		fontSize: 14,
 		marginTop: 21,
 		textAlign: 'center',
 	},
-	footerLink: {
+	footer_link: {
 		color: "#5386e4",
 		fontSize: 14,
 		fontFamily: 'montserrat-semibold'
 	},
-	authInput: {
+	auth_input: {
 		backgroundColor: '#fff',
-    borderRadius: 5,
+    borderRadius: 8,
     fontFamily: 'montserrat-regular',
 		paddingHorizontal: 16,
 		paddingVertical: 15,
 	},
-	authLabelText: {
+	auth_label_text: {
 		fontFamily: 'montserrat-regular',
 		fontSize: 14,
 		marginTop: 11,
 		marginBottom: 4
 	},
-	switchText: {
+	switch_text: {
 		fontFamily: 'montserrat-regular',
 		fontSize: 14,
 		marginTop: 7,
 	},
-	switchGroup: {
+	switch_group: {
 		flexDirection: 'row',
 		marginTop: 10,
+	},
+	auth_screen_container: {
+		backgroundColor: '#f0f2f7',
+		flex: 1,
+		justifyContent: 'center',
+		paddingHorizontal: 30,
+	},
+	forgot_password_text: {
+		fontFamily: 'montserrat-regular',
+		marginTop: 8,
+		textAlign: 'right',
 	}
 })

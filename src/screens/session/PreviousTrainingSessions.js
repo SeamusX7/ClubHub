@@ -4,32 +4,31 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, FlatList, 
 import { firebase } from '../../firebase/config';
 import { SafeAreaView, Modal } from 'react-native';
 
-// Local File Imports
-import global_styles from '../../assets/styles/GlobalStyle';
-import FlatButton from '../../components/CreateButton';
+// Component Imports
+import FloatingModalButton from '../../components/buttons/FloatingModalButton';
 import Search from '../../components/Search';
-import SearchButton from '../../components/SearchButton';
+import SearchButton from '../../components/buttons/SearchButton';
 import MediumCard from '../../components/cards/MediumCard';
+import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
+
+// Style Imports
+import global_styles from '../../assets/styles/GlobalStyle';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
-import OverflowMenuButton from '../../components/OverflowMenuButton';
 
-//redux
+// Redux Imports
 import { useDispatch , useSelector } from 'react-redux';
-import { teamsAdded, getTeams } from '../../store/teams';
-import { activeTeamAdded, getActiveTeamKey } from '../../store/activeTeam';
+import { getActiveTeamKey } from '../../store/activeTeam';
 import { sessionsAdded, getSessions } from '../../store/sessions';
-import { activeSessionAdded, getactiveSessionKey, activeSessionRemove } from '../../store/activeSession';
+import { activeSessionAdded, activeSessionRemove } from '../../store/activeSession';
 import { getUserType } from '../../store/user';
-
 
 export default function PreviousMatchSessionsScreen({navigation}) {
  
   const teamID = useSelector(getActiveTeamKey);
   const [modalOpen, setModalOpen] = useState(false);
   const [sessionIdKey, setSessionIdKey] = useState('session id');
-  const openModalButton = <FlatButton onPress={() => setModalOpen(true)}/>
+  const openModalButton = <FloatingModalButton onPress={() => setModalOpen(true)}/>
   const uType = useSelector(getUserType);
-
 
   const activeModal = (fact, key) => {
     setSessionIdKey(key.item.key);
@@ -126,9 +125,7 @@ export default function PreviousMatchSessionsScreen({navigation}) {
               <OverflowMenuButton onPress={() => activeModal(true, { item })} />
             </View>
           </MediumCard>
-        )}
-      />
-
+        )} />
     </View>
   )
   

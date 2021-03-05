@@ -1,38 +1,39 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  cardPending: {
-    width: '100%',
-    backgroundColor: '#ffffff',
-    height: 40,
-    borderRadius: 8,
-    borderLeftWidth: 10,
+  profile_two: {
+    backgroundColor: '#fff',
     borderLeftColor: '#5386e4',
-    marginTop: 10,
-  },
-  cardAccepted: {
-    width: '100%',
-    backgroundColor: '#ffffff',
-    height: 40,
-    borderRadius: 8,
     borderLeftWidth: 10,
-    borderLeftColor: '#72E453',
-    marginTop: 10,
-  },
-  cardDeclined: {
-    width: '100%',
-    backgroundColor: '#ffffff',
-    height: 40,
     borderRadius: 8,
-    borderLeftWidth: 10,
-    borderLeftColor: '#E45353',
+    height: 40,
     marginTop: 10,
+    width: '100%',
+  },
+  card_accepted: {
+    backgroundColor: '#fff',
+    borderLeftColor: '#72e453',
+    borderLeftWidth: 10,
+    borderRadius: 8,
+    height: 40,
+    marginTop: 10,
+    width: '100%',
+  },
+  card_declined: {
+    
+    backgroundColor: '#fff',
+    borderLeftColor: '#e45353',
+    borderLeftWidth: 10,
+    borderRadius: 8,
+    height: 40,
+    marginTop: 10,
+    width: '100%',
   },
   text: {
-    color: '#1D3557',
+    color: '#1d3557',
     fontFamily: 'montserrat-bold',
     fontSize: 14,
+    marginLeft: 20,
     marginTop: 12,
-    marginLeft: 20
   }
 })

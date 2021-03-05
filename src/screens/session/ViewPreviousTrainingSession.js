@@ -1,18 +1,13 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
+
+// Style Imports
+import global_styles from '../../assets/styles/GlobalStyle';
 
 export default function ViewPreviousTrainingSessionScreen() {
   return (
-    <View style={styles.container}>
+    <View style={global_styles.screen_container}>
 
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f0f2f7',
-    flex: 1,
-    margin: 20,
-  },
-});

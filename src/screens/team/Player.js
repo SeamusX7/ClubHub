@@ -1,19 +1,20 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 
-// Local File Imports
+// Component Imports
+import SquareCard from '../../components/cards/SquareCard';
+import MediumCard from '../../components/cards/MediumCard';
+import LargeCard from '../../components/cards/LargeCard';
+
+// Style Imports
 import global_styles from '../../assets/styles/GlobalStyle';
 import profile_styles from '../../assets/styles/ProfileStyle'
-import SquareCard from '../../components/cards/SquareCard';
 import square_card_styles from '../../assets/styles/SquareCardStyle';
-import MediumCard from '../../components/cards/MediumCard';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
-import LargeCard from '../../components/cards/LargeCard';
 import large_card_styles from '../../assets/styles/LargeCardStyle';
 
 export default function PlayerScreen() {
   return (
-
     <View style={global_styles.screen_container}>
 
       <View style={profile_styles.profile_container}>
@@ -84,6 +85,5 @@ export default function PlayerScreen() {
       </LargeCard>
 
     </View>
-
   )
 }

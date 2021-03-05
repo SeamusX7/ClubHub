@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import React from 'react';
+import { Text, View, TextInput } from 'react-native';
 import { Formik } from 'formik';
 
-// Local File Imports
-import FlatButton from '../../components/ModalButton';
+// Component Imports
+import CustomButton from '../../components/buttons/CustomButton';
+
+// Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
 
 export default function JoinTeamForm({ closeModal }) {
@@ -15,13 +17,16 @@ export default function JoinTeamForm({ closeModal }) {
 				}}>
 
         <View>
-          <Text style={modal_styles.labelText}>Club ID</Text>
+          <Text style={modal_styles.label_text}>Club ID</Text>
           <TextInput
-            style={modal_styles.modalInput}
+            style={modal_styles.modal_input}
             placeholder='Enter club ID...' />
 
-          <FlatButton
-            text="Join" />
+					<View style={{ marginTop: 30 }}>
+						<CustomButton
+            	text="Join" />
+					</View>
+          
         </View>
 			</Formik>
 		</View>

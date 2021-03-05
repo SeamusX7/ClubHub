@@ -2,38 +2,41 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Modal, SafeAreaView, Text, Image, ScrollView } from 'react-native';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
-// Local file imports
+// Component Imports
 import NewsFeedPost from '../../components/NewsFeedPost';
-import FlatButton from '../../components/CreateButton';
-import modal_styles from '../../assets/styles/ModalStyle';
 import NewPostModal from './NewPostModal';
+import FloatingModalButton from '../../components/buttons/FloatingModalButton';
+
+// Style Imports
+import modal_styles from '../../assets/styles/ModalStyle';
 import card_styles from '../../assets/styles/CardStyle';
 import news_feed_styles from '../../assets/styles/NewsFeedStyle';
+import global_styles from '../../assets/styles/GlobalStyle';
 
-// Redux 
+// Redux Imports
 import { useSelector } from 'react-redux';
 import { getUserType } from '../../store/user';
 
 export default function HomeScreen({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const userType = useSelector(getUserType);
+  const openModalButton = <FloatingModalButton onPress={() => setModalOpen(true)} />
   const closeModal = () => {
     setModalOpen(false);
   }
-  const uType = useSelector(getUserType);
-  const openModalButton = <FlatButton onPress={() => setModalOpen(true)} />
 
 	return (
     React.useLayoutEffect(() => {
       navigation.setOptions({
         headerRight: () => (
-          <View style={styles.icon} >
+          <View style={{ marginRight: 20 }} >
             <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#caccd0'} />
           </View>
         ),
       });
     }, [navigation]),
 
-		<View style={styles.container}>
+		<View style={global_styles.screen_container}>
 
       <Modal
         visible={modalOpen}
@@ -154,19 +157,7 @@ export default function HomeScreen({ navigation }) {
         </NewsFeedPost>
       </ScrollView>
 
-      {[uType === "coach" ? openModalButton : null]}
+      {[userType === "coach" ? openModalButton : null]}
     </View>
 	)
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f0f2f7',
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  icon: {
-    marginRight: 20,
-  }
-});
