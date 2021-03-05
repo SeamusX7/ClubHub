@@ -1,46 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, SafeAreaView, Modal, View } from 'react-native'
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { FlatList } from 'react-native-gesture-handler';
+import { MaterialIcons } from '@expo/vector-icons';
 
-// Redux
-import { getUserId, getUserType, getUserName } from '../../store/user';
-import { useDispatch , useSelector } from 'react-redux';
-
-
-// Local File Imports
+// Component Imports
 import CreateTeamForm from './CreateTeamForm';
 import JoinTeamForm from './JoinTeamForm';
 import DisplayTeams from './DisplayTeams';
+import FloatingModalButton from '../../components/buttons/FloatingModalButton';
+
+// Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
-import card_styles from '../../assets/styles/CardStyle';
-import FlatButton from '../../components/CreateButton';
-import MoreButton from '../../components/MoreButton';
-import Card from '../../components/Card';
 import global_styles from '../../assets/styles/GlobalStyle';
 
+// Redux Imports
+import { getUserId, getUserType, getUserName } from '../../store/user';
+import {  useSelector } from 'react-redux';
+
 export default function ChooseTeamScreen(props) {
-  // const userName = props.extraData.fullName;
- // const userId = props.extraData.id;
- //const [teams, setTeams] = useState([]);
-
-//  useEffect(() => {
-
-
-// }, [teams]);
-
-
-  const userType = props.extraData.userType;
   const userID = useSelector(getUserId);
-  const uType = useSelector(getUserType);
+  const userType = useSelector(getUserType);
   const userName = useSelector(getUserName);
-
-  
-
   const [managerModalOpen, setManagerModalOpen] = useState(false);
   const [playerModalOpen, setPlayerModalOpen] = useState(false);
-  const openManagerModalButton = <FlatButton onPress={() => setManagerModalOpen(true)} />
-  const openPlayerModalButton = <FlatButton onPress={() => setPlayerModalOpen(true)} />
+  const openManagerModalButton = <FloatingModalButton onPress={() => setManagerModalOpen(true)} />
+  const openPlayerModalButton = <FloatingModalButton onPress={() => setPlayerModalOpen(true)} />
   const closeManagerModal = () => {
     setManagerModalOpen(false);
   }
@@ -60,8 +43,8 @@ export default function ChooseTeamScreen(props) {
               <Text style={modal_styles.modalTitle}>New team</Text>
               <MaterialIcons
                 name='close'
-                color='#333'
-                size={24}
+                color='#0c1821'
+                size={22}
                 style={modal_styles.modalToggleExit}
                 onPress={() => setManagerModalOpen(false)} />
             </View>
@@ -80,7 +63,7 @@ export default function ChooseTeamScreen(props) {
               <MaterialIcons
                 name='close'
                 color='#0c1821'
-                size={24}
+                size={22}
                 style={modal_styles.modalToggleExit}
                 onPress={() => setPlayerModalOpen(false)} />
             </View>
@@ -98,7 +81,7 @@ export default function ChooseTeamScreen(props) {
         <DisplayTeams props={props} />
       </View>
 
-      {[uType === "coach" ? openManagerModalButton : openPlayerModalButton]}
+      {[userType === "coach" ? openManagerModalButton : openPlayerModalButton]}
 
     </View >
   )
@@ -112,6 +95,7 @@ const styles = StyleSheet.create({
     color: '#0c1821',
     fontFamily: 'montserrat-semibold',
     fontSize: 16,
+    marginBottom: 1,
     textAlign: 'center',
   },
   greeting_body: {

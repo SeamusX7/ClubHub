@@ -3,8 +3,10 @@ import { Keyboard, Text, TextInput, View, StyleSheet, Image, Switch } from 'reac
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { firebase } from '../../firebase/config';
 
-// Local File Imports
-import FlatButton from '../../components/Button';
+// Component Imports
+import CustomButton from '../../components/buttons/CustomButton';
+
+// Style Imports
 import auth_styles from '../../assets/styles/AuthStyle';
 
 export default function RegistrationScreen({ navigation }) {
@@ -57,44 +59,44 @@ export default function RegistrationScreen({ navigation }) {
 
 	return (
 		<KeyboardAwareScrollView
-			contentContainerStyle={styles.container}>
+			contentContainerStyle={auth_styles.auth_screen_container}>
 
 			<Image
 				source={require('../../../src/assets/icon-notext.png')}
 				style={auth_styles.logo} />
 
-			<View style={auth_styles.titleContainer}>
-				<Text style={auth_styles.titleText}>Sign up</Text>
-				<Text style={auth_styles.subtitleText}>Sign up to use our app</Text>
+			<View style={auth_styles.title_container}>
+				<Text style={auth_styles.title_text}>Sign up</Text>
+				<Text style={auth_styles.subtitle_text}>Sign up to use our app</Text>
 			</View>
 
-			<View style={auth_styles.switchGroup}>
-				<Text style={{...auth_styles.switchText, marginRight: 10}}>Player</Text>
+			<View style={auth_styles.switch_group}>
+				<Text style={{...auth_styles.switch_text, marginRight: 10}}>Player</Text>
 				<Switch
 					ios_backgroundColor='#f0f2f7'
 					thumbColor='#fff'
 					trackColor={{ true: '#5386e4', false: '#f0f2f7' }}
 					value={isSwitchOn}
 					onValueChange={onSwitchChange} />
-				<Text style={{...auth_styles.switchText, marginLeft: 10}}>Manager</Text>
+				<Text style={{...auth_styles.switch_text, marginLeft: 10}}>Manager</Text>
 			</View>
 			
-			<Text style={auth_styles.authLabelText}>Full name</Text>
+			<Text style={auth_styles.auth_label_text}>Full name</Text>
 			<TextInput
-				style={auth_styles.authInput}
+				style={auth_styles.auth_input}
 				placeholder='Enter full name...'
-				placeholderTextColor="#b7b7b7"
+				placeholderTextColor="#caccd0"
 				onChangeText={(text) => setFullName(text)}
 				value={fullName}
 				underlineColorAndroid="transparent"
 				autoCapitalize="none"
 				clearButtonMode="while-editing" />
 
-			<Text style={auth_styles.authLabelText}>Email</Text>
+			<Text style={auth_styles.auth_label_text}>Email</Text>
 			<TextInput
-				style={auth_styles.authInput}
+				style={auth_styles.auth_input}
 				placeholder="Enter email..."
-				placeholderTextColor="#b7b7b7"
+				placeholderTextColor="#caccd0"
 				onChangeText={(text) => setEmail(text)}
 				value={email}
 				underlineColorAndroid="transparent"
@@ -102,11 +104,11 @@ export default function RegistrationScreen({ navigation }) {
 				clearButtonMode="while-editing"
 				keyboardType="email-address" />
 
-			<Text style={auth_styles.authLabelText}>Password</Text>
+			<Text style={auth_styles.auth_label_text}>Password</Text>
 			<TextInput
-				style={auth_styles.authInput}
+				style={auth_styles.auth_input}
 				placeholder="Enter password..."
-				placeholderTextColor="#b7b7b7"
+				placeholderTextColor="#caccd0"
 				secureTextEntry
 				onChangeText={(text) => setPassword(text)}
 				value={password}
@@ -114,11 +116,11 @@ export default function RegistrationScreen({ navigation }) {
 				autoCapitalize="none"
 				clearButtonMode="while-editing" />
 
-			<Text style={auth_styles.authLabelText}>Confirm password</Text>
+			<Text style={auth_styles.auth_label_text}>Confirm password</Text>
 			<TextInput
-				style={auth_styles.authInput}
+				style={auth_styles.auth_input}
 				placeholder="Confirm password..."
-				placeholderTextColor="#b7b7b7"
+				placeholderTextColor="#caccd0"
 				secureTextEntry
 				onChangeText={(text) => setConfirmPassword(text)}
 				value={confirmPassword}
@@ -126,21 +128,14 @@ export default function RegistrationScreen({ navigation }) {
 				autoCapitalize="none"
 				clearButtonMode="while-editing" />
 
-			<FlatButton
-				text="Sign up"
-				onPress={() => onRegisterPress()} />
+			<View style={{ marginTop: 30 }}>
+				<CustomButton
+					text="Sign up"
+					onPress={() => onRegisterPress()} />
+			</View>
 
-			<Text style={auth_styles.footerText}>Already have an account? <Text onPress={onFooterLinkPress} style={auth_styles.footerLink}>Sign in</Text></Text>
+			<Text style={auth_styles.footer_text}>Already have an account? <Text onPress={onFooterLinkPress} style={auth_styles.footer_link}>Sign in</Text></Text>
 
 		</KeyboardAwareScrollView>
 	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#f0f2f7',
-		flex: 1,
-		justifyContent: 'center',
-		paddingHorizontal: 30,
-	},
-})

@@ -13,7 +13,7 @@ import SquareCard from '../../components/cards/SquareCard';
 import square_card_styles from '../../assets/styles/SquareCardStyle';
 import MediumCard from '../../components/cards/MediumCard';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
-import OverflowMenuButton from '../../components/OverflowMenuButton';
+import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
 import FloatingModalButton from '../../components/buttons/FloatingModalButton';
 
 //redux

@@ -21,12 +21,12 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   large_card_primary_text: {
-    color: '#91999E',
+    color: '#91999e',
     fontFamily: 'montserrat-medium',
     fontSize: 12,
   },
   large_card_secondary_text: {
-    color: '#0C1821',
+    color: '#0c1821',
     fontFamily: 'montserrat-semibold',
     fontSize: 12,
     marginRight: 20,

@@ -6,7 +6,7 @@ import global_styles from '../../assets/styles/GlobalStyle';
 
 import MediumCard from '../../components/cards/MediumCard';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
-import OverflowMenuButton from '../../components/OverflowMenuButton';
+import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
 export default function SettingsScreen({ navigation }) {
   return (
     <View style={global_styles.screen_container}>

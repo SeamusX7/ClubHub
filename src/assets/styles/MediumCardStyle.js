@@ -13,7 +13,7 @@ export default StyleSheet.create({
     shadowRadius: 3,
   },
   medium_card_circle_attended: {
-    backgroundColor: '#72E453',
+    backgroundColor: '#72e453',
     borderRadius: 50 / 2,
     height: 9,
     marginLeft: 10,
@@ -24,7 +24,7 @@ export default StyleSheet.create({
     left: 109
   },
   medium_card_circle_unattended: {
-    backgroundColor: '#E45353',
+    backgroundColor: '#e45353',
     borderRadius: 50 / 2,
     height: 9,
     marginLeft: 10,

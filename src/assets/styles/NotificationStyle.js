@@ -32,7 +32,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
   },
-  textView: {
+  text_view: {
     marginLeft: 20,
     marginRight: 50,
     marginTop: 3,
@@ -44,7 +44,7 @@ export default StyleSheet.create({
     color: '#1D3557',
     fontFamily: 'montserrat-bold',
   },
-  textTwo: {
+  text_two: {
     color: '#1d3557',
     fontFamily: 'montserrat-medium',
     fontSize: 12,

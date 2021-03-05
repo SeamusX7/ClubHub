@@ -21,32 +21,32 @@ export default function ViewMessageScreen() {
     // <SafeAreaView style={styles.container}>
 
     //   <KeyboardAwareScrollView>
-    //     <View style={message_styles.textMessageBoxOne} >
-    //       <Text style={message_styles.textMessageOne}>Lorem ipsum dolor sit amet.</Text>
-    //       <Text style={message_styles.textTimeOne}>19:45</Text>
+    //     <View style={message_styles.text_message_box_one} >
+    //       <Text style={message_styles.text_message_one}>Lorem ipsum dolor sit amet.</Text>
+    //       <Text style={message_styles.text_time_one}>19:45</Text>
     //     </View>
 
-    //     <View style={message_styles.textMessageBoxTwo} >
-    //       <Text style={message_styles.textMessageTwo}>Lorem ipsum dolor sit amet.</Text>
+    //     <View style={message_styles.text_message_box_two} >
+    //       <Text style={message_styles.text_message_two}>Lorem ipsum dolor sit amet.</Text>
     //     </View>
 
     //     <View style={message_styles.profile}>
-    //       <View style={message_styles.textMessageBoxThree} >
-    //         <Text style={message_styles.textMessageThree}>Lorem ipsum dolor.</Text>
-    //         <Text style={message_styles.textTimeThree}>19:45</Text>
+    //       <View style={message_styles.text_message_box_three} >
+    //         <Text style={message_styles.text_message_three}>Lorem ipsum dolor.</Text>
+    //         <Text style={message_styles.text_time_three}>19:45</Text>
     //       </View>
     //     </View>
 
     //     <View style={{ flexDirection: 'row' }}>
     //       <View style={message_styles.line} />
-    //       <Text style={message_styles.newMessages}>New Messages</Text>
+    //       <Text style={message_styles.new_messages}>New Messages</Text>
     //       <View style={message_styles.line} />
     //     </View>
 
-    //     <View style={message_styles.profileTwo}>
-    //       <View style={message_styles.textMessageBoxThree} >
-    //         <Text style={message_styles.textMessageThree}>Lorem ipsum dolor.</Text>
-    //         <Text style={message_styles.textTimeThree}>19:48</Text>
+    //     <View style={message_styles.profile_two}>
+    //       <View style={message_styles.text_message_box_three} >
+    //         <Text style={message_styles.text_message_three}>Lorem ipsum dolor.</Text>
+    //         <Text style={message_styles.text_time_three}>19:48</Text>
     //       </View>
     //     </View>
     //   </KeyboardAwareScrollView>

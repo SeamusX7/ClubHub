@@ -8,7 +8,7 @@ export default function FloatingModalButton({ onPress }) {
       <View style={floating_modal_button_styles.floating_modal_button}>
         <MaterialIcons
           name='add'
-          color='#ffffff'
+          color='#fff'
           size={26} />
       </View>
     </TouchableOpacity>

@@ -7,18 +7,20 @@ import { decode, encode } from 'base-64';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
-//redux
-import configureStore from './src/store/configureStore'
-import { Provider } from 'react-redux';
-import {userAdded} from './src/store/user'
-
-
-// Local File Imports
-import { LoginScreen, RegistrationScreen } from './src/screens';
+// Component Imports
 import ChooseTeamScreen from './src/screens/launchpad/ChooseTeam';
 import TabNavigator from './src/routes/TabNavigator';
 import MessageScreen from './src/screens/message/Message'
 import ViewMessageScreen from './src/screens/message/ViewMessage'
+import { LoginScreen, RegistrationScreen } from './src/screens';
+
+// Style Imports
+
+
+// Redux Imports
+import configureStore from './src/store/configureStore'
+import { Provider } from 'react-redux';
+import {userAdded} from './src/store/user'
 
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -37,9 +39,7 @@ const getFonts = () => Font.loadAsync({
 });
 
 const Stack = createStackNavigator();
-
 const store = configureStore();
-
 
 export default function App() {
   const [user, setUser] = useState(null);

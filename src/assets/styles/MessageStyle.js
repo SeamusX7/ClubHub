@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   //Message Screen
   button: {
-    backgroundColor: '#ffffff',
-    width: '100%',
+    backgroundColor: '#fff',
     height: 66,
+    width: '100%',
   },
-  selectMessage: {
+  select_message: {
     bottom: 1,
   },
   container: {
@@ -16,31 +16,31 @@ export default StyleSheet.create({
     marginVertical: 14,
   },
   circle: {
-    backgroundColor: '#F0F2F7',
-    width: 38,
-    height: 38,
+    backgroundColor: '#f0f2f7',
     borderRadius: 38 / 2,
+    height: 38,
+    width: 38,
   },
-  textView: {
+  text_view: {
     marginLeft: 20,
   },
-  textOne: {
-    color: '#333333',
+  text_one: {
+    color: '#0c1821',
     fontFamily: 'montserrat-semibold',
   },
-  textTwo: {
-    color: '#333333',
+  text_two: {
+    color: '#0c1821',
     fontFamily: 'montserrat-medium',
     fontSize: 12,
     marginTop: 1,
   },
   alert: {
-    backgroundColor: '#5386E4',
-    width: 8,
-    height: 8,
-    borderRadius: 8 / 2,
     alignSelf: 'center',
+    backgroundColor: '#5386e4',
+    borderRadius: 8 / 2,
+    height: 8,
     marginTop: 8,
+    width: 8,
   },
   sent: {
     position: 'absolute',
@@ -51,98 +51,98 @@ export default StyleSheet.create({
     fontSize: 12,
   },
   //ViewMessage Screen
-  textMessageBoxOne: {
-    width: 192,
-    height: 26,
-    backgroundColor: '#5386E4',
-    borderRadius: 8,
+  text_message_box_one: {
     alignSelf: 'flex-end',
-    marginTop: 20,
+    backgroundColor: '#5386e4',
+    borderRadius: 8,
+    height: 26,
     marginRight: 10,
+    marginTop: 20,
+    width: 192,
   },
-  textMessageOne: {
+  text_message_one: {
     color: '#fff',
     fontFamily: 'montserrat-medium',
     fontSize: 12,
     marginHorizontal: 10,
     marginVertical: 6,
   },
-  textTimeOne: {
-    fontFamily: 'montserrat-medium',
-    fontSize: 10,
+  text_time_one: {
     alignSelf: 'flex-end',
-    marginTop: 3,
-    marginRight: 2,
-  },
-  textMessageBoxTwo: {
-    width: 192,
-    height: 26,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 8,
-    alignSelf: 'flex-start',
-    marginTop: 20,
-    marginLeft: 43,
-    borderBottomLeftRadius: 0,
-  },
-  textMessageTwo: {
-    color: '#3F3F43',
-    fontFamily: 'montserrat-medium',
-    fontSize: 12,
-    marginHorizontal: 10,
-    marginVertical: 6,
-  },
-  textMessageBoxThree: {
-    width: 139,
-    height: 26,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 8,
-    alignSelf: 'flex-start',
-    marginTop: 3,
-    marginLeft: 33,
-    borderTopLeftRadius: 0,
-  },
-  textMessageThree: {
-    color: '#3F3F43',
-    fontFamily: 'montserrat-medium',
-    fontSize: 12,
-    marginHorizontal: 10,
-    marginVertical: 6,
-  },
-  textTimeThree: {
     fontFamily: 'montserrat-medium',
     fontSize: 10,
-    alignSelf: 'flex-start',
+    marginRight: 2,
     marginTop: 3,
+  },
+  text_message_box_two: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#e0e0e0',
+    borderBottomLeftRadius: 0,
+    borderRadius: 8,
+    height: 26,
+    marginLeft: 43,
+    marginTop: 20,
+    width: 192,
+  },
+  text_message_two: {
+    color: '#3f3f43',
+    fontFamily: 'montserrat-medium',
+    fontSize: 12,
+    marginHorizontal: 10,
+    marginVertical: 6,
+  },
+  text_message_box_three: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#e0e0e0',
+    borderRadius: 8,
+    borderTopLeftRadius: 0,
+    height: 26,
+    marginLeft: 33,
+    marginTop: 3,
+    width: 139,
+  },
+  text_message_three: {
+    color: '#3f3f43',
+    fontFamily: 'montserrat-medium',
+    fontSize: 12,
+    marginHorizontal: 10,
+    marginVertical: 6,
+  },
+  text_time_three: {
+    alignSelf: 'flex-start',
+    fontFamily: 'montserrat-medium',
+    fontSize: 10,
     marginLeft: 6,
+    marginTop: 3,
   },
   profile: {
-    width: 26,
-    height: 26,
+    backgroundColor: '#e0e0e0',
     borderRadius: 26 / 2,
-    backgroundColor: '#E0E0E0',
+    height: 26,
     marginHorizontal: 10,
+    width: 26,
   },
-  newMessages: {
-    marginTop: 30,
+  new_messages: {
+    alignSelf: 'center',
+    color: '#5386e4',
     fontFamily: 'montserrat-medium',
     fontSize: 12,
-    color: '#5386E4',
-    alignSelf: 'center', 
+    marginTop: 30,
   },
   line: {
-    backgroundColor: '#5386E4',
-    height: 1,
-    flex: 1,
     alignSelf: 'center',
+    backgroundColor: '#5386E4',
+    flex: 1,
+    height: 1,
+    marginHorizontal: 10,
     top: 15,
-    marginHorizontal: 10
   },
-  profileTwo: {
-    width: 26,
-    height: 26,
+  profile_two: {
+    backgroundColor: '#e0e0e0',
     borderRadius: 26 / 2,
-    backgroundColor: '#E0E0E0',
     marginHorizontal: 10,
     marginTop: 10,
+    height: 26,
+    width: 26,
   }
 })

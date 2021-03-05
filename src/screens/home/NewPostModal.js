@@ -3,8 +3,10 @@ import { Text, View, TextInput } from 'react-native';
 import { Formik } from 'formik';
 import { firebase } from '../../firebase/config';
 
-// Local File Imports
-import FlatButton from '../../components/ModalButton';
+// Component Imports
+import CustomButton from '../../components/buttons/CustomButton';
+
+// Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
 
 export default function NewPostModal({ closeModal }) {
@@ -29,9 +31,10 @@ export default function NewPostModal({ closeModal }) {
         placeholder='Select attachment...'
         keyboardType="default" />
 
-      <FlatButton
-        text="Post" />
-
+      <View style={{ marginTop: 30 }}>
+        <CustomButton
+          text="Post" />
+      </View>
     </View>
   )
 }

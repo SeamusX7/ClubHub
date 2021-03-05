@@ -39,10 +39,10 @@ const userFullName = useSelector(getUserName);
             color="#0C1821"
             style={{marginLeft:20}}
             />
-            <View style={card_styles.textView} >
+            <View style={card_styles.text_view} >
               {/* <DisplayTeams userId={userId} string='hello' /> */}
               <Text style={styles.textOne} >{userFullName}</Text>
-              <Text style={styles.textTwo} >View Profile</Text>
+              <Text style={styles.text_two} >View Profile</Text>
             </View>
             </View>
         </TouchableOpacity>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     marginTop:14,
     marginRight:200,
   },
-  textTwo: {
+  text_two: {
     color: '#0C1821',
     fontFamily: 'montserrat-medium',
     fontSize: 12,

@@ -1,20 +1,16 @@
 import React from 'react';
-import { StyleSheet, View, Text,} from 'react-native';
+import { View, Text,} from 'react-native';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
-// Local File Imports
-import Card from '../../components/NotificationCard';
-import Card2 from '../../components/NotificationCardLarge';
-// import notification_styles from '../../assets/styles/NotificationStyle';
-import MoreButton from '../../components/MoreButton';
-import AcceptButton from '../../components/AcceptButton';
-import DeclineButton from '../../components/DeclineButton';
-import global_styles from '../../assets/styles/GlobalStyle';
+// Component Imports
 import NotificationCard from '../../components/cards/NotificationCard';
-import notifications_styles from '../../assets/styles/NotificationCardStyle';
 import AcceptInvitationButton from '../../components/buttons/AcceptInvitationButton';
 import DeclineInvitationButton from '../../components/buttons/DeclineInvitationButton';
 import ExpiredInvitationButton from '../../components/buttons/ExpiredInvitationButton';
+
+// Style Imports
+import global_styles from '../../assets/styles/GlobalStyle';
+import notifications_styles from '../../assets/styles/NotificationCardStyle';
 
 export default function NotificationScreen({ navigation }) {
 
@@ -79,7 +75,6 @@ export default function NotificationScreen({ navigation }) {
           <ExpiredInvitationButton text="Decline" />
         </View>
       </NotificationCard>
-
     </View>
   )
 }

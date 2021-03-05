@@ -6,6 +6,6 @@ import mini_card_styles from '../assets/styles/MiniCardStyle';
 
 export default function MiniCard(props) {
   return (
-    <View style={mini_card_styles.cardDeclined}>{props.children}</View>
+    <View style={mini_card_styles.card_declined}>{props.children}</View>
   )
 }

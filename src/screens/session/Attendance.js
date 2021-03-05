@@ -55,9 +55,9 @@ export default function SecondRoute() {
   //                 : item.sessionType=="training" ? <Ionicons name='md-football' size={20} color='#5386e4' style={{...card_styles.icon, marginTop:11, marginLeft:2}} />
   //                 : <MaterialCommunityIcons name='dumbbell' size={20} color='#5386e4' style={card_styles.icon} /> }
   //             </View>
-  //             <View style={card_styles.textView} >
+  //             <View style={card_styles.text_view} >
   //               {item.sessionType=="match" ? <Text style={card_styles.textOne}>vs. {item.opposition}</Text> : <Text style={card_styles.textOne}>{item.title}</Text>}
-  //               <Text style={card_styles.textTwo}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
+  //               <Text style={card_styles.text_two}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
   //             </View>
   //             <View style={card_styles.more} >
   //               <MoreButton onPress={() => activeModal(true, { item })} />
