@@ -7,6 +7,10 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
   },
+  tab_view_container: {
+    backgroundColor: '#f0f2f7',
+    flex: 1,
+  },
   title: {
     color: '#91999e',
     fontFamily: 'montserrat-medium',

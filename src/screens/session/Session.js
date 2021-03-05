@@ -30,15 +30,10 @@ export default function SessionScreen({navigation}) {
   // const closeModal = () => {
   //   setModalOpen(false);
   const teamID = useSelector(getActiveTeamKey);
-   
-
-    
   const [modalOpen, setModalOpen] = useState(false);
   const [sessionIdKey, setSessionIdKey] = useState('session id');
-
   const openModalButton = <FloatingModalButton onPress={() => setModalOpen(true)}/>
   const uType = useSelector(getUserType);
-
 
   const activeModal = (fact, key) => {
     setSessionIdKey(key.item.key);
