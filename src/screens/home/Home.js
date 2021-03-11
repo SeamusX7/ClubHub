@@ -57,7 +57,7 @@ export default function HomeScreen({ navigation }) {
       </Modal>
 
       <ScrollView>
-      <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
+        <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
           <View style={news_feed_styles.news_feed_card_top_row}>
               <View style={news_feed_styles.news_feed_card_circle_title_container}>
                 <View style={news_feed_styles.news_feed_card_profile_picture}></View>
@@ -89,7 +89,7 @@ export default function HomeScreen({ navigation }) {
             </View>
         </NewsFeedPost>
 
-        <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
+        <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPostTemp1')}>
           <View style={news_feed_styles.news_feed_card_top_row}>
               <View style={news_feed_styles.news_feed_card_circle_title_container}>
                 <View style={news_feed_styles.news_feed_card_profile_picture}></View>
@@ -122,7 +122,7 @@ export default function HomeScreen({ navigation }) {
             </View>
         </NewsFeedPost>
 
-        <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
+        <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPostTemp2')}>
           <View style={news_feed_styles.news_feed_card_top_row}>
               <View style={news_feed_styles.news_feed_card_circle_title_container}>
                 <View style={news_feed_styles.news_feed_card_profile_picture}></View>
