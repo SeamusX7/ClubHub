@@ -5,6 +5,8 @@ import { Image, Text, View } from 'react-native';
 import global_styles from '../../assets/styles/GlobalStyle';
 import profile_styles from '../../assets/styles/ProfileStyle'
 import SquareCard from '../../components/cards/SquareCard';
+import SquareCardLeft from '../../components/cards/SquareCardLeft';
+import SquareCardRight from '../../components/cards/SquareCardRight';
 import square_card_styles from '../../assets/styles/SquareCardStyle';
 import MediumCard from '../../components/cards/MediumCard';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
@@ -57,18 +59,18 @@ export default function SettingsScreen({ navigation }) {
       </MediumCard>
 
       <View style={square_card_styles.square_card_container}>
-        <SquareCard>
+        <SquareCardLeft>
           <Text style={square_card_styles.square_card_statistics}>78%</Text>
           <Text style={square_card_styles.square_card_title}>Match</Text>
-        </SquareCard>
+        </SquareCardLeft>
         <SquareCard>
           <Text style={square_card_styles.square_card_statistics}>89%</Text>
           <Text style={square_card_styles.square_card_title}>Training</Text>
         </SquareCard>
-        <SquareCard>
+        <SquareCardRight>
           <Text style={square_card_styles.square_card_statistics}>92%</Text>
           <Text style={square_card_styles.square_card_title}>Gym</Text>
-        </SquareCard>
+        </SquareCardRight>
       </View>
 
       <Text style={{ ...global_styles.title, marginTop: 20, marginBottom: 10 }}>Personal details</Text>

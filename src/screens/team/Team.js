@@ -4,6 +4,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Component Imports
 import SquareCard from '../../components/cards/SquareCard';
+import SquareCardRight from '../../components/cards/SquareCardRight';
+import SquareCardLeft from '../../components/cards/SquareCardLeft';
 import MediumPlayerCard from '../../components/cards/MediumPlayerCard';
 import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
 
@@ -29,18 +31,18 @@ export default function TeamScreen({ navigation }) {
 
       <Text style={{ ...global_styles.title, marginBottom: 10 }}>Team statistics</Text>
       <View style={square_card_styles.square_card_container}>
-        <SquareCard>
+        <SquareCardLeft>
           <Text style={square_card_styles.square_card_statistics}>7</Text>
           <Text style={square_card_styles.square_card_title}>Wins</Text>
-        </SquareCard>
+        </SquareCardLeft>
         <SquareCard>
           <Text style={square_card_styles.square_card_statistics}>3</Text>
           <Text style={square_card_styles.square_card_title}>Losses</Text>
         </SquareCard>
-        <SquareCard>
+        <SquareCardRight>
           <Text style={square_card_styles.square_card_statistics}>1</Text>
           <Text style={square_card_styles.square_card_title}>Draws</Text>
-        </SquareCard>
+        </SquareCardRight>
       </View>
 
       <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 30 }}>Players</Text>
