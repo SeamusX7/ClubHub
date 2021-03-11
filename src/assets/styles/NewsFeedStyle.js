@@ -87,6 +87,7 @@ export default StyleSheet.create({
   },
   news_feed_comment_section_comment_group: {
     flexDirection: 'row',
+    marginBottom: 10,
   },
   news_feed_comment_section_profile_picture: {
     backgroundColor: '#fff',
