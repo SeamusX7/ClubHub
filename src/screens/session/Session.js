@@ -10,6 +10,8 @@ import modal_styles from '../../assets/styles/ModalStyle';
 import NewSessionModal from './NewSessionModal';
 
 import SquareCard from '../../components/cards/SquareCard';
+import SquareCardRight from '../../components/cards/SquareCardRight';
+import SquareCardLeft from '../../components/cards/SquareCardLeft';
 import square_card_styles from '../../assets/styles/SquareCardStyle';
 import MediumCard from '../../components/cards/MediumCard';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
@@ -126,14 +128,14 @@ export default function SessionScreen({navigation}) {
 
       <Text style={{...global_styles.title, marginBottom: 10}}>Previous sessions</Text>
       <View style={square_card_styles.square_card_container}>
-        <SquareCard onPress={() => navigation.navigate('PreviousMatchSessions')}>
+        <SquareCardLeft onPress={() => navigation.navigate('PreviousMatchSessions')}>
           <MaterialCommunityIcons
             name="trophy-outline"
             size={34}
             color="#5386e4"
             style={square_card_styles.square_card_icon} />
           <Text style={square_card_styles.square_card_title}>Matches</Text>
-        </SquareCard>
+        </SquareCardLeft>
         <SquareCard onPress={() => navigation.navigate('PreviousTrainingSessions')}>
           <Ionicons
             name="md-football"
@@ -142,14 +144,14 @@ export default function SessionScreen({navigation}) {
             style={square_card_styles.square_card_icon} />
           <Text style={square_card_styles.square_card_title}>Training</Text>
         </SquareCard>
-        <SquareCard onPress={() => navigation.navigate('PreviousGymSessions')}>
+        <SquareCardRight onPress={() => navigation.navigate('PreviousGymSessions')}>
           <MaterialCommunityIcons
             name="dumbbell"
             size={34}
             color="#5386e4"
             style={square_card_styles.square_card_icon} />
           <Text style={square_card_styles.square_card_title}>Gym</Text>
-        </SquareCard>
+        </SquareCardRight>
       </View>
 
       <Text style={{...global_styles.title, marginBottom: 10, marginTop: 30 }}>Upcoming sessions</Text>
