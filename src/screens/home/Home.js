@@ -9,7 +9,6 @@ import FloatingModalButton from '../../components/buttons/FloatingModalButton';
 
 // Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
-import card_styles from '../../assets/styles/CardStyle';
 import news_feed_styles from '../../assets/styles/NewsFeedStyle';
 import global_styles from '../../assets/styles/GlobalStyle';
 
@@ -47,7 +46,7 @@ export default function HomeScreen({ navigation }) {
               <Text style={modal_styles.modalTitle}>New post</Text>
               <MaterialIcons
                 name='close'
-                color='#333'
+                color='#0c1821'
                 size={24}
                 style={modal_styles.modalToggleExit}
                 onPress={() => setModalOpen(false)} />
@@ -58,100 +57,98 @@ export default function HomeScreen({ navigation }) {
       </Modal>
 
       <ScrollView>
-        <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
-          <View style={news_feed_styles.topRow}>
-              <View style={news_feed_styles.circleTitle}>
-                <View style={card_styles.circle}></View>
-                <Text style={news_feed_styles.title}>Eamon Kavanagh</Text>
+      <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
+          <View style={news_feed_styles.news_feed_card_top_row}>
+              <View style={news_feed_styles.news_feed_card_circle_title_container}>
+                <View style={news_feed_styles.news_feed_card_profile_picture}></View>
+                <Text style={news_feed_styles.news_feed_card_title}>Eamon Kavanagh</Text>
               </View>
               <View>
-                <Text style={news_feed_styles.postedOn}>09:15</Text>
+                <Text style={news_feed_styles.news_feed_card_posted_on}>14:25</Text>
               </View>
             </View>
 
-            <View style={news_feed_styles.middleRow}>
-              <Text style={news_feed_styles.description}>Hi lads, I came across this really cool attacking tactic on youtube. Check it out and let me know your thoughts.</Text>
-              <Image source={require('../../assets/images/kickout-video.png')} style={news_feed_styles.image}></Image>
+            <View style={news_feed_styles.news_feed_card_middle_row}>
+              <Text style={news_feed_styles.news_feed_card_description}>Lads, would there be much interest in organising a 5km team run?</Text>
             </View>
 
-            <View style={news_feed_styles.bottomRow}>
-              <View style={news_feed_styles.likeComment}>
-                <View style={news_feed_styles.likeGroup}>
-                  <MaterialCommunityIcons name="thumb-up-outline" size={20} color={'#b7b7b7'} />
-                  <Text style={news_feed_styles.iconText}>Like</Text>
-                </View>
-                <View style={news_feed_styles.commentGroup}>
-                  <MaterialCommunityIcons name="comment-outline" size={20} color={'#b7b7b7'} />
-                  <Text style={news_feed_styles.iconText}>Comment</Text>
-                </View>
-              </View>
-              <View>
-                <Text style={news_feed_styles.commentCount}>1 comment</Text>
-              </View>
-            </View>
-        </NewsFeedPost>
-
-        <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
-          <View style={news_feed_styles.topRow}>
-              <View style={news_feed_styles.circleTitle}>
-                <View style={card_styles.circle}></View>
-                <Text style={news_feed_styles.title}>Eamon Kavanagh</Text>
-              </View>
-              <View>
-                <Text style={news_feed_styles.postedOn}>14:25</Text>
-              </View>
-            </View>
-
-            <View style={news_feed_styles.middleRow}>
-              <Text style={news_feed_styles.description}>Lads, would there be much interest in organising a 5km team run?</Text>
-            </View>
-
-            <View style={news_feed_styles.bottomRow}>
-              <View style={news_feed_styles.likeComment}>
-                <View style={news_feed_styles.likeGroup}>
+            <View style={news_feed_styles.news_feed_card_bottom_row}>
+              <View style={news_feed_styles.news_feed_card_like_comment_container}>
+                <View style={news_feed_styles.news_feed_card_like_group}>
                   <MaterialCommunityIcons name="thumb-up" size={20} color={'#5386e4'} />
-                  <Text style={{...news_feed_styles.iconText, color: '#5386e4'}}>Like</Text>
+                  <Text style={{...news_feed_styles.news_feed_card_icon_text, color: '#5386e4'}}>Like</Text>
                 </View>
-                <View style={news_feed_styles.commentGroup}>
-                  <MaterialCommunityIcons name="comment-outline" size={20} color={'#b7b7b7'} />
-                  <Text style={news_feed_styles.iconText}>Comment</Text>
+                <View style={news_feed_styles.news_feed_card_comment_group}>
+                  <MaterialCommunityIcons name="comment-outline" size={20} color={'#caccd0'} />
+                  <Text style={news_feed_styles.news_feed_card_icon_text}>Comment</Text>
                 </View>
               </View>
               <View>
-                <Text style={news_feed_styles.commentCount}>0 comments</Text>
+                <Text style={news_feed_styles.news_feed_card_comment_count}>0 comments</Text>
               </View>
             </View>
         </NewsFeedPost>
 
         <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
-          <View style={news_feed_styles.topRow}>
-              <View style={news_feed_styles.circleTitle}>
-                <View style={card_styles.circle}></View>
-                <Text style={news_feed_styles.title}>Eamon Kavanagh</Text>
+          <View style={news_feed_styles.news_feed_card_top_row}>
+              <View style={news_feed_styles.news_feed_card_circle_title_container}>
+                <View style={news_feed_styles.news_feed_card_profile_picture}></View>
+                <Text style={news_feed_styles.news_feed_card_title}>Eamon Kavanagh</Text>
               </View>
               <View>
-                <Text style={news_feed_styles.postedOn}>20:12</Text>
+                <Text style={news_feed_styles.news_feed_card_posted_on}>20:12</Text>
               </View>
             </View>
 
-            <View style={news_feed_styles.middleRow}>
-              <Text style={news_feed_styles.description}>We're going to be giving this kickout tactic a shot in training this week.</Text>
-              <Image source={require('../../assets/images/kickout.png')} style={news_feed_styles.image}></Image>
+            <View style={news_feed_styles.news_feed_card_middle_row}>
+              <Text style={news_feed_styles.news_feed_card_description}>We're going to be giving this kickout tactic a shot in training this week.</Text>
+              <Image source={require('../../assets/images/kickout.jpg')} style={news_feed_styles.news_feed_card_image_attachment}></Image>
             </View>
 
-            <View style={news_feed_styles.bottomRow}>
-              <View style={news_feed_styles.likeComment}>
-                <View style={news_feed_styles.likeGroup}>
-                  <MaterialCommunityIcons name="thumb-up-outline" size={20} color={'#b7b7b7'} />
-                  <Text style={news_feed_styles.iconText}>Like</Text>
+            <View style={news_feed_styles.news_feed_card_bottom_row}>
+              <View style={news_feed_styles.news_feed_card_like_comment_container}>
+                <View style={news_feed_styles.news_feed_card_like_group}>
+                  <MaterialCommunityIcons name="thumb-up-outline" size={20} color={'#caccd0'} />
+                  <Text style={news_feed_styles.news_feed_card_icon_text}>Like</Text>
                 </View>
-                <View style={news_feed_styles.commentGroup}>
-                  <MaterialCommunityIcons name="comment-outline" size={20} color={'#b7b7b7'} />
-                  <Text style={news_feed_styles.iconText}>Comment</Text>
+                <View style={news_feed_styles.news_feed_card_comment_group}>
+                  <MaterialCommunityIcons name="comment-outline" size={20} color={'#caccd0'} />
+                  <Text style={news_feed_styles.news_feed_card_icon_text}>Comment</Text>
                 </View>
               </View>
               <View>
-                <Text style={news_feed_styles.commentCount}>3 comments</Text>
+                <Text style={news_feed_styles.news_feed_card_comment_count}>3 comments</Text>
+              </View>
+            </View>
+        </NewsFeedPost>
+
+        <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
+          <View style={news_feed_styles.news_feed_card_top_row}>
+              <View style={news_feed_styles.news_feed_card_circle_title_container}>
+                <View style={news_feed_styles.news_feed_card_profile_picture}></View>
+                <Text style={news_feed_styles.news_feed_card_title}>Eamon Kavanagh</Text>
+              </View>
+              <Text style={news_feed_styles.news_feed_card_posted_on}>09:15</Text>
+            </View>
+
+            <View style={news_feed_styles.news_feed_card_middle_row}>
+              <Text style={news_feed_styles.news_feed_card_description}>Hi lads, I came across this really cool attacking tactic on youtube. Check it out and let me know your thoughts.</Text>
+              <Image source={require('../../assets/images/kickout-video.png')} style={news_feed_styles.news_feed_card_image_attachment}></Image>
+            </View>
+
+            <View style={news_feed_styles.news_feed_card_bottom_row}>
+              <View style={news_feed_styles.news_feed_card_like_comment_container}>
+                <View style={news_feed_styles.news_feed_card_like_group}>
+                  <MaterialCommunityIcons name="thumb-up-outline" size={20} color={'#caccd0'} />
+                  <Text style={news_feed_styles.news_feed_card_icon_text}>Like</Text>
+                </View>
+                <View style={news_feed_styles.news_feed_card_comment_group}>
+                  <MaterialCommunityIcons name="comment-outline" size={20} color={'#caccd0'} />
+                  <Text style={news_feed_styles.news_feed_card_icon_text}>Comment</Text>
+                </View>
+              </View>
+              <View>
+                <Text style={news_feed_styles.news_feed_card_comment_count}>1 comment</Text>
               </View>
             </View>
         </NewsFeedPost>
