@@ -8,9 +8,9 @@ import mini_card_styles from '../../assets/styles/MiniCardStyle';
 
 
 // Local imports
-import Formation from './Formation'
-import Attendance from './Attendance'
-import Invitations from './Invitations'
+import Overview from './TabViewOverview'
+import Attendance from './TabViewAttendance'
+import Invitations from './TabViewInvitations'
 
 const initialLayout = { width: Dimensions.get('window').width };
 
@@ -30,7 +30,7 @@ export default function ViewPreviousMatchSessionScreen({ navigation }) {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'first':
-        return <Formation />;
+        return <Overview />;
       case 'second':
         return <Attendance />;
         case 'third':
