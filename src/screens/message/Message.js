@@ -76,11 +76,13 @@
 // });
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble, Composer, Send, InputToolbar } from 'react-native-gifted-chat'
 import AsyncStorage from '@react-native-community/async-storage'
-import { StyleSheet, TextInput, View, Button } from 'react-native'
+import { StyleSheet, TextInput, View, Button, Text } from 'react-native'
 
 import { firebase } from '../../firebase/config';
+
+// import SendTextButton from './SendTextButton';
 
 // LogBox.ignoreWarnings(['Setting a timer for a long period of time'])
 
@@ -134,7 +136,49 @@ export default function App() {
     await Promise.all(writes)
   }
 
+  const customBubble = props => {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#5386e4',
+          },
+          left: {
+            backgroundColor: '#e0e0e0',
+          }
+        }}
+      />
+    );
+  };
+
+  const customtInputToolbar = props => {
+    return (
+      <InputToolbar
+        {...props}
+        containerStyle={{
+          backgroundColor: "white",
+          borderTopWidth: 0,
+          paddingBottom: 2,
+          paddingTop: 10,
+        }}
+      />
+    );
+  };
+
+  const customSend = (props) => {
+    return (
+      <Send
+        {...props}
+        containerStyle={styles.sendContainer}
+      >
+        <Text style={styles.sendText}>Send</Text>
+      </Send>
+    );
+  }
+
   if (!user) {
+    
     return (
       <View style={styles.container}>
         <TextInput style={styles.input} placeholder="Enter your name" value={name} onChangeText={setName} />
@@ -144,9 +188,13 @@ export default function App() {
   }
   return <GiftedChat
     messages={messages}
-    user={user} onSend={handleSend}
+    user={user}
+    onSend={handleSend}
     alwaysShowSend={true}
-    renderUsernameOnMessage={true}
+    renderUsernameOnMessage={false}
+    renderBubble={props => customBubble(props)}
+    renderSend={props => customSend(props)}
+    renderInputToolbar={props => customtInputToolbar(props)}
   />
 }
 
@@ -166,4 +214,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderColor: 'gray',
   },
+  sendContainer: {
+    marginRight: 20,
+    bottom: 16
+  },
+  sendText: {
+    color: '#b7b7b7',
+    fontFamily: 'montserrat-medium',
+    fontSize: 14
+  }
 })
