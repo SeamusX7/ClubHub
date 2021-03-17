@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Component Imports
 import NewsFeedPost from '../../components/NewsFeedPost';
@@ -9,9 +9,19 @@ import NewsFeedPost from '../../components/NewsFeedPost';
 import global_style from '../../assets/styles/GlobalStyle';
 import news_feed_styles from '../../assets/styles/NewsFeedStyle';
 
-export default function SpecificNewsFeedPost() {
+export default function SpecificNewsFeedPost({navigation}) {
 
 	return (
+    React.useLayoutEffect(() => {
+      navigation.setOptions({
+        headerLeft: () => (
+          <View style={{marginLeft: 20}} >
+            <Ionicons onPress={() => navigation.navigate('Home')} name="ios-arrow-back" size={28} color={'#caccd0'} />
+          </View>
+        ),
+      });
+    }, [navigation]),
+
 		<View style={global_style.screen_container}>
 
     <NewsFeedPost>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import global_styles from '../../assets/styles/GlobalStyle';
@@ -9,50 +9,68 @@ import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
 export default function SettingsScreen({ navigation }) {
   return (
+    React.useLayoutEffect(() => {
+      navigation.setOptions({
+        headerLeft: () => (
+          <View style={{ marginLeft: 20 }} >
+            <Ionicons onPress={() => navigation.navigate('Settings')} name="ios-arrow-back" size={28} color={'#caccd0'} />
+          </View>
+        ),
+      });
+    }, [navigation]),
+
     <View style={global_styles.screen_container}>
-      
+
       <Text style={styles.selectLanguageText}>Select Language</Text>
 
-      <View style={styles.selectLanguage}>
-        <Image
-          source={require('../../assets/images/english.png')}
-          size={10}
-          style={styles.languageImage}>
-        </Image>
-        <Text style={styles.text}>English</Text>
-        <Ionicons
-          name='ios-checkmark'
-          size={40}
-          color='#5386E4'
-          style={styles.check} />
-      </View>
+      <TouchableOpacity>
+        <View style={styles.selectLanguage}>
+          <Image
+            source={require('../../assets/images/english.png')}
+            size={10}
+            style={styles.languageImage}>
+          </Image>
+          <Text style={styles.text}>English</Text>
+          <Ionicons
+            name='ios-checkmark'
+            size={40}
+            color='#5386E4'
+            style={styles.check} />
+        </View>
+      </TouchableOpacity>
 
-      <View style={styles.selectLanguage}>
-        <Image
-          source={require('../../assets/images/irish.png')}
-          size={10}
-          style={styles.languageImage}>
-        </Image>
-        <Text style={styles.text}>Irish</Text>
-      </View>
+      <TouchableOpacity>
+        <View style={styles.selectLanguage}>
+          <Image
+            source={require('../../assets/images/irish.png')}
+            size={10}
+            style={styles.languageImage}>
+          </Image>
+          <Text style={styles.text}>Irish</Text>
+        </View>
+      </TouchableOpacity>
 
-      <View style={styles.selectLanguage}>
-        <Image
-          source={require('../../assets/images/french.png')}
-          size={10}
-          style={styles.languageImage}>
-        </Image>
-        <Text style={styles.text}>French</Text>
-      </View>
+      <TouchableOpacity>
+        <View style={styles.selectLanguage}>
+          <Image
+            source={require('../../assets/images/french.png')}
+            size={10}
+            style={styles.languageImage}>
+          </Image>
+          <Text style={styles.text}>French</Text>
+        </View>
+      </TouchableOpacity>
 
-      <View style={styles.selectLanguage}>
-        <Image
-          source={require('../../assets/images/german.png')}
-          size={10}
-          style={styles.languageImage}>
-        </Image>
-        <Text style={styles.text}>German</Text>
-      </View>
+      <TouchableOpacity>
+        <View style={styles.selectLanguage}>
+          <Image
+            source={require('../../assets/images/german.png')}
+            size={10}
+            style={styles.languageImage}>
+          </Image>
+          <Text style={styles.text}>German</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -90,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 10,
     marginLeft: 0,
-    color:'#91999E',
+    color: '#91999E',
   },
   text: {
     fontFamily: 'montserrat-medium',

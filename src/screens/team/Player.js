@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 // Component Imports
 import SquareCard from '../../components/cards/SquareCard';
@@ -15,8 +16,18 @@ import square_card_styles from '../../assets/styles/SquareCardStyle';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import large_card_styles from '../../assets/styles/LargeCardStyle';
 
-export default function PlayerScreen() {
+export default function PlayerScreen({navigation}) {
   return (
+    React.useLayoutEffect(() => {
+      navigation.setOptions({
+        headerLeft: () => (
+          <View style={{marginLeft: 20}} >
+            <Ionicons onPress={() => navigation.navigate('Team')} name="ios-arrow-back" size={28} color={'#caccd0'} />
+          </View>
+        ),
+      });
+    }, [navigation]),
+
     <View style={global_styles.screen_container}>
 
       <View style={profile_styles.profile_container}>

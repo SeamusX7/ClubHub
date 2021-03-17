@@ -15,7 +15,6 @@ const custom_button_styles = StyleSheet.create({
   custom_button: {
     backgroundColor: '#5386e4',
     borderRadius: 8,
-    // marginTop: 20,
     paddingHorizontal: 8,
     paddingVertical: 14,
   },
