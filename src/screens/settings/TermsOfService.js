@@ -188,7 +188,7 @@ We reserve the right, at our sole discretion, to update, change or replace any p
 
         {'\n'}<Text style={styles.heading}>SECTION 20 - CONTACT INFORMATION</Text> {'\n'}{'\n'}
 
-Questions about the Terms of Service should be sent to us at clubhubltd@gmail.com</Text>
+Questions about the Terms of Service should be sent to us at clubhubltd@gmail.com {'\n'}{'\n'} </Text> 
     </ScrollView>
   )
 }
@@ -205,8 +205,8 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-medium',
     color: '#5B5B65',
     fontSize: 12,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 20,
+    marginRight: 20,
   },
   heading: {
     fontFamily: 'montserrat-medium',

@@ -72,7 +72,7 @@ We may update this privacy policy from time to time in order to reflect, for exa
 For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at clubhubltd@gmail.com or by mail using the details provided below:
 {'\n'}
 
-      </Text>
+{'\n'}{'\n'} </Text>
     </ScrollView>
   )
 }
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
     color: '#5B5B65',
     fontFamily: 'montserrat-medium',
     fontSize: 12,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 20,
+    marginRight: 20,
   },
   heading: {
     fontFamily: 'montserrat-medium',
