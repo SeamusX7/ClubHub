@@ -17,7 +17,7 @@ export default function SettingsButton({ icon, chevron, text, onPress }) {
             name={chevron}
             color='#CACCD0'
             size={24}
-            style={{marginLeft:0}} />
+            style={{right:20, position:'absolute', marginTop:15}} />
       </View>
     </TouchableOpacity>
   )
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'montserrat-medium',
     textAlign: 'left',
+    marginTop:2,
     marginLeft:10,
   },
 })
