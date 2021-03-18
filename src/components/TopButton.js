@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-medium',
     textAlign: 'left',
     marginLeft:10,
+    marginTop:2,
   }
 })
