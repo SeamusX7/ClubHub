@@ -1,14 +1,15 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView, Text,  FlatList } from 'react-native';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import mini_card_styles from '../../assets/styles/MiniCardStyle';
+import React, { useState } from 'react';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import Collapsible from 'react-native-collapsible';
 
-import MiniCardPending from '../../components/MiniCardPending'
-import MiniCardAccepted from '../../components/MiniCardAccepted'
-import MiniCardDeclined from '../../components/MiniCardDeclined'
+// Component Imports
+import SmallCard from '../../components/cards/SmallCard';
+import small_card_styles from '../../assets/styles/SmallCardStyle';
 
+// Style Imports
+import global_styles from '../../assets/styles/GlobalStyle';
 
-//redux
+// Redux Imports
 import { getUserId } from '../../store/user';
 import { useDispatch , useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
@@ -22,9 +23,60 @@ export default function ThirdRoute() {
   let declined = useSelector(getactiveSessionDeclined);
   let accepted = useSelector(getactiveSessionAccepted);
 
+  const [activeSections, setActiveSections] = useState([]);
+  const [acceptedCollapsed, setAcceptedCollapsed] = useState(false);
+  const [declinedCollapsed, setDeclinedCollapsed] = useState(false);
+  const [pendingCollapsed, setPendingCollapsed] = useState(false);
+
+  const toggleAcceptedExpanded = () => {
+    setAcceptedCollapsed(!acceptedCollapsed);
+  }
+  const toggleDeclinedExpanded = () => {
+    setDeclinedCollapsed(!declinedCollapsed);
+  }
+  const togglePendingExpanded = () => {
+    setPendingCollapsed(!pendingCollapsed);
+  }
+
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView style={global_styles.screen_container}>
+
+      <TouchableOpacity onPress={toggleAcceptedExpanded}>
+        <Text style={{...global_styles.title, marginBottom: 10}}>Accepted</Text>
+      </TouchableOpacity>
+      <Collapsible collapsed={acceptedCollapsed} align="center">
+        <SmallCard>
+          <View style={small_card_styles.small_card_status_accepted}></View>
+          <Text style={small_card_styles.small_card_text}>Shane McCleary</Text>
+        </SmallCard>
+        <SmallCard>
+          <View style={small_card_styles.small_card_status_accepted}></View>
+          <Text style={small_card_styles.small_card_text}>Jack Lynch</Text>
+        </SmallCard>
+      </Collapsible>
+
+      <TouchableOpacity onPress={toggleDeclinedExpanded}>
+        <Text style={{...global_styles.title, marginBottom: 10, marginTop: 20}}>Declined</Text>
+      </TouchableOpacity>
+      <Collapsible collapsed={declinedCollapsed} align="center">
+        <SmallCard>
+          <View style={small_card_styles.small_card_status_declined}></View>
+          <Text style={small_card_styles.small_card_text}>Ciaran Whelan</Text>
+        </SmallCard>
+      </Collapsible>
+
+      <TouchableOpacity onPress={togglePendingExpanded}>
+        <Text style={{...global_styles.title, marginBottom: 10, marginTop: 20}}>Pending</Text>
+      </TouchableOpacity>
+      <Collapsible collapsed={pendingCollapsed} align="center">
+        <SmallCard>
+          <View style={small_card_styles.small_card_status_pending}></View>
+          <Text style={small_card_styles.small_card_text}>Keane Callan</Text>
+        </SmallCard>
+      </Collapsible>
+
+
+      {/* <View style={styles.container}>
         <View style={styles.invitationStatus}>
           <View style={styles.textContainer}>
             <Text style={styles.textStyle}>Pending</Text>
@@ -71,32 +123,7 @@ export default function ThirdRoute() {
           )}
           />
         </View>
-      </View>
+      </View> */}
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f0f2f7',
-    flex: 1,
-    margin: 20,
-    bottom: 20
-  },
-  icon: {
-    marginRight: 20,
-  },
-  textStyle: {
-    color: '#333333',
-    fontFamily: 'montserrat-semibold',
-    fontSize: 16,
-    marginTop: 30,
-  },
-  textContainer: {
-    flexDirection: 'row'
-  },
-  arrowIcon: {
-    marginTop: 30,
-    marginLeft: 10,
-  },
-});
