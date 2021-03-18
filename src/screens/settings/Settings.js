@@ -48,37 +48,38 @@ const userFullName = useSelector(getUserName);
         </TouchableOpacity>
         </View>
 
-        {/* <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={settings_card_style.button}>
-        <MaterialCommunityIcons
-            name="account-circle"
-            size={25}
-            color="#0C1821"
-            style={{}}
-            />
-          <Text style={settings_card_style.buttonText} >View Profile</Text>
-        </TouchableOpacity> */}
       <TopButton
         text="Switch Team"
+        icon='swap-horizontal'
         onPress={() => navigation.navigate('ChooseTeam')} />
 
       <SettingsButton
-        text="ClubHubPlus"
+        text='ClubHubPlus'
+        icon='heart-outline'
+        chevron='chevron-right'
         onPress={() => navigation.navigate('ClubHubPlus')} />
 
       <SettingsButton
         text="Language"
+        icon='web'
+        chevron='chevron-right'
         onPress={() => navigation.navigate('Language')} />
 
       <SettingsButton
         text="Terms of Service"
+        icon='file-document-outline'
+        chevron='chevron-right'
         onPress={() => navigation.navigate('TermsOfService')} />
 
       <SettingsButton
         text="Privacy Policy"
+        icon='shield-alert-outline'
+        chevron='chevron-right'
         onPress={() => navigation.navigate('PrivacyPolicy')} />
 
       <SettingsButton 
         text="Sign Out"
+        icon='exit-to-app'
         onPress={() => signOutUser()} />
     </View>
   )
