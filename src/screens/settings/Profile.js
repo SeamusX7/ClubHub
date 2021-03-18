@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
@@ -27,6 +28,16 @@ export default function SettingsScreen({ navigation }) {
   let activeTeamDraw = useSelector(getActiveTeamDraw);
 
   return (
+    React.useLayoutEffect(() => {
+      navigation.setOptions({
+        headerLeft: () => (
+          <View style={{marginLeft: 20}} >
+            <Ionicons onPress={() => navigation.navigate('Settings')} name="ios-arrow-back" size={28} color={'#caccd0'} />
+          </View>
+        ),
+      });
+    }, [navigation]),
+
     <View style={global_styles.screen_container}>
 
       <View style={profile_styles.profile_container}>

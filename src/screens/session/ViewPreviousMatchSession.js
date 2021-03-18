@@ -8,9 +8,9 @@ import mini_card_styles from '../../assets/styles/MiniCardStyle';
 
 
 // Local imports
-import Formation from './Formation'
-import Attendance from './Attendance'
-import Invitations from './Invitations'
+import Overview from './TabViewOverview'
+import Attendance from './TabViewAttendance'
+import Invitations from './TabViewInvitations'
 
 const initialLayout = { width: Dimensions.get('window').width };
 
@@ -30,7 +30,7 @@ export default function ViewPreviousMatchSessionScreen({ navigation }) {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'first':
-        return <Formation />;
+        return <Overview />;
       case 'second':
         return <Attendance />;
         case 'third':
@@ -42,13 +42,13 @@ export default function ViewPreviousMatchSessionScreen({ navigation }) {
   return (
     React.useLayoutEffect(() => {
       navigation.setOptions({
-        headerRight: () => (
-          <View style={styles.icon} >
-            <Ionicons onPress={() => setModalOpen(true)} name="md-person-add" size={24} color={'#b7b7b7'} />
+        headerLeft: () => (
+          <View style={{marginLeft: 20}} >
+            <Ionicons onPress={() => navigation.navigate('Session')} name="ios-arrow-back" size={28} color={'#caccd0'} />
           </View>
-        )
-      })
-    }),
+        ),
+      });
+    }, [navigation]),
     <View style={styles.container}>
 
       <View style={styles.descriptionContainer}>

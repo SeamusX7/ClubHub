@@ -88,9 +88,9 @@ export default function PreviousMatchSessionsScreen({navigation}) {
   return (
     React.useLayoutEffect(() => {
       navigation.setOptions({
-        headerRight: () => (
-          <View style={{marginRight: 20}} >
-            <MaterialCommunityIcons onPress={() => navigation.navigate('Message')} name="message-text-outline" size={24} color={'#caccd0'} />
+        headerLeft: () => (
+          <View style={{marginLeft: 20}} >
+            <Ionicons onPress={() => navigation.navigate('Session')} name="ios-arrow-back" size={28} color={'#caccd0'} />
           </View>
         ),
       });
