@@ -79,6 +79,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { GiftedChat, Bubble, Composer, Send, InputToolbar } from 'react-native-gifted-chat'
 import AsyncStorage from '@react-native-community/async-storage'
 import { StyleSheet, TextInput, View, Button, Text } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
 
 import { firebase } from '../../firebase/config';
 
@@ -89,7 +90,16 @@ import { firebase } from '../../firebase/config';
 const db = firebase.firestore()
 const chatsRef = db.collection('chats')
 
-export default function App() {
+export default function App({navigation}) {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <View style={{marginLeft: 20}} >
+          <Ionicons onPress={() => navigation.navigate('Home')} name="ios-arrow-back" size={28} color={'#caccd0'} />
+        </View>
+      ),
+    });
+  }, [navigation])
   const [user, setUser] = useState(null)
   const [name, setName] = useState('')
   const [messages, setMessages] = useState([])

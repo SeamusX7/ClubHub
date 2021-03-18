@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, ScrollView, StyleSheet, Text, View, Modal, SafeAreaView } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Component Imports
@@ -8,13 +8,23 @@ import SquareCardRight from '../../components/cards/SquareCardRight';
 import SquareCardLeft from '../../components/cards/SquareCardLeft';
 import MediumPlayerCard from '../../components/cards/MediumPlayerCard';
 import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
+import CancelButton from '../../components/buttons/CustomButton';
+import HalfModalButton from '../../components/buttons/HalfModalButton';
 
 // Style Imports
 import global_styles from '../../assets/styles/GlobalStyle';
 import square_card_styles from '../../assets/styles/SquareCardStyle';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
+import half_modal_styles from '../../assets/styles/HalfModalStyle';
+
 
 export default function TeamScreen({ navigation }) {
+
+  const [OverflowModalOpen, setOverflowModalOpen] = useState(false);
+
+  const closeOverflowModal = () => {
+    setOverflowModalOpen(false);
+  }
 
   return (
     React.useLayoutEffect(() => {
@@ -59,7 +69,7 @@ export default function TeamScreen({ navigation }) {
             <Text style={medium_card_styles.medium_card_secondary_text}>Forward</Text>
           </View>
           <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton />
+            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
           </View>
         </MediumPlayerCard>
 
@@ -75,7 +85,7 @@ export default function TeamScreen({ navigation }) {
             <Text style={medium_card_styles.medium_card_secondary_text}>Midfielder</Text>
           </View>
           <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton />
+            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
           </View>
         </MediumPlayerCard>
 
@@ -91,7 +101,7 @@ export default function TeamScreen({ navigation }) {
             <Text style={medium_card_styles.medium_card_secondary_text}>Defender</Text>
           </View>
           <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton />
+            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
           </View>
         </MediumPlayerCard>
 
@@ -107,7 +117,7 @@ export default function TeamScreen({ navigation }) {
             <Text style={medium_card_styles.medium_card_secondary_text}>Goalkeeper</Text>
           </View>
           <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton />
+            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
           </View>
         </MediumPlayerCard>
 
@@ -123,10 +133,26 @@ export default function TeamScreen({ navigation }) {
             <Text style={medium_card_styles.medium_card_secondary_text}>Midfielder</Text>
           </View>
           <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton />
+            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
           </View>
         </MediumPlayerCard>
       </ScrollView>
+
+      <Modal
+        visible={OverflowModalOpen}
+        transparent={true}
+        animationType='slide'>
+        <SafeAreaView style={half_modal_styles.halfModalContentSmall} >
+          <View style={half_modal_styles.halfModalView}>
+
+            <HalfModalButton text='Player Information' primaryIconName='information-outline' />
+
+            <HalfModalButton text='Remove Player' primaryIconName='account-remove-outline' />
+
+            <CancelButton text="Cancel" onPress={() => closeOverflowModal(false)} />
+          </View>
+        </SafeAreaView>
+      </Modal>
     </View>
   )
 }
