@@ -41,6 +41,11 @@ export const getActiveTeamDraw = createSelector(
     (activeTeam) => activeTeam[index-1].item.draw
 )
 
+export const getActiveTeamPlayersArray = createSelector(
+    state => state.entities.activeTeam,
+    (activeTeam) => activeTeam[index-1].item.players
+)
+
 
 
 export const {

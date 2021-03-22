@@ -80,8 +80,8 @@ export default function PreviousMatchSessionsScreen({ navigation }) {
     console.log('session selected item ==> : ', item);
 
     let sessionType = item.item.sessionType;
-    if (sessionType === 'match') {
-      navigation.navigate('ViewPreviousGymMatchSession')
+    if (sessionType === 'gym') {
+      navigation.navigate('ViewPreviousGymSession')
     }
   }
 

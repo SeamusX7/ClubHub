@@ -95,11 +95,11 @@ renderItem={({ item }) => (
 <FlatList
 data={declined}
 renderItem={({ item }) => ( 
-          <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
+          <TouchableOpacity onPress={() => setShouldShow2(!shouldShow2)}>
             <MiniCardDeclined>
               <Text style={mini_card_styles.text}>{item.Name}</Text>
               <View style={styles.checkboxAlignment}>
-                {shouldShow ? (
+                {shouldShow2 ? (
                   <MaterialCommunityIcons name="check-bold"
                     size={22}
                     color='#5386E4'

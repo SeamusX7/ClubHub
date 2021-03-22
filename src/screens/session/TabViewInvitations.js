@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, FlatList } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 
 // Component Imports
@@ -11,7 +11,7 @@ import global_styles from '../../assets/styles/GlobalStyle';
 
 // Redux Imports
 import { getUserId } from '../../store/user';
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
 import { activeTeamAdded, getActiveTeamKey, getActiveTeamName } from '../../store/activeTeam';
 import { sessionsAdded, getSessions } from '../../store/sessions';
@@ -42,37 +42,50 @@ export default function ThirdRoute() {
     <ScrollView style={global_styles.screen_container}>
 
       <TouchableOpacity onPress={toggleAcceptedExpanded}>
-        <Text style={{...global_styles.title, marginBottom: 10}}>Accepted</Text>
+        <Text style={{ ...global_styles.title, marginBottom: 10 }}>Accepted</Text>
       </TouchableOpacity>
       <Collapsible collapsed={acceptedCollapsed} align="center">
-        <SmallCard>
-          <View style={small_card_styles.small_card_status_accepted}></View>
-          <Text style={small_card_styles.small_card_text}>Shane McCleary</Text>
-        </SmallCard>
-        <SmallCard>
-          <View style={small_card_styles.small_card_status_accepted}></View>
-          <Text style={small_card_styles.small_card_text}>Jack Lynch</Text>
-        </SmallCard>
+
+        <FlatList
+          data={accepted}
+          renderItem={({ item }) => (
+            <SmallCard>
+              <View style={small_card_styles.small_card_status_accepted}></View>
+              <Text style={small_card_styles.small_card_text}>{item.Name}</Text>
+              </SmallCard>
+          )}
+        />
       </Collapsible>
 
       <TouchableOpacity onPress={toggleDeclinedExpanded}>
-        <Text style={{...global_styles.title, marginBottom: 10, marginTop: 20}}>Declined</Text>
+        <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 20 }}>Declined</Text>
       </TouchableOpacity>
       <Collapsible collapsed={declinedCollapsed} align="center">
-        <SmallCard>
-          <View style={small_card_styles.small_card_status_declined}></View>
-          <Text style={small_card_styles.small_card_text}>Ciaran Whelan</Text>
-        </SmallCard>
+      <FlatList
+          data={declined}
+          renderItem={({ item }) => (
+            <SmallCard>
+              <View style={small_card_styles.small_card_status_declined}></View>
+              <Text style={small_card_styles.small_card_text}>{item.Name}</Text>
+              </SmallCard>
+          )}
+        />
       </Collapsible>
 
       <TouchableOpacity onPress={togglePendingExpanded}>
-        <Text style={{...global_styles.title, marginBottom: 10, marginTop: 20}}>Pending</Text>
+        <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 20 }}>Pending</Text>
       </TouchableOpacity>
       <Collapsible collapsed={pendingCollapsed} align="center">
-        <SmallCard>
-          <View style={small_card_styles.small_card_status_pending}></View>
-          <Text style={small_card_styles.small_card_text}>Keane Callan</Text>
-        </SmallCard>
+
+      <FlatList
+          data={pending}
+          renderItem={({ item }) => (
+            <SmallCard>
+              <View style={small_card_styles.small_card_status_pending}></View>
+              <Text style={small_card_styles.small_card_text}>{item.Name}</Text>
+              </SmallCard>
+          )}
+        />
       </Collapsible>
 
 

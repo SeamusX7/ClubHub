@@ -8,9 +8,9 @@ import mini_card_styles from '../../assets/styles/MiniCardStyle';
 
 
 // Local imports
-import Overview from './TabViewOverview'
-import Attendance from './TabViewAttendance'
-import Invitations from './TabViewInvitations'
+import TabViewOverview from './TabViewOverview';
+import TabViewAttendance from './TabViewAttendance';
+import TabViewInvitations from './TabViewInvitations';
 
 // Redux Imports
 import { getUserId } from '../../store/user';
@@ -46,11 +46,11 @@ export default function ViewPreviousMatchSessionScreen({ navigation }) {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'first':
-        return <Overview />;
+        return <TabViewOverview />;
       case 'second':
-        return <Attendance />;
+        return <TabViewAttendance />;
         case 'third':
-        return <Invitations />;
+        return <TabViewInvitations />;
     }
   };
 
