@@ -6,6 +6,8 @@ import PreviousMatchSessionsScreen from '../screens/session/PreviousMatchSession
 import PreviousTrainingSessionsScreen from '../screens/session/PreviousTrainingSessions';
 import PreviousGymSessionsScreen from '../screens/session/PreviousGymSessions';
 import ViewUpcomingMatchSessionScreen from '../screens/session/ViewUpcomingMatchSession';
+import ViewUpcomingGymSessionScreen from '../screens/session/ViewUpcomingGymSession';
+import ViewUpcomingTrainingSessionScreen from '../screens/session/ViewUpcomingTrainingSession';
 import ViewPreviousMatchSessionScreen from '../screens/session/ViewPreviousMatchSession';
 import ViewPreviousTrainingSessionScreen from '../screens/session/ViewPreviousTrainingSession';
 import ViewPreviousGymSessionScreen from '../screens/session/ViewPreviousGymSession';
@@ -20,6 +22,8 @@ export default function SessionStackScreen() {
       <SessionStack.Screen name="PreviousTrainingSessions" component={PreviousTrainingSessionsScreen} options={{ title: 'Training' }} ></SessionStack.Screen>
       <SessionStack.Screen name="PreviousGymSessions" component={PreviousGymSessionsScreen} options={{ title: 'Gym' }} ></SessionStack.Screen>
       <SessionStack.Screen name="ViewUpcomingMatchSession" component={ViewUpcomingMatchSessionScreen} options={{ title: 'Match' }} ></SessionStack.Screen>
+      <SessionStack.Screen name="ViewUpcomingGymSession" component={ViewUpcomingGymSessionScreen} options={{ title: 'Gym' }} ></SessionStack.Screen>
+      <SessionStack.Screen name="ViewUpcomingTrainingSession" component={ViewUpcomingTrainingSessionScreen} options={{ title: 'Training' }} ></SessionStack.Screen>
       <SessionStack.Screen name="ViewPreviousMatchSession" component={ViewPreviousMatchSessionScreen} options={{ title: 'Match' }} ></SessionStack.Screen>
       <SessionStack.Screen name="ViewPreviousTrainingSession" component={ViewPreviousTrainingSessionScreen} options={{ title: 'Training' }} ></SessionStack.Screen>
       <SessionStack.Screen name="ViewPreviousGymSession" component={ViewPreviousGymSessionScreen} options={{ title: 'Gym' }} ></SessionStack.Screen>

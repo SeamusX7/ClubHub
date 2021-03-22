@@ -80,7 +80,7 @@ export default function PreviousMatchSessionsScreen({navigation}) {
      let sessionType = item.item.sessionType;
      if(sessionType === 'match')
      {
-      //navigation.navigate('ViewUpcomingMatchSession')
+      navigation.navigate('ViewPreviousGymMatchSession')
      }
   }
 
@@ -117,7 +117,7 @@ export default function PreviousMatchSessionsScreen({navigation}) {
                 : <MaterialCommunityIcons name='dumbbell' size={24} color='#5386e4' /> }
             </View>
             <View style={medium_card_styles.medium_card_info_container}>
-              {item.sessionType=="match" ? <Text style={medium_card_styles.medium_card_primary_text}>vs. {item.opposition}</Text> : <Text style={medium_card_styles.medium_card_primary_text}>{item.title}</Text>}
+              {item.sessionType=="match" ? <Text style={medium_card_styles.medium_card_primary_text}>vs. {item.opposition}</Text> : <Text style={medium_card_styles.medium_card_primary_text}>{item.sessionType}</Text>}
               <Text style={medium_card_styles.medium_card_secondary_text}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
             </View>
             <View style={medium_card_styles.medium_card_overflow_container}>

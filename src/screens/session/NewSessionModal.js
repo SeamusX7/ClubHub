@@ -1,196 +1,152 @@
-import React from 'react';
-import { Text, View, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, Button, View, TextInput } from 'react-native';
 import { Formik } from 'formik';
 import { firebase } from '../../firebase/config';
+import DatePicker from 'react-native-datepicker'
+import moment from 'moment'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import RNPickerSelect from 'react-native-picker-select';
 
 // Component Imports
 import CustomButton from '../../components/buttons/CustomButton';
 
+//redux
+import { useDispatch , useSelector } from 'react-redux';
+import { getActiveTeamKey } from '../../store/activeTeam';
+
 // Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
+import { set } from 'react-native-reanimated';
+import { date } from 'yup';
 
 export default function NewSessionModal({ closeModal }) {
-  return (
-    // <View>
-    //   <Text style={modal_styles.labelText}>Type</Text>
-    //   <TextInput
-    //     style={modal_styles.modalInput}
-    //     placeholder='Enter session type...' />
-        
-    //   <Text style={modal_styles.labelText}>Date</Text>
-    //   <TextInput
-    //     style={modal_styles.modalInput}
-    //     placeholder='Enter date...' />
+	var today = new Date();
+	dateTime1 = moment(today).format("YYYY-MM-DD");
+	const [datePicked, setDate] = useState(dateTime1);
+	const [timePicked, setTime] = useState(dateTime1);
+	const [timeStamp, settimeStamp] = useState(dateTime1);
 
-    //   <Text style={modal_styles.labelText}>Location</Text>
-    //   <TextInput
-    //     style={modal_styles.modalInput}
-    //     placeholder='Enter location...' />
-        
-    //   <Text style={modal_styles.labelText}>Time</Text>
-    //   <TextInput
-    //     style={modal_styles.modalInput}
-    //     placeholder='Enter time...' />
+	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+	const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+	const [sessionType, setSessionType] = useState();
 
-    //   <FlatButton
-    //     text="Create" />
+	const teamID = useSelector(getActiveTeamKey);
 
-    // </View>
+	const showDatePicker = () => {
+		setDatePickerVisibility(true);
+	};
 
-    <View>
-      <Formik
-				initialValues={{ date: '', sessionType: '', time: '' }}
+	const hideDatePicker = () => {
+		setDatePickerVisibility(false);
+	};
+
+	const handleDateConfirm = (date) => {
+		var dateFormat = moment(date).format("YYYY-MM-DD")
+		console.log("A date has been picked: ", dateFormat);
+		setDate(dateFormat);
+		hideDatePicker();
+	};
+
+	const showTimePicker = () => {
+		setTimePickerVisibility(true);
+	};
+
+	const hideTimePicker = () => {
+		setTimePickerVisibility(false);
+	};
+
+	const handleTimeConfirm = (time) => {
+		var timeFormat = moment(time).format("h:mm:ss")
+		console.log("A time has been picked: ", timeFormat);
+		setTime(time);
+		hideTimePicker();
+		var newDateAndTime = moment(`${datePicked} ${timePicked}`, 'YYYY-MM-DD HH:mm:ss').format();
+		console.log("new date and time : => ", newDateAndTime);
+		var newDateAndTime2 = moment(datePicked, timePicked, 'YYYY-MM-DD HH:mm:ss').format();
+		console.log("new date and time 2: => ", newDateAndTime2);
+
+		var myTimestamp = firebase.firestore.Timestamp.fromDate(new Date(newDateAndTime));
+		settimeStamp(myTimestamp);
+
+		console.log("timeStamp : => ", myTimestamp);
+	};
+
+	return (
+		<View>
+			<Formik
+				initialValues={{ location: '', opposition: '' }}
 				onSubmit={(values) => {
 					closeModal();
 
-          let date = values.date;
-          let time = values.time;
-          var myTimestamp = firebase.firestore.Timestamp.fromDate(new Date());
-          console.log("============================");
-          console.log("myTimestamp ==> ", myTimestamp);
-          console.log("============================");
+					//date = datePicked;
+					// let time = values.time;
+					// var myTimestamp = firebase.firestore.Timestamp.fromDate(new Date());
+					console.log("============================");
+					console.log("myTimestamp ==> ", timeStamp);
+					console.log("============================");
 
-					// const db = firebase.firestore()
-					// db.collection('team').add({
-					// 	sessionType: values.sessionType,
-					// 	managerId: userId,
-					// 	time: values.time,
-					// 	date: values.date,
-					// 	win: 0,
-					// 	draw: 0,
-					// 	loss: 0,
-					// })
+					const db = firebase.firestore()
+					db.collection('sessions').add({
+						sessionType: sessionType,
+						location: values.location,
+						opposition: values.opposition,
+						timeStamp: timeStamp,
+						teamId: teamID
+					})
 
-					// db.collection('team')
-					// .where('managerId', '==', userId)
-					// .get()
-					// .then(snapshot => {
-					//   snapshot.forEach(doc => {			  
-					// 	teams.push({
-					// 	  ...doc.data(),
-					// 	  key: doc.id,
-					// 	});
-					//   });
-			  
-					//   setTeams(teams);
-					//   dispatch(teamsAdded(teams));
-					 
-			  
-					  
-			  
-					// });
 				}}>
 
 				{(props) => (
 					<View>
-						<Text style={modal_styles.labelText}>Type</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter session type...'
-							onChangeText={props.handleChange('sessionType')}
-							value={props.values.club} />
 
-						<Text style={modal_styles.labelText}>Date</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter date...'
-							onChangeText={props.handleChange('date')}
-							value={props.values.teamName} />
+						<Text style={modal_styles.labelText}>Session Type</Text>
+						<RNPickerSelect
+							onValueChange={(value) => setSessionType(value)}
+							items={[
+								{ label: 'Training', value: 'training' },
+								{ label: 'Match', value: 'match' },
+								{ label: 'Gym', value: 'gym' },
 
-						<Text style={modal_styles.labelText}>Time</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter time...'
-							onChangeText={props.handleChange('time')}
-							value={props.values.sport} />
+							]}
+						/>
 
-            <Text style={modal_styles.labelText}>Time</Text>
+						<Text style={modal_styles.labelText}>Session Location</Text>
 						<TextInput
 							style={modal_styles.modalInput}
 							placeholder='Enter location...'
 							onChangeText={props.handleChange('location')}
-							value={props.values.sport} />
+							value={props.values.session} />
 
-            <Text style={modal_styles.labelText}>Time</Text>
+						<Text style={modal_styles.labelText}>Opposition</Text>
 						<TextInput
 							style={modal_styles.modalInput}
-							placeholder='Enter time...'
-							onChangeText={props.handleChange('time')}
-							value={props.values.sport} />
-							
-						<View style={{ marginTop: 30 }}>
-							<CustomButton
-								text="Create"
-								onPress={props.handleSubmit} />
-						</View>
+							placeholder='Enter opposition...'
+							onChangeText={props.handleChange('opposition')}
+							value={props.values.session} />
+
+						<Button title="Select Date" onPress={showDatePicker} />
+						<DateTimePickerModal
+							isVisible={isDatePickerVisible}
+							mode="date"
+							onConfirm={handleDateConfirm}
+							onCancel={hideDatePicker}
+						/>
+
+						<Button title="Select Time" onPress={showTimePicker} />
+						<DateTimePickerModal
+							isVisible={isTimePickerVisible}
+							mode="time"
+							onConfirm={handleTimeConfirm}
+							onCancel={hideTimePicker}
+						/>
+
+						<CustomButton
+							text="Create"
+							onPress={props.handleSubmit} />
+
 					</View>
 				)}
 			</Formik>
-    </View>
-  )
+		</View>
+	)
 }
-
-{/* <Formik
-				initialValues={{ teamName: '', club: '', sport: '' }}
-				onSubmit={(values) => {
-					closeModal();
-					const db = firebase.firestore()
-					db.collection('team').add({
-						club: values.club,
-						managerId: userId,
-						sport: values.sport,
-						teamName: values.teamName,
-						win: 0,
-						draw: 0,
-						loss: 0,
-					})
-
-					db.collection('team')
-					.where('managerId', '==', userId)
-					.get()
-					.then(snapshot => {
-					  snapshot.forEach(doc => {			  
-						teams.push({
-						  ...doc.data(),
-						  key: doc.id,
-						});
-					  });
-			  
-					  setTeams(teams);
-					  dispatch(teamsAdded(teams));
-					 
-			  
-					  
-			  
-					});
-				}}>
-
-				{(props) => (
-					<View>
-						<Text style={modal_styles.labelText}>Club</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter club name...'
-							onChangeText={props.handleChange('club')}
-							value={props.values.club} />
-
-						<Text style={modal_styles.labelText}>Name</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter team name...'
-							onChangeText={props.handleChange('teamName')}
-							value={props.values.teamName} />
-
-						<Text style={modal_styles.labelText}>Sport</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter sport...'
-							onChangeText={props.handleChange('sport')}
-							value={props.values.sport} />
-							
-						<FlatButton
-							text="Create"
-							onPress={props.handleSubmit} />
-					</View>
-				)}
-			</Formik> */}

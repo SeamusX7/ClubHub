@@ -22,7 +22,7 @@ import { getactiveSessionDate, getactiveSessionTime, getactiveSessionOpposition,
 
 const initialLayout = { width: Dimensions.get('window').width };
 
-export default function ViewUpcomingMatchSessionScreen({ navigation }) {
+export default function ViewUpcomingTrainingSessionScreen({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
@@ -70,7 +70,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
     <View style={styles.container}>
 
       <View style={styles.descriptionContainer}>
-        <Text style={styles.textOne}>{teamName} vs. {opposition}</Text>
+        <Text style={styles.textOne}>{teamName}</Text>
         <Text style={styles.text_two}>Kick off</Text>
         <Text style={styles.textThree}>{time}</Text>
         <Text style={styles.textFour}>{location} | {date}</Text>

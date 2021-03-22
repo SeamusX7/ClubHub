@@ -14,10 +14,15 @@ export default function RegistrationScreen({ navigation }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [userType, setUserType] = useState('coach');
 
 	const [isSwitchOn, setIsSwitchOn] = useState(false);
 	const onSwitchChange = () => {
 		setIsSwitchOn(!isSwitchOn);
+		if(isSwitchOn)
+		{
+			setUserType("player");
+		}
 	}
 
 	const onFooterLinkPress = () => {
@@ -39,6 +44,7 @@ export default function RegistrationScreen({ navigation }) {
 					id: uid,
 					email,
 					fullName,
+					userType: userType,
 				};
 				const usersRef = firebase.firestore().collection('users');
 				usersRef

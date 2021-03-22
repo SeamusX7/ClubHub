@@ -79,7 +79,7 @@ export default function PreviousMatchSessionsScreen({navigation}) {
      let sessionType = item.item.sessionType;
      if(sessionType === 'match')
      {
-      //navigation.navigate('ViewUpcomingMatchSession')
+      navigation.navigate('ViewPreviousMatchSession')
      }
   }
 
