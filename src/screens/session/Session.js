@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, FlatList, ScrollView, ActivityIndicator } from 'react-native';
@@ -93,6 +94,12 @@ export default function SessionScreen({ navigation }) {
     if (sessionType === 'match') {
       navigation.navigate('ViewUpcomingMatchSession')
     }
+    else if (sessionType === 'gym') {
+      navigation.navigate('ViewUpcomingGymSession')
+    }
+    else if (sessionType === 'training') {
+      navigation.navigate('ViewUpcomingTrainingSession')
+    }
   }
 
   const [OverflowModalOpen, setOverflowModalOpen] = useState(false);
@@ -179,11 +186,7 @@ export default function SessionScreen({ navigation }) {
 
       <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 30 }}>Upcoming sessions</Text>
 
-      {/* <MediumCard>
-            
-      </MediumCard> */}
-
-      <FlatList
+       <FlatList
         data={sessions}
         renderItem={({ item }) => (
           <MediumCard onPress={() => this.sessionSelected({ item })}>
@@ -193,16 +196,16 @@ export default function SessionScreen({ navigation }) {
                   : <MaterialCommunityIcons name='dumbbell' size={24} color='#5386e4' />}
             </View>
             <View style={medium_card_styles.medium_card_info_container}>
-              {item.sessionType == "match" ? <Text style={medium_card_styles.medium_card_primary_text}>vs. {item.opposition}</Text> : <Text style={medium_card_styles.medium_card_primary_text}>{item.title}</Text>}
+              {item.sessionType == "match" ? <Text style={medium_card_styles.medium_card_primary_text}>vs. {item.opposition}</Text> : <Text style={medium_card_styles.medium_card_primary_text}>{item.sessionType}</Text>}
               <Text style={medium_card_styles.medium_card_secondary_text}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
             </View>
             <View style={medium_card_styles.medium_card_overflow_container}>
-              {/* <OverflowMenuButton onPress={() => activeModal(true, { item })} /> */}
-              <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
             </View>
           </MediumCard>
         )}
       />
+
+
 
       {[uType === "coach" ? openModalButton : null]}
     </View>

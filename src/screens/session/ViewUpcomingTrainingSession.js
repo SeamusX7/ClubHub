@@ -8,9 +8,9 @@ import mini_card_styles from '../../assets/styles/MiniCardStyle';
 
 
 // Local imports
-import Formation from './Formation'
-import Attendance from './Attendance'
-import Invitations from './Invitations'
+import TabViewOverview from './TabViewOverview';
+import TabViewAttendance from './TabViewAttendance';
+import TabViewInvitations from './TabViewInvitations';
 
 //redux
 import { getUserId } from '../../store/user';
@@ -22,7 +22,7 @@ import { getactiveSessionDate, getactiveSessionTime, getactiveSessionOpposition,
 
 const initialLayout = { width: Dimensions.get('window').width };
 
-export default function ViewUpcomingMatchSessionScreen({ navigation }) {
+export default function ViewUpcomingTrainingSessionScreen({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
@@ -48,11 +48,11 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'first':
-        return <Formation />;
+        return <TabViewOverview />;
       case 'second':
-        return <Attendance />;
+        return <TabViewAttendance />;
         case 'third':
-        return <Invitations />;
+        return <TabViewInvitations />;
     }
   };
 
@@ -71,7 +71,7 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
     <View style={styles.container}>
 
       <View style={styles.descriptionContainer}>
-        <Text style={styles.textOne}>{teamName} vs. {opposition}</Text>
+        <Text style={styles.textOne}>{teamName}</Text>
         <Text style={styles.text_two}>Kick off</Text>
         <Text style={styles.textThree}>{time}</Text>
         <Text style={styles.textFour}>{location} | {date}</Text>

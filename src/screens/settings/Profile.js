@@ -46,7 +46,7 @@ export default function SettingsScreen({ navigation }) {
           source={require('../../assets/images/player-1.png')}
         />
         <View style={profile_styles.profile_content}>
-          <Text style={profile_styles.profile_primary_text}>Jack Lynch</Text>
+          <Text style={profile_styles.profile_primary_text}>{userFullName}</Text>
           <Text style={profile_styles.profile_secondary_text}>Edit your profile</Text>
         </View>
       </View>
