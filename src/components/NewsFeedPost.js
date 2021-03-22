@@ -1,19 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 
-// Local File Imports
-import card_styles from '../assets/styles/CardStyle';
+// Style Imports
 import news_feed_styles from '../assets/styles/NewsFeedStyle';
 
 export default function NewsFeedPost(props) {
   return (
-    <TouchableOpacity onPress={props.onPress}>
-      <View style={card_styles.newsFeedCard}>
-        <View style={news_feed_styles.cardContent}>
-          
-          {props.children}
-
-        </View>
+    <TouchableOpacity onPress={props.onPress} style={news_feed_styles.news_feed_card}>
+      <View style={news_feed_styles.news_feed_card_content}>
+        {props.children}
       </View>
     </TouchableOpacity>
   )

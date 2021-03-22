@@ -8,6 +8,7 @@ import { SafeAreaView, Modal } from 'react-native';
 // Local File Imports
 import global_styles from '../../assets/styles/GlobalStyle';
 import modal_styles from '../../assets/styles/ModalStyle';
+import half_modal_styles from '../../assets/styles/HalfModalStyle';
 import NewSessionModal from './NewSessionModal';
 
 import SquareCard from '../../components/cards/SquareCard';
@@ -18,6 +19,8 @@ import MediumCard from '../../components/cards/MediumCard';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
 import FloatingModalButton from '../../components/buttons/FloatingModalButton';
+import CancelButton from '../../components/buttons/CustomButton';
+import HalfModalButton from '../../components/buttons/HalfModalButton';
 
 //redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,47 +32,64 @@ import { getUserType } from '../../store/user';
 
 
 export default function SessionScreen({ navigation }) {
-
-  const [sessions, setSessions] = useState([]);
-  const db = firebase.firestore(); 
-
-  useEffect(() => {
-
-    db.collection('sessions')
-    .where('teamId', '==', teamID)
-    .get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-        sessions.push({
-          ...doc.data(),
-          key: doc.id,
-        });
-      });
-
-      setSessions(sessions);
-      dispatch(sessionsAdded(sessions));
-
-    });
-
-   
-  }, [sessions]);
-
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const closeModal = () => {
+  //   setModalOpen(false);
   const teamID = useSelector(getActiveTeamKey);
   const [modalOpen, setModalOpen] = useState(false);
+  const [sessionIdKey, setSessionIdKey] = useState('session id');
   const openModalButton = <FloatingModalButton onPress={() => setModalOpen(true)} />
   const uType = useSelector(getUserType);
+
+  const activeModal = (fact, key) => {
+    setSessionIdKey(key.item.key);
+    closeModal(fact);
+  }
 
   const closeModal = (fact) => {
     setModalOpen(false);
   }
 
   const dispatch = useDispatch();
- 
-  
+
+
+  //dispatch(activeSessionRemove());
+  const db = firebase.firestore();
+  const [sessions, setSessions] = useState([]); // Initial empty array of sessions
+  const [activeSession, setActiveSession] = useState([]);
+
+
+
+  useEffect(() => {
+
+    // dispatch(activeSessionRemove());
+
+    db.collection('sessions')
+      .where('teamId', '==', teamID)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+
+          sessions.push({
+            ...doc.data(),
+            key: doc.id,
+          });
+
+        });
+
+        setSessions(sessions);
+        dispatch(sessionsAdded({ sessions }));
+
+      });
+
+
+  }, [sessions]);
 
   sessionSelected = item => {
+    setActiveSession(item);
     dispatch(activeSessionRemove());
     dispatch(activeSessionAdded(item));
+    // const activeSessionKey = useSelector(getactiveSessionKey);
     let sessionType = item.item.sessionType;
     if (sessionType === 'match') {
       navigation.navigate('ViewUpcomingMatchSession')
@@ -80,6 +100,12 @@ export default function SessionScreen({ navigation }) {
     else if (sessionType === 'training') {
       navigation.navigate('ViewUpcomingTrainingSession')
     }
+  }
+
+  const [OverflowModalOpen, setOverflowModalOpen] = useState(false);
+
+  const closeOverflowModal = () => {
+    setOverflowModalOpen(false);
   }
 
   return (
@@ -114,6 +140,22 @@ export default function SessionScreen({ navigation }) {
         </SafeAreaView>
       </Modal>
 
+      <Modal
+        visible={OverflowModalOpen}
+        transparent={true}
+        animationType='slide'>
+        <SafeAreaView style={half_modal_styles.halfModalContentSmall} >
+          <View style={half_modal_styles.halfModalView}>
+
+            <HalfModalButton text='Session Information' primaryIconName='information-outline' />
+
+            <HalfModalButton text='Delete Session' primaryIconName='trash-can-outline' />
+
+            <CancelButton text="Cancel" onPress={() => closeOverflowModal(false)} />
+          </View>
+        </SafeAreaView>
+      </Modal>
+
       <Text style={{ ...global_styles.title, marginBottom: 10 }}>Previous sessions</Text>
       <View style={square_card_styles.square_card_container}>
         <SquareCardLeft onPress={() => navigation.navigate('PreviousMatchSessions')}>
@@ -142,7 +184,7 @@ export default function SessionScreen({ navigation }) {
         </SquareCardRight>
       </View>
 
-      <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 30 }}>Upcoming sessions</Text> 
+      <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 30 }}>Upcoming sessions</Text>
 
        <FlatList
         data={sessions}

@@ -60,13 +60,14 @@ export default function ViewUpcomingTrainingSessionScreen({ navigation }) {
   return (
     React.useLayoutEffect(() => {
       navigation.setOptions({
-        headerRight: () => (
-          <View style={styles.icon} >
-            <Ionicons onPress={() => setModalOpen(true)} name="md-person-add" size={24} color={'#b7b7b7'} />
+        headerLeft: () => (
+          <View style={{marginLeft: 20}} >
+            <Ionicons onPress={() => navigation.navigate('Session')} name="ios-arrow-back" size={28} color={'#caccd0'} />
           </View>
-        )
-      })
-    }),
+        ),
+      });
+    }, [navigation]),
+    
     <View style={styles.container}>
 
       <View style={styles.descriptionContainer}>

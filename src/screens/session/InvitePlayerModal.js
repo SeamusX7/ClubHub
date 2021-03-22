@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { CheckBox } from 'react-native-elements'
 
 // Component Imports
-import FlatButtonSecondary from '../../components/ModalSecondaryButton';
+import FlatButtonSecondary from '../../components/buttons/ModalSecondaryButton';
 import CustomButton from '../../components/buttons/CustomButton';
 
 // Style Imports
@@ -25,7 +25,7 @@ export default class NewSessionModal extends Component {
         <View style={modal_styles.invitePlayerMargin}>
           <View style={modal_styles.invitePlayerRow}>
             <View style={modal_styles.circle}></View>
-            <Text style={modal_styles.label_text_semibold}>Jack Lynch</Text>
+            <Text style={modal_styles.labelTextSemiBold}>Jack Lynch</Text>
             <View style={modal_styles.checkboxAlignment}>
               <CheckBox
                 checked={this.state.checked}
@@ -40,7 +40,7 @@ export default class NewSessionModal extends Component {
 
           <View style={modal_styles.invitePlayerRow}>
             <View style={modal_styles.circle}></View>
-            <Text style={modal_styles.label_text_semibold}>Keane Callan</Text>
+            <Text style={modal_styles.labelTextSemiBold}>Keane Callan</Text>
             <View style={modal_styles.checkboxAlignment}>
               <CheckBox
                 checked={this.state.checked2}
@@ -55,7 +55,7 @@ export default class NewSessionModal extends Component {
 
           <View style={modal_styles.invitePlayerRow}>
             <View style={modal_styles.circle}></View>
-            <Text style={modal_styles.label_text_semibold}>Shane McCleary</Text>
+            <Text style={modal_styles.labelTextSemiBold}>Shane McCleary</Text>
             <View style={modal_styles.checkboxAlignment}>
             <CheckBox
                 checked={this.state.checked3}
