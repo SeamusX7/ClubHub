@@ -99,7 +99,7 @@ export default function NewSessionModal({ closeModal }) {
 				{(props) => (
 					<View>
 
-						<Text style={modal_styles.labelText}>Session Type</Text>
+						<Text style={modal_styles.labelText}>Session type</Text>
 						<RNPickerSelect
 							onValueChange={(value) => setSessionType(value)}
 							items={[
@@ -110,7 +110,7 @@ export default function NewSessionModal({ closeModal }) {
 							]}
 						/>
 
-						<Text style={modal_styles.labelText}>Session Location</Text>
+						<Text style={modal_styles.labelText}>Session location</Text>
 						<TextInput
 							style={modal_styles.modalInput}
 							placeholder='Enter location...'
@@ -124,7 +124,7 @@ export default function NewSessionModal({ closeModal }) {
 							onChangeText={props.handleChange('opposition')}
 							value={props.values.session} />
 
-						<Button title="Select Date" onPress={showDatePicker} />
+						<Button title="Select date" onPress={showDatePicker} />
 						<DateTimePickerModal
 							isVisible={isDatePickerVisible}
 							mode="date"
@@ -132,7 +132,7 @@ export default function NewSessionModal({ closeModal }) {
 							onCancel={hideDatePicker}
 						/>
 
-						<Button title="Select Time" onPress={showTimePicker} />
+						<Button title="Select time" onPress={showTimePicker} />
 						<DateTimePickerModal
 							isVisible={isTimePickerVisible}
 							mode="time"
