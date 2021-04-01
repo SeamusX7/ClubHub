@@ -68,13 +68,6 @@ export default function CreateTeamForm({ closeModal, userId }) {
 							placeholder='Enter team name...'
 							onChangeText={props.handleChange('teamName')}
 							value={props.values.teamName} />
-
-						<Text style={modal_styles.labelText}>Sport</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter sport...'
-							onChangeText={props.handleChange('sport')}
-							value={props.values.sport} />
 							
 						<View style={{ marginTop: 30 }}>
 							<CustomButton
