@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, FlatList, SafeAreaView, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { Text, View, FlatList, SafeAreaView, Modal, Clipboard } from 'react-native'
 import { firebase } from '../../firebase/config'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -116,7 +116,7 @@ export default function DisplayTeams(prop) {
         <SafeAreaView style={half_modal_styles.halfModalContentSmall} >
           <View style={half_modal_styles.halfModalView}>
 
-            <HalfModalButton text='Copy Team ID' primaryIconName='link-variant' secondaryIconName='content-copy' />
+            <HalfModalButton text='Copy Team ID' primaryIconName='link-variant' secondaryIconName='content-copy' onPress={() => { Clipboard.setString("hhvhNZpFDjVAgpLYPT2X"); alert("Copied to Clipboard!") }} />
 
             <HalfModalButton text='Team Information' primaryIconName='information-outline' />
 
