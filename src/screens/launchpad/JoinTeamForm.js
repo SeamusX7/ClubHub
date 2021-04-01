@@ -17,9 +17,9 @@ export default function JoinTeamForm({ closeModal }) {
 				}}>
 
         <View>
-          <Text style={modal_styles.label_text}>Club ID</Text>
+          <Text style={modal_styles.labelText}>Club ID</Text>
           <TextInput
-            style={modal_styles.modal_input}
+            style={modal_styles.modalInput}
             placeholder='Enter club ID...' />
 
 					<View style={{ marginTop: 30 }}>
