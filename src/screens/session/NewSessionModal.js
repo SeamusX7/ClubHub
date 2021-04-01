@@ -122,7 +122,7 @@ export default function NewSessionModal({ closeModal }) {
 				{(props) => (
 					<View>
 
-						<Text style={modal_styles.labelText}>Session Type</Text>
+						<Text style={modal_styles.labelText}>Session type</Text>
 						<RNPickerSelect
 							placeholder={{
 								label: 'Select session type',
@@ -136,7 +136,7 @@ export default function NewSessionModal({ closeModal }) {
 							]}
 						/>
 
-						<Text style={modal_styles.labelText}>Session Location</Text>
+						<Text style={modal_styles.labelText}>Session location</Text>
 						<TextInput
 							style={modal_styles.modalInput}
 							placeholder='Enter location...'
