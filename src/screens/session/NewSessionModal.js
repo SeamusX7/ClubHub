@@ -9,15 +9,17 @@ import RNPickerSelect from 'react-native-picker-select';
 
 // Component Imports
 import CustomButton from '../../components/buttons/CustomButton';
+import DateTimeButton from '../../components/buttons/DateTimeButton';
 
 //redux
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getActiveTeamKey } from '../../store/activeTeam';
 
 // Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
 import { set } from 'react-native-reanimated';
 import { date } from 'yup';
+import { StyleSheet } from 'react-native';
 
 export default function NewSessionModal({ closeModal }) {
 	var today = new Date();
@@ -71,6 +73,27 @@ export default function NewSessionModal({ closeModal }) {
 		console.log("timeStamp : => ", myTimestamp);
 	};
 
+	const pickerStyle = {
+		inputIOS: {
+			backgroundColor: '#f0f2f7',
+			color: '#91999e',
+			borderRadius: 8,
+			fontFamily: 'montserrat-regular',
+			fontSize: 14,
+			paddingHorizontal: 16,
+			paddingVertical: 15,
+		},
+		inputAndroid: {
+			backgroundColor: '#f0f2f7',
+			color: '#91999e',
+			borderRadius: 8,
+			fontFamily: 'montserrat-regular',
+			fontSize: 14,
+			paddingHorizontal: 16,
+			paddingVertical: 15,
+		},
+	};
+
 	return (
 		<View>
 			<Formik
@@ -101,12 +124,15 @@ export default function NewSessionModal({ closeModal }) {
 
 						<Text style={modal_styles.labelText}>Session Type</Text>
 						<RNPickerSelect
+							placeholder={{
+								label: 'Select session type',
+							}}
+							style={pickerStyle}
 							onValueChange={(value) => setSessionType(value)}
 							items={[
 								{ label: 'Training', value: 'training' },
 								{ label: 'Match', value: 'match' },
 								{ label: 'Gym', value: 'gym' },
-
 							]}
 						/>
 
@@ -124,7 +150,8 @@ export default function NewSessionModal({ closeModal }) {
 							onChangeText={props.handleChange('opposition')}
 							value={props.values.session} />
 
-						<Button title="Select Date" onPress={showDatePicker} />
+						<Text style={modal_styles.labelText}>Select Date</Text>
+						<DateTimeButton title="Select date" onPress={showDatePicker} />
 						<DateTimePickerModal
 							isVisible={isDatePickerVisible}
 							mode="date"
@@ -132,7 +159,8 @@ export default function NewSessionModal({ closeModal }) {
 							onCancel={hideDatePicker}
 						/>
 
-						<Button title="Select Time" onPress={showTimePicker} />
+						<Text style={modal_styles.labelText}>Select Time</Text>
+						<DateTimeButton title="Select time" onPress={showTimePicker} />
 						<DateTimePickerModal
 							isVisible={isTimePickerVisible}
 							mode="time"
@@ -140,9 +168,11 @@ export default function NewSessionModal({ closeModal }) {
 							onCancel={hideTimePicker}
 						/>
 
-						<CustomButton
-							text="Create"
-							onPress={props.handleSubmit} />
+						<View style={styles.createStyle}>
+							<CustomButton
+								text="Create"
+								onPress={props.handleSubmit} />
+						</View>
 
 					</View>
 				)}
@@ -150,3 +180,16 @@ export default function NewSessionModal({ closeModal }) {
 		</View>
 	)
 }
+
+const styles = StyleSheet.create({
+	button: {
+		backgroundColor: '#f0f2f7',
+		borderRadius: 8,
+		fontFamily: 'montserrat-regular',
+		paddingHorizontal: 16,
+		paddingVertical: 15,
+	},
+	createStyle: {
+		marginTop: 30
+	}
+})
