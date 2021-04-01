@@ -113,14 +113,12 @@ export default function DisplayTeams(prop) {
         visible={OverflowModalOpen}
         transparent={true}
         animationType='slide'>
-        <SafeAreaView style={half_modal_styles.halfModalContentBig} >
+        <SafeAreaView style={half_modal_styles.halfModalContentSmall} >
           <View style={half_modal_styles.halfModalView}>
 
             <HalfModalButton text='Copy Team ID' primaryIconName='link-variant' secondaryIconName='content-copy' />
 
             <HalfModalButton text='Team Information' primaryIconName='information-outline' />
-
-            <HalfModalButton text='Delete Team' primaryIconName='trash-can-outline' />
 
             <CancelButton text="Cancel" onPress={() => closeOverflowModal(false)} />
           </View>
