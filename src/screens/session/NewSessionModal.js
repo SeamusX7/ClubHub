@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Button, View, TextInput } from 'react-native';
+import { Text, Button, View, TextInput, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
 import { firebase } from '../../firebase/config';
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import RNPickerSelect from 'react-native-picker-select';
+import Autocomplete from 'react-native-autocomplete-input';
 
 // Component Imports
 import CustomButton from '../../components/buttons/CustomButton';
@@ -94,6 +95,42 @@ export default function NewSessionModal({ closeModal }) {
 		},
 	};
 
+	// For Main Data
+	const [films, setFilms] = useState([]);
+	// For Filtered Data
+	const [filteredFilms, setFilteredFilms] = useState([]);
+	// For Selected Data
+	const [selectedValue, setSelectedValue] = useState({});
+
+	useEffect(() => {
+		fetch('https://aboutreact.herokuapp.com/getpost.php?offset=1')
+			.then((res) => res.json())
+			.then((json) => {
+				const { results: films } = json;
+				setFilms(films);
+				//setting the data in the films state
+			})
+			.catch((e) => {
+				alert(e);
+			});
+	}, []);
+
+	const findFilm = (query) => {
+		// Method called every time when we change the value of the input
+		if (query) {
+			// Making a case insensitive regular expression
+			const regex = new RegExp(`${query.trim()}`, 'i');
+			// Setting the filtered film array according the query
+			setFilteredFilms(
+				films.filter((film) => film.title.search(regex) >= 0)
+			);
+		} else {
+			// If the query is null then return blank
+			setFilteredFilms([]);
+		}
+	};
+
+
 	return (
 		<View>
 			<Formik
@@ -136,12 +173,61 @@ export default function NewSessionModal({ closeModal }) {
 							]}
 						/>
 
-						<Text style={modal_styles.labelText}>Session location</Text>
+						{/* <Text style={modal_styles.labelText}>Session location</Text>
 						<TextInput
 							style={modal_styles.modalInput}
 							placeholder='Enter location...'
 							onChangeText={props.handleChange('location')}
-							value={props.values.session} />
+							value={props.values.session} /> */}
+
+						<Text style={modal_styles.labelText}>Session location</Text>
+						<View style={styles.container}>
+							<Autocomplete
+								value={props.values.session}
+								autoCapitalize="none"
+								autoCorrect={false}
+								// containerStyle={styles.autocompleteContainer}
+								inputContainerStyle={styles.inputAutocompleteContainer}
+								// Data to show in suggestion
+								data={filteredFilms}
+								// Default value if you want to set something in input
+								defaultValue={
+									JSON.stringify(selectedValue) === '{}' ?
+										'' :
+										selectedValue.title
+								}
+								// Onchange of the text changing the state of the query
+								// Which will trigger the findFilm method
+								// To show the suggestions
+								// onChangeText={props.handleChange('location')}
+								onChangeText={(text) => findFilm(text)}
+
+								// onChangeText={(foo=> {this.setState({ foo});},() => this.DoMath())}
+								placeholder="Enter location..."
+								renderItem={({ item }) => (
+									// For the suggestion view
+									<TouchableOpacity
+										onPress={() => {
+											setSelectedValue(item);
+											setFilteredFilms([]);
+										}}>
+										<Text style={styles.itemText}>{item.title}</Text>
+									</TouchableOpacity>
+								)}
+							/>
+							{/* <View style={styles.descriptionContainer}>
+                {films.length > 0 ? (
+                  <>
+                    <Text style={styles.infoText}>Selected Data</Text>
+                    <Text style={styles.infoText}>{JSON.stringify(selectedValue)}</Text>
+                  </>
+                ) : (
+                  <Text style={styles.infoText}>Enter The Film Title</Text>
+                )}
+              </View> */}
+						</View>
+
+
 
 						<Text style={modal_styles.labelText}>Opposition</Text>
 						<TextInput
@@ -191,5 +277,16 @@ const styles = StyleSheet.create({
 	},
 	createStyle: {
 		marginTop: 30
-	}
+	},
+
+	autocompleteContainer: {
+    backgroundColor: '#f0f2f7',
+    borderRadius: 8,
+    fontFamily: 'montserrat-regular',
+    paddingHorizontal: 16,
+    paddingVertical: 15,
+  },
+  inputAutocompleteContainer: {
+    
+  }
 })
