@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 // Component Imports
 import LargeCard from '../../components/cards/LargeCard';
+import SmallCard from '../../components/cards/SmallCard'
+import PopulateButton from '../../components/buttons/PopulateButton'
 
 // Style Imports
 import global_styles from '../../assets/styles/GlobalStyle';
 import large_card_styles from '../../assets/styles/LargeCardStyle';
 // Redux Imports
 import { getUserId } from '../../store/user';
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
 import { activeTeamAdded, getActiveTeamKey, getActiveTeamName } from '../../store/activeTeam';
 import { sessionsAdded, getSessions } from '../../store/sessions';
@@ -46,6 +48,50 @@ export default function FirstRoute() {
           </View>
         </View>
       </LargeCard>
+
+      <View style={styles.smallCardContainer}>
+        <SmallCard>
+          <Text style={styles.matchReportText}>Match Report</Text>
+          <View style={styles.populateButton}>
+            <PopulateButton text="Populate" />
+          </View>
+        </SmallCard>
+      </View>
+
+      <Text style={{ ...global_styles.title, marginTop: 10 }}>Match report</Text>
+      <View style={styles.largeCardContainer}>
+        <LargeCard>
+          <View style={large_card_styles.large_card_container}>
+            <View style={large_card_styles.large_card_content}>
+              <Text style={large_card_styles.large_card_primary_text}>Score:</Text>
+              <Text style={large_card_styles.large_card_secondary_text}>3-16 to 2-09</Text>
+            </View>
+            <View style={large_card_styles.large_card_content}>
+              <Text style={large_card_styles.large_card_primary_text}>Feedback:</Text>
+              <Text style={large_card_styles.large_card_secondary_text}></Text>
+            </View>
+          </View>
+        </LargeCard>
+      </View>
     </View>
   )
 }
+const styles = StyleSheet.create({
+  matchReportText: {
+    color: '#0C1821',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 14,
+    marginLeft: 20,
+  },
+  populateButton: {
+    marginRight: 20,
+    position: 'absolute',
+    right: 0,
+  },
+  smallCardContainer: {
+    marginTop: 10
+  },
+  largeCardContainer: {
+    marginTop: 10,
+  }
+});
