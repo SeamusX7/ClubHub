@@ -32,6 +32,7 @@ export default function NewSessionModal({ closeModal }) {
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 	const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 	const [sessionType, setSessionType] = useState();
+	const [location, setLocation] = useState();
 
 	const teamID = useSelector(getActiveTeamKey);
 
@@ -95,38 +96,30 @@ export default function NewSessionModal({ closeModal }) {
 		},
 	};
 
-	// For Main Data
-	const [films, setFilms] = useState([]);
-	// For Filtered Data
-	const [filteredFilms, setFilteredFilms] = useState([]);
-	// For Selected Data
+	const [locations, setLocations] = useState([]);
+	const [filteredLocations, setFilteredLocations] = useState([]);
 	const [selectedValue, setSelectedValue] = useState({});
 
 	useEffect(() => {
-		fetch('https://aboutreact.herokuapp.com/getpost.php?offset=1')
+		fetch('https://demo4276878.mockable.io/test')
 			.then((res) => res.json())
 			.then((json) => {
-				const { results: films } = json;
-				setFilms(films);
-				//setting the data in the films state
+				const { results: locations } = json;
+				setLocations(locations);
 			})
 			.catch((e) => {
 				alert(e);
 			});
 	}, []);
 
-	const findFilm = (query) => {
-		// Method called every time when we change the value of the input
+	const findLocation = (query) => {
 		if (query) {
-			// Making a case insensitive regular expression
 			const regex = new RegExp(`${query.trim()}`, 'i');
-			// Setting the filtered film array according the query
-			setFilteredFilms(
-				films.filter((film) => film.title.search(regex) >= 0)
+			setFilteredLocations(
+				locations.filter((location) => location.title.search(regex) >= 0)
 			);
 		} else {
-			// If the query is null then return blank
-			setFilteredFilms([]);
+			setFilteredLocations([]);
 		}
 	};
 
@@ -148,7 +141,7 @@ export default function NewSessionModal({ closeModal }) {
 					const db = firebase.firestore()
 					db.collection('sessions').add({
 						sessionType: sessionType,
-						location: values.location,
+						location: location,
 						opposition: values.opposition,
 						timeStamp: timeStamp,
 						teamId: teamID
@@ -186,48 +179,47 @@ export default function NewSessionModal({ closeModal }) {
 								value={props.values.session}
 								autoCapitalize="none"
 								autoCorrect={false}
-								// containerStyle={styles.autocompleteContainer}
 								inputContainerStyle={styles.inputAutocompleteContainer}
-								// Data to show in suggestion
-								data={filteredFilms}
-								// Default value if you want to set something in input
-								defaultValue={
-									JSON.stringify(selectedValue) === '{}' ?
-										'' :
-										selectedValue.title
-								}
-								// Onchange of the text changing the state of the query
-								// Which will trigger the findFilm method
-								// To show the suggestions
-								// onChangeText={props.handleChange('location')}
-								onChangeText={(text) => findFilm(text)}
+								listContainerStyle={styles.listContainerStyle}
+								listStyle={styles.listStyle}
+								data={filteredLocations}
+								renderTextInput={() => (
 
-								// onChangeText={(foo=> {this.setState({ foo});},() => this.DoMath())}
-								placeholder="Enter location..."
-								renderItem={({ item }) => (
-									// For the suggestion view
-									<TouchableOpacity
-										onPress={() => {
-											setSelectedValue(item);
-											setFilteredFilms([]);
-										}}>
-										<Text style={styles.itemText}>{item.title}</Text>
-									</TouchableOpacity>
+									<TextInput
+										defaultValue={
+											JSON.stringify(selectedValue) === '{}' ?
+												'' :
+												selectedValue.title
+										}
+										value={location}
+										onChangeText={(text) => findLocation(text)}
+										placeholder={'Enter location...'}
+										style={{
+											backgroundColor: '#f0f2f7',
+											borderRadius: 8,
+											fontFamily: 'montserrat-regular',
+											paddingHorizontal: 16,
+											paddingVertical: 15,
+										}}
+									/>
 								)}
+
+								renderItem={({ item }) => (
+									<View>
+										<TouchableOpacity
+											style={styles.suggestedText}
+											onPress={() => {
+												setSelectedValue(item);
+												setLocation(item.title);
+												setFilteredLocations([]);
+											}}>
+											<Text style={styles.itemText}>{item.title}</Text>
+										</TouchableOpacity>
+									</View>
+								)
+								}
 							/>
-							{/* <View style={styles.descriptionContainer}>
-                {films.length > 0 ? (
-                  <>
-                    <Text style={styles.infoText}>Selected Data</Text>
-                    <Text style={styles.infoText}>{JSON.stringify(selectedValue)}</Text>
-                  </>
-                ) : (
-                  <Text style={styles.infoText}>Enter The Film Title</Text>
-                )}
-              </View> */}
 						</View>
-
-
 
 						<Text style={modal_styles.labelText}>Opposition</Text>
 						<TextInput
@@ -270,6 +262,7 @@ export default function NewSessionModal({ closeModal }) {
 const styles = StyleSheet.create({
 	button: {
 		backgroundColor: '#f0f2f7',
+		opacity: 0.2,
 		borderRadius: 8,
 		fontFamily: 'montserrat-regular',
 		paddingHorizontal: 16,
@@ -278,15 +271,24 @@ const styles = StyleSheet.create({
 	createStyle: {
 		marginTop: 30
 	},
-
-	autocompleteContainer: {
-    backgroundColor: '#f0f2f7',
-    borderRadius: 8,
-    fontFamily: 'montserrat-regular',
-    paddingHorizontal: 16,
-    paddingVertical: 15,
-  },
-  inputAutocompleteContainer: {
-    
-  }
+	inputAutocompleteContainer: {
+		borderWidth: 0,
+	},
+	suggestedText: {
+		width: 500,
+		height: 50,
+	},
+	itemText: {
+		// backgroundColor: '#000',
+		fontSize: 18,
+		fontFamily: 'montserrat-regular',
+	},
+	listContainerStyle: {
+		zIndex: 999,
+		borderRadius: 8,
+	},
+	listStyle: {
+		zIndex: 999,
+		borderWidth: 0,
+	}
 })
