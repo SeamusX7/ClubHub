@@ -11,7 +11,6 @@ import { AppLoading } from 'expo';
 import ChooseTeamScreen from './src/screens/launchpad/ChooseTeam';
 import TabNavigator from './src/routes/TabNavigator';
 import MessageScreen from './src/screens/message/Message'
-import ViewMessageScreen from './src/screens/message/ViewMessage'
 import { LoginScreen, RegistrationScreen } from './src/screens';
 
 // Style Imports
@@ -77,7 +76,6 @@ export default function App() {
           <Stack.Screen name="Login" component={LoginScreen} options={{ animationEnabled: false }} />
           <Stack.Screen name="Registration" component={RegistrationScreen} options={{ animationEnabled: false }} />
           <Stack.Screen name="Message" component={MessageScreen} options={{ headerShown: true, headerBackTitleVisible: false, gestureEnabled: true, title: 'Messages' }} ></Stack.Screen>
-          <Stack.Screen name="ViewMessage" component={ViewMessageScreen} options={{ headerShown: true, headerBackTitleVisible: false, gestureEnabled: true, title: 'View Message' }} ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>
