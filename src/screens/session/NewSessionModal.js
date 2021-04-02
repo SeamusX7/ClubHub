@@ -180,7 +180,6 @@ export default function NewSessionModal({ closeModal }) {
 								autoCapitalize="none"
 								autoCorrect={false}
 								inputContainerStyle={styles.inputAutocompleteContainer}
-								listContainerStyle={styles.listContainerStyle}
 								listStyle={styles.listStyle}
 								data={filteredLocations}
 								renderTextInput={() => (
@@ -207,7 +206,6 @@ export default function NewSessionModal({ closeModal }) {
 								renderItem={({ item }) => (
 									<View>
 										<TouchableOpacity
-											style={styles.suggestedText}
 											onPress={() => {
 												setSelectedValue(item);
 												setLocation(item.title);
@@ -260,35 +258,31 @@ export default function NewSessionModal({ closeModal }) {
 }
 
 const styles = StyleSheet.create({
-	button: {
-		backgroundColor: '#f0f2f7',
-		opacity: 0.2,
-		borderRadius: 8,
-		fontFamily: 'montserrat-regular',
-		paddingHorizontal: 16,
-		paddingVertical: 15,
-	},
 	createStyle: {
 		marginTop: 30
 	},
 	inputAutocompleteContainer: {
 		borderWidth: 0,
 	},
-	suggestedText: {
-		width: 500,
-		height: 50,
-	},
 	itemText: {
-		// backgroundColor: '#000',
-		fontSize: 18,
 		fontFamily: 'montserrat-regular',
-	},
-	listContainerStyle: {
-		zIndex: 999,
-		borderRadius: 8,
+		fontSize: 14,
+		marginBottom: 3,
+		marginLeft: 10,
+		marginTop: 3,
 	},
 	listStyle: {
-		zIndex: 999,
+		backgroundColor: '#f0f2f7',
+		borderRadius: 8,
 		borderWidth: 0,
+		marginTop: 10,
+		width: '34%',
+	},
+	container: {
+		shadowColor: "#000",
+		shadowOffset: { height: 0, width: 0 },
+		shadowOpacity: 0.05,
+		shadowRadius: 3,
+		zIndex: 1,
 	}
 })
