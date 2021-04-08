@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Button, View, TextInput } from 'react-native';
+import { Text, Button, View, TextInput, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
 import { firebase } from '../../firebase/config';
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import RNPickerSelect from 'react-native-picker-select';
+import Autocomplete from 'react-native-autocomplete-input';
 
 // Component Imports
 import CustomButton from '../../components/buttons/CustomButton';
+import DateTimeButton from '../../components/buttons/DateTimeButton';
 
 //redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +20,7 @@ import { getActiveTeamKey } from '../../store/activeTeam';
 import modal_styles from '../../assets/styles/ModalStyle';
 import { set } from 'react-native-reanimated';
 import { date } from 'yup';
+import { StyleSheet } from 'react-native';
 
 export default function NewSessionModal({ closeModal }) {
 	var today = new Date();
@@ -29,6 +32,7 @@ export default function NewSessionModal({ closeModal }) {
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 	const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 	const [sessionType, setSessionType] = useState();
+	const [location, setLocation] = useState();
 
 	const teamID = useSelector(getActiveTeamKey);
 
@@ -71,6 +75,55 @@ export default function NewSessionModal({ closeModal }) {
 		console.log("timeStamp : => ", myTimestamp);
 	};
 
+	const pickerStyle = {
+		inputIOS: {
+			backgroundColor: '#f0f2f7',
+			color: '#91999e',
+			borderRadius: 8,
+			fontFamily: 'montserrat-regular',
+			fontSize: 14,
+			paddingHorizontal: 16,
+			paddingVertical: 15,
+		},
+		inputAndroid: {
+			backgroundColor: '#f0f2f7',
+			color: '#91999e',
+			borderRadius: 8,
+			fontFamily: 'montserrat-regular',
+			fontSize: 14,
+			paddingHorizontal: 16,
+			paddingVertical: 15,
+		},
+	};
+
+	const [locations, setLocations] = useState([]);
+	const [filteredLocations, setFilteredLocations] = useState([]);
+	const [selectedValue, setSelectedValue] = useState({});
+
+	useEffect(() => {
+		fetch('https://demo4276878.mockable.io/test')
+			.then((res) => res.json())
+			.then((json) => {
+				const { results: locations } = json;
+				setLocations(locations);
+			})
+			.catch((e) => {
+				alert(e);
+			});
+	}, []);
+
+	const findLocation = (query) => {
+		if (query) {
+			const regex = new RegExp(`${query.trim()}`, 'i');
+			setFilteredLocations(
+				locations.filter((location) => location.title.search(regex) >= 0)
+			);
+		} else {
+			setFilteredLocations([]);
+		}
+	};
+
+
 	return (
 		<View>
 			<Formik
@@ -88,7 +141,7 @@ export default function NewSessionModal({ closeModal }) {
 					const db = firebase.firestore()
 					db.collection('sessions').add({
 						sessionType: sessionType,
-						location: values.location,
+						location: location,
 						opposition: values.opposition,
 						timeStamp: timeStamp,
 						teamId: teamID,
@@ -100,23 +153,72 @@ export default function NewSessionModal({ closeModal }) {
 				{(props) => (
 					<View>
 
-						<Text style={modal_styles.labelText}>Session Type</Text>
+						<Text style={modal_styles.labelText}>Session type</Text>
 						<RNPickerSelect
+							placeholder={{
+								label: 'Select session type',
+							}}
+							style={pickerStyle}
 							onValueChange={(value) => setSessionType(value)}
 							items={[
 								{ label: 'Training', value: 'training' },
 								{ label: 'Match', value: 'match' },
 								{ label: 'Gym', value: 'gym' },
-
 							]}
 						/>
 
-						<Text style={modal_styles.labelText}>Session Location</Text>
+						{/* <Text style={modal_styles.labelText}>Session location</Text>
 						<TextInput
 							style={modal_styles.modalInput}
 							placeholder='Enter location...'
 							onChangeText={props.handleChange('location')}
-							value={props.values.location} />
+							value={props.values.session} /> */}
+
+						<Text style={modal_styles.labelText}>Session location</Text>
+						<View style={styles.container}>
+							<Autocomplete
+								value={props.values.session}
+								autoCapitalize="none"
+								autoCorrect={false}
+								inputContainerStyle={styles.inputAutocompleteContainer}
+								listStyle={styles.listStyle}
+								data={filteredLocations}
+								renderTextInput={() => (
+
+									<TextInput
+										defaultValue={
+											JSON.stringify(selectedValue) === '{}' ?
+												'' :
+												selectedValue.title
+										}
+										value={location}
+										onChangeText={(text) => findLocation(text)}
+										placeholder={'Enter location...'}
+										style={{
+											backgroundColor: '#f0f2f7',
+											borderRadius: 8,
+											fontFamily: 'montserrat-regular',
+											paddingHorizontal: 16,
+											paddingVertical: 15,
+										}}
+									/>
+								)}
+
+								renderItem={({ item }) => (
+									<View>
+										<TouchableOpacity
+											onPress={() => {
+												setSelectedValue(item);
+												setLocation(item.title);
+												setFilteredLocations([]);
+											}}>
+											<Text style={styles.itemText}>{item.title}</Text>
+										</TouchableOpacity>
+									</View>
+								)
+								}
+							/>
+						</View>
 
 						<Text style={modal_styles.labelText}>Opposition</Text>
 						<TextInput
@@ -132,7 +234,8 @@ export default function NewSessionModal({ closeModal }) {
 							onChangeText={props.handleChange('title')}
 							value={props.values.title} /> */}
 
-						<Button title="Select Date" onPress={showDatePicker} />
+						<Text style={modal_styles.labelText}>Select Date</Text>
+						<DateTimeButton title="Select date" onPress={showDatePicker} />
 						<DateTimePickerModal
 							isVisible={isDatePickerVisible}
 							mode="date"
@@ -140,7 +243,8 @@ export default function NewSessionModal({ closeModal }) {
 							onCancel={hideDatePicker}
 						/>
 
-						<Button title="Select Time" onPress={showTimePicker} />
+						<Text style={modal_styles.labelText}>Select Time</Text>
+						<DateTimeButton title="Select time" onPress={showTimePicker} />
 						<DateTimePickerModal
 							isVisible={isTimePickerVisible}
 							mode="time"
@@ -148,9 +252,11 @@ export default function NewSessionModal({ closeModal }) {
 							onCancel={hideTimePicker}
 						/>
 
-						<CustomButton
-							text="Create"
-							onPress={props.handleSubmit} />
+						<View style={styles.createStyle}>
+							<CustomButton
+								text="Create"
+								onPress={props.handleSubmit} />
+						</View>
 
 					</View>
 				)}
@@ -158,3 +264,33 @@ export default function NewSessionModal({ closeModal }) {
 		</View>
 	)
 }
+
+const styles = StyleSheet.create({
+	createStyle: {
+		marginTop: 30
+	},
+	inputAutocompleteContainer: {
+		borderWidth: 0,
+	},
+	itemText: {
+		fontFamily: 'montserrat-regular',
+		fontSize: 14,
+		marginBottom: 3,
+		marginLeft: 10,
+		marginTop: 3,
+	},
+	listStyle: {
+		backgroundColor: '#f0f2f7',
+		borderRadius: 8,
+		borderWidth: 0,
+		marginTop: 10,
+		width: '34%',
+	},
+	container: {
+		shadowColor: "#000",
+		shadowOffset: { height: 0, width: 0 },
+		shadowOpacity: 0.05,
+		shadowRadius: 3,
+		zIndex: 1,
+	}
+})

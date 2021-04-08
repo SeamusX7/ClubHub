@@ -1,15 +1,21 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { Modal, View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 // Component Imports
 import LargeCard from '../../components/cards/LargeCard';
+import SmallCard from '../../components/cards/SmallCard'
+import PopulateButton from '../../components/buttons/PopulateButton'
+import MatchReportModal from './MatchReportModal'
 
 // Style Imports
 import global_styles from '../../assets/styles/GlobalStyle';
 import large_card_styles from '../../assets/styles/LargeCardStyle';
+import modal_styles from '../../assets/styles/ModalStyle';
+
 // Redux Imports
 import { getUserId } from '../../store/user';
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
 import { activeTeamAdded, getActiveTeamKey, getActiveTeamName } from '../../store/activeTeam';
 import { sessionsAdded, getSessions } from '../../store/sessions';
@@ -22,8 +28,34 @@ export default function FirstRoute() {
   const time = useSelector(getactiveSessionTime);
   const location = useSelector(getactiveSessionLocation);
   const dispatch = useDispatch();
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setModalOpen(false);
+  }
+
   return (
     <View style={global_styles.screen_container}>
+
+      <Modal
+        visible={modalOpen}
+        animationType='slide'>
+        <SafeAreaView style={modal_styles.modalContent}>
+          <View style={modal_styles.modalContent}>
+            <View style={modal_styles.modalHeader}>
+              <Text style={modal_styles.modalTitle}>Create match report</Text>
+              <MaterialIcons
+                name='close'
+                color='#0c1821'
+                size={24}
+                style={modal_styles.modalToggleExit}
+                onPress={() => setModalOpen(false)} />
+            </View>
+            <MatchReportModal closeModal={closeModal} />
+          </View>
+        </SafeAreaView>
+      </Modal>
 
       <Text style={{ ...global_styles.title, marginBottom: 10 }}>Match details</Text>
       <LargeCard>
@@ -46,6 +78,50 @@ export default function FirstRoute() {
           </View>
         </View>
       </LargeCard>
+
+      <View style={styles.smallCardContainer}>
+        <SmallCard>
+          <Text style={styles.matchReportText}>Match Report</Text>
+          <View style={styles.populateButton}>
+            <PopulateButton text="Populate" onPress={() => setModalOpen(true)} />
+          </View>
+        </SmallCard>
+      </View>
+
+      <Text style={{ ...global_styles.title, marginTop: 10 }}>Match report</Text>
+      <View style={styles.largeCardContainer}>
+        <LargeCard>
+          <View style={large_card_styles.large_card_container}>
+            <View style={large_card_styles.large_card_content}>
+              <Text style={large_card_styles.large_card_primary_text}>Score:</Text>
+              <Text style={large_card_styles.large_card_secondary_text}>3-16 to 2-09</Text>
+            </View>
+            <View style={large_card_styles.large_card_content}>
+              <Text style={large_card_styles.large_card_primary_text}>Feedback:</Text>
+              <Text style={large_card_styles.large_card_secondary_text}></Text>
+            </View>
+          </View>
+        </LargeCard>
+      </View>
     </View>
   )
 }
+const styles = StyleSheet.create({
+  matchReportText: {
+    color: '#0C1821',
+    fontFamily: 'montserrat-semibold',
+    fontSize: 14,
+    marginLeft: 20,
+  },
+  populateButton: {
+    marginRight: 20,
+    position: 'absolute',
+    right: 0,
+  },
+  smallCardContainer: {
+    marginTop: 10
+  },
+  largeCardContainer: {
+    marginTop: 10,
+  }
+});

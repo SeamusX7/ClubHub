@@ -108,7 +108,6 @@ export default function SessionScreen({ navigation }) {
     setOverflowModalOpen(false);
   }
 
-
   return (
     React.useLayoutEffect(() => {
       navigation.setOptions({

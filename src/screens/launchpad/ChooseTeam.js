@@ -49,7 +49,7 @@ export default function ChooseTeamScreen(props) {
                 style={modal_styles.modalToggleExit}
                 onPress={() => setManagerModalOpen(false)} />
             </View>
-            <CreateTeamForm userId={userID} closeModal={closeManagerModal} />
+            <CreateTeamForm userId={userID} closeModal={closeManagerModal}  />
           </View>
         </SafeAreaView>
       </Modal>

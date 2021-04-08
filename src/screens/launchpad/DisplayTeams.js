@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, FlatList, SafeAreaView, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { Text, View, FlatList, SafeAreaView, Modal, Clipboard, TextInput } from 'react-native'
 import { firebase } from '../../firebase/config'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -8,6 +8,7 @@ import MediumCard from '../../components/cards/MediumCard';
 import OverflowMenuButton from '../../components/buttons/OverflowMenuButton';
 import CancelButton from '../../components/buttons/CustomButton';
 import HalfModalButton from '../../components/buttons/HalfModalButton';
+import CustomButton from '../../components/buttons/CustomButton';
 
 // Style Imports
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
@@ -71,6 +72,8 @@ export default function DisplayTeams(prop) {
     setOverflowModalOpen(false);
   }
 
+  const [teamInformationModalOpen, setTeamInformationflowModalOpen] = useState(false);
+
   return (
     <View>
       <FlatList
@@ -95,16 +98,50 @@ export default function DisplayTeams(prop) {
         visible={OverflowModalOpen}
         transparent={true}
         animationType='slide'>
-        <SafeAreaView style={half_modal_styles.halfModalContentBig} >
+        <SafeAreaView style={half_modal_styles.halfModalContentSmall} >
           <View style={half_modal_styles.halfModalView}>
+            <HalfModalButton text='Copy Team ID' primaryIconName='link-variant' secondaryIconName='content-copy' onPress={() => { Clipboard.setString("hhvhNZpFDjVAgpLYPT2X"); alert("Copied to Clipboard!") }} />
 
-            <HalfModalButton text='Copy Team ID' primaryIconName='link-variant' secondaryIconName='content-copy' />
-
-            <HalfModalButton text='Team Information' primaryIconName='information-outline' />
-
-            <HalfModalButton text='Delete Team' primaryIconName='trash-can-outline' />
+            <HalfModalButton text='Team Information' primaryIconName='information-outline' onPress={() => { closeOverflowModal(false); setTeamInformationflowModalOpen(true); }} />
 
             <CancelButton text="Cancel" onPress={() => closeOverflowModal(false)} />
+          </View>
+        </SafeAreaView>
+      </Modal>
+
+      <Modal
+        visible={teamInformationModalOpen}
+        animationType='slide'>
+
+        <SafeAreaView style={modal_styles.modalContent}>
+          <View style={modal_styles.modalContent}>
+            <View style={modal_styles.modalHeader}>
+              <Text style={modal_styles.modalTitle}>Edit team information</Text>
+              <MaterialIcons
+                name='close'
+                color='#333'
+                size={24}
+                style={modal_styles.modalToggleExit}
+                onPress={() => setTeamInformationflowModalOpen(false)} />
+            </View>
+
+            <Text style={modal_styles.labelText}>Club</Text>
+						<TextInput
+							style={modal_styles.modalInput}
+							placeholder='Enter club name...'
+              value="Kilkerley Emmets" />
+
+            <Text style={modal_styles.labelText}>Name</Text>
+						<TextInput
+							style={modal_styles.modalInput}
+							placeholder='Enter team name...'
+              value="Senior" />
+
+            <View style={{ marginTop: 30 }}>
+              <CustomButton
+							  text="Save" />
+            </View>
+            
           </View>
         </SafeAreaView>
       </Modal>
