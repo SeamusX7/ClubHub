@@ -6,6 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import CreateTeamForm from './CreateTeamForm';
 import JoinTeamForm from './JoinTeamForm';
 import DisplayTeams from './DisplayTeams';
+import DisplayTeamsForPlayer from './DisplayTeamsForPlayer';
 import FloatingModalButton from '../../components/buttons/FloatingModalButton';
 
 // Style Imports
@@ -14,7 +15,7 @@ import global_styles from '../../assets/styles/GlobalStyle';
 
 // Redux Imports
 import { getUserId, getUserType, getUserName } from '../../store/user';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function ChooseTeamScreen(props) {
   const userID = useSelector(getUserId);
@@ -48,7 +49,7 @@ export default function ChooseTeamScreen(props) {
                 style={modal_styles.modalToggleExit}
                 onPress={() => setManagerModalOpen(false)} />
             </View>
-            <CreateTeamForm userId={userID} closeModal={closeManagerModal}  />
+            <CreateTeamForm userId={userID} closeModal={closeManagerModal} />
           </View>
         </SafeAreaView>
       </Modal>
@@ -67,7 +68,7 @@ export default function ChooseTeamScreen(props) {
                 style={modal_styles.modalToggleExit}
                 onPress={() => setPlayerModalOpen(false)} />
             </View>
-            <JoinTeamForm closeModal={closePlayerModal}  />
+            <JoinTeamForm closeModal={closePlayerModal} props={props} />
           </View>
         </SafeAreaView>
       </Modal>
@@ -77,9 +78,17 @@ export default function ChooseTeamScreen(props) {
         <Text style={styles.greeting_body}>Select a team to get started.</Text>
       </View>
 
-      <View style={styles.team_card_container}>
-        <DisplayTeams props={props} />
-      </View>
+      {[userType === "coach" ?
+        <View style={styles.team_card_container}>
+          <DisplayTeams props={props} />
+        </View>
+        :
+        <View style={styles.team_card_container}>
+          <DisplayTeamsForPlayer props={props} />
+        </View>
+      ]}
+
+
 
       {[userType === "coach" ? openManagerModalButton : openPlayerModalButton]}
 

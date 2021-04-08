@@ -31,6 +31,8 @@ export default function CreateTeamForm({ closeModal, userId }) {
 						win: 0,
 						draw: 0,
 						loss: 0,
+						players: [],
+						playersID: [],
 					})
 
 					db.collection('team')
