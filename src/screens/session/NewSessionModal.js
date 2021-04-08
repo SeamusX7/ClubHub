@@ -127,7 +127,7 @@ export default function NewSessionModal({ closeModal }) {
 	return (
 		<View>
 			<Formik
-				initialValues={{ location: '', opposition: '' }}
+				initialValues={{ location: '', opposition: '', title: '' }}
 				onSubmit={(values) => {
 					closeModal();
 
@@ -144,7 +144,8 @@ export default function NewSessionModal({ closeModal }) {
 						location: location,
 						opposition: values.opposition,
 						timeStamp: timeStamp,
-						teamId: teamID
+						teamId: teamID,
+						// title: title
 					})
 
 				}}>
@@ -224,7 +225,14 @@ export default function NewSessionModal({ closeModal }) {
 							style={modal_styles.modalInput}
 							placeholder='Enter opposition...'
 							onChangeText={props.handleChange('opposition')}
-							value={props.values.session} />
+							value={props.values.opposition} />
+
+						{/* <Text style={modal_styles.labelText}>Title</Text>
+						<TextInput
+							style={modal_styles.modalInput}
+							placeholder='Enter title...'
+							onChangeText={props.handleChange('title')}
+							value={props.values.title} /> */}
 
 						<Text style={modal_styles.labelText}>Select Date</Text>
 						<DateTimeButton title="Select date" onPress={showDatePicker} />

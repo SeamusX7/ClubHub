@@ -16,13 +16,14 @@ import modal_styles from '../../assets/styles/ModalStyle';
 import half_modal_styles from '../../assets/styles/HalfModalStyle';
 
 // Redux Imports
-import { getUserId } from '../../store/user';
+import { getUserId, getUserType } from '../../store/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
 import { activeTeamAdded, activeTeamRemove } from '../../store/activeTeam';
 
 export default function DisplayTeams(prop) {
   const userID = useSelector(getUserId);
+  const userType = useSelector(getUserType);
   const [modalOpen, setModalOpen] = useState(false);
   const [teamIdKey, setTeamIdKey] = useState('team id');
   const activeModal = (fact, key) => {
@@ -38,28 +39,7 @@ export default function DisplayTeams(prop) {
   const dispatch = useDispatch();
   const teamsArray = useSelector(getTeams);
 
-  // const onGetTeams = (userID) => {
-  // db.collection('team')
-  //   .where('managerId', '==', userID)
-  //   .get()
-  //   .then(snapshot => {
-  //     snapshot.forEach(doc => {
-  //       teams.push({
-  //         ...doc.data(),
-  //         key: doc.id,
-  //       });
-  //     });
-
-  //     setTeams(teams);
-  //     dispatch(teamsAdded(teams));
-
-  //   });
-  // }
-
   useEffect(() => {
-
-    //setTeams([])
-    // onGetTeams(userID);
 
     db.collection('team')
       .where('managerId', '==', userID)
@@ -73,7 +53,9 @@ export default function DisplayTeams(prop) {
         });
         setTeams(teams);
         dispatch(teamsAdded(teams));
-      });
+        console.log("user is a coach")
+      })
+
   }, [teams]);
 
 
