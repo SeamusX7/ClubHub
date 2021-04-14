@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View, Modal, SafeAreaView, FlatList } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Image, ScrollView, Text, View, Modal, SafeAreaView, FlatList, TextInput } from 'react-native';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 // Component Imports
 import SquareCard from '../../components/cards/SquareCard';
@@ -16,6 +16,7 @@ import global_styles from '../../assets/styles/GlobalStyle';
 import square_card_styles from '../../assets/styles/SquareCardStyle';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import half_modal_styles from '../../assets/styles/HalfModalStyle';
+import modal_styles from '../../assets/styles/ModalStyle';
 
 //redux
 import { useDispatch , useSelector } from 'react-redux';
@@ -34,6 +35,8 @@ export default function TeamScreen({ navigation }) {
   const closeOverflowModal = () => {
     setOverflowModalOpen(false);
   }
+
+  const [playerInformationModalOpen, setPlayerInformationflowModalOpen] = useState(false);
 
   return (
     React.useLayoutEffect(() => {
@@ -93,10 +96,46 @@ export default function TeamScreen({ navigation }) {
         animationType='slide'>
         <SafeAreaView style={half_modal_styles.halfModalContentExtraSmall} >
           <View style={half_modal_styles.halfModalView}>
-            <HalfModalButton text='Player Information' primaryIconName='information-outline' />
+            <HalfModalButton text='Player Information' primaryIconName='information-outline'  onPress={() => { closeOverflowModal(false); setPlayerInformationflowModalOpen(true); }} />
 
             <CancelButton text="Cancel" onPress={() => closeOverflowModal(false)} />
           </View>
+        </SafeAreaView>
+      </Modal>
+
+      <Modal
+        visible={playerInformationModalOpen}
+        animationType='slide'>
+
+        <SafeAreaView style={modal_styles.modalContent}>
+          <View style={modal_styles.modalContent}>
+            <View style={modal_styles.modalHeader}>
+              <Text style={modal_styles.modalTitle}>Player information</Text>
+              <MaterialIcons
+                name='close'
+                color='#333'
+                size={24}
+                style={modal_styles.modalToggleExit}
+                onPress={() => setPlayerInformationflowModalOpen(false)} />
+            </View>
+
+            <Text style={modal_styles.labelText}>Name</Text>
+            <TextInput
+              style={modal_styles.modalInput}
+              placeholder="Enter name..."
+              value="Jack Lynch" />
+
+              <Text style={modal_styles.labelText}>Position</Text>
+              <TextInput
+              style={modal_styles.modalInput}
+              placeholder="Select position"
+              value="Forward" />
+
+              <View style={{ marginTop: 30 }}>
+                <CancelButton
+                text="Save" />
+              </View>
+            </View>
         </SafeAreaView>
       </Modal>
     </View>
