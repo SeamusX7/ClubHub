@@ -19,6 +19,26 @@ export default function JoinTeamForm({ closeModal, props }) {
 	const name = useSelector(getUserName);
 	const id = useSelector(getUserId);
 	const [position, setPosition] = useState();
+	const pickerStyle = {
+		inputIOS: {
+			backgroundColor: '#f0f2f7',
+			color: '#91999e',
+			borderRadius: 8,
+			fontFamily: 'montserrat-regular',
+			fontSize: 14,
+			paddingHorizontal: 16,
+			paddingVertical: 15,
+		},
+		inputAndroid: {
+			backgroundColor: '#f0f2f7',
+			color: '#91999e',
+			borderRadius: 8,
+			fontFamily: 'montserrat-regular',
+			fontSize: 14,
+			paddingHorizontal: 16,
+			paddingVertical: 15,
+		},
+	};
 	return (
 		<View>
 			<Formik
@@ -84,14 +104,14 @@ export default function JoinTeamForm({ closeModal, props }) {
 				{(props) => (
 
 					<View>
-						<Text style={modal_styles.label_text}>Club ID</Text>
+						<Text style={modal_styles.labelText}>Club ID</Text>
 						<TextInput
-							style={modal_styles.modal_input}
+							style={modal_styles.modalInput}
 							placeholder='Enter club ID...'
 							onChangeText={props.handleChange('teamID')}
 							value={props.values.teamID} />
 
-						<Text style={modal_styles.label_text}>Name</Text>
+						<Text style={modal_styles.labelText}>Name</Text>
 						<TextInput
 							style={modal_styles.modalInput}
 							placeholder={name}
@@ -100,6 +120,10 @@ export default function JoinTeamForm({ closeModal, props }) {
 
 						<Text style={modal_styles.labelText}>Position</Text>
 						<RNPickerSelect
+							placeholder={{
+								label: 'Select position',
+							}}
+							style={pickerStyle}
 							onValueChange={(value) => setPosition(value)}
 							items={[
 								{ label: 'Defender', value: 'Defender' },
