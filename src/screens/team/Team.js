@@ -66,22 +66,6 @@ export default function TeamScreen({ navigation }) {
 
       <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 30 }}>Players</Text>
       <ScrollView>
-        {/* <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-1.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Jack Lynch</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Forward</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard> */}
-
         <FlatList
         data={players}
         renderItem={({ item }) => (
@@ -100,84 +84,16 @@ export default function TeamScreen({ navigation }) {
             <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
           </View>
         </MediumPlayerCard>
-        )}
-      />
-
-        {/* <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-2.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Joe McNally</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Midfielder</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard>
-
-        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-3.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Keane Callan</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Defender</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard>
-
-        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-4.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Ciaran Whelan</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Goalkeeper</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard>
-
-        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-5.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Kevin Nolan</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Midfielder</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard> */}
+        )} />
       </ScrollView>
 
       <Modal
         visible={OverflowModalOpen}
         transparent={true}
         animationType='slide'>
-        <SafeAreaView style={half_modal_styles.halfModalContentSmall} >
+        <SafeAreaView style={half_modal_styles.halfModalContentExtraSmall} >
           <View style={half_modal_styles.halfModalView}>
-
             <HalfModalButton text='Player Information' primaryIconName='information-outline' />
-
-            <HalfModalButton text='Remove Player' primaryIconName='account-remove-outline' />
 
             <CancelButton text="Cancel" onPress={() => closeOverflowModal(false)} />
           </View>

@@ -15,6 +15,13 @@ export default StyleSheet.create({
     height: 200,
     marginTop: 'auto',
   },
+  halfModalContentExtraSmall: {
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    height: 150,
+    marginTop: 'auto',
+  },
   halfModalView: {
     paddingHorizontal: 20,
     paddingVertical: 20,
