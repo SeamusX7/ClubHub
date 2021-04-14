@@ -7,8 +7,6 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import TabViewOverview from './TabViewOverview';
 import TabViewAttendance from './TabViewAttendance';
 import TabViewInvitations from './TabViewInvitations';
-import InvitePlayerModal from './InvitePlayerModal';
-import FloatingModalButton from '../../components/buttons/FloatingModalButton';
 
 // Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
@@ -43,7 +41,6 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
     { key: 'second', title: 'Attendance' },
     { key: 'third', title: 'Invitations' },
   ]);
-  const openModalButton = <FloatingModalButton onPress={() => setModalOpen(true)}/>
   const userType = useSelector(getUserType);
 
   const renderScene = ({ route }) => {
@@ -82,27 +79,6 @@ export default function ViewUpcomingMatchSessionScreen({ navigation }) {
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={initialLayout} />
-
-      <Modal
-        visible={modalOpen}
-        animationType='slide'>
-        <SafeAreaView style={modal_styles.modalContent}>
-          <View style={modal_styles.modalContent}>
-            <View style={modal_styles.modalHeader}>
-              <Text style={modal_styles.modalTitle}>Invite player</Text>
-              <MaterialIcons
-                name='close'
-                color='#0c1821'
-                size={24}
-                style={modal_styles.modalToggleExit}
-                onPress={() => setModalOpen(false)} />
-            </View>
-            <InvitePlayerModal closeModal={closeModal} />
-          </View>
-        </SafeAreaView>
-      </Modal>
-
-      {[userType === "coach" ? openModalButton : null]}
     </View>
   )
 }

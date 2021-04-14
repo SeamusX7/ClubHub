@@ -3,7 +3,6 @@ import { StyleSheet, View, Modal, SafeAreaView, Text, Dimensions, ScrollView } f
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import modal_styles from '../../assets/styles/ModalStyle';
-import InvitePlayerModal from './InvitePlayerModal';
 import mini_card_styles from '../../assets/styles/MiniCardStyle';
 
 
@@ -85,30 +84,7 @@ export default function ViewPreviousGymSessionScreen({ navigation }) {
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
-        initialLayout={initialLayout}
-      />
-
-      <View style={styles.container2}>
-        <Modal
-          visible={modalOpen}
-          animationType='slide'>
-          <SafeAreaView style={modal_styles.modalContent}>
-            <View style={modal_styles.modalContent}>
-              <View style={modal_styles.modalHeader}>
-                <Text style={modal_styles.modalTitle}>Invite Player</Text>
-                <MaterialIcons
-                  name='close'
-                  color='#333'
-                  size={24}
-                  style={modal_styles.modalToggleExit}
-                  onPress={() => setModalOpen(false)} />
-              </View>
-              <InvitePlayerModal closeModal={closeModal} />
-            </View>
-          </SafeAreaView>
-        </Modal>
-
-      </View>
+        initialLayout={initialLayout} />
     </View>
   )
 }
