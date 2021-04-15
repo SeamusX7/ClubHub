@@ -1,80 +1,3 @@
-// import React from 'react';
-// import { StyleSheet, View, Button, TextInput, Text } from 'react-native';
-// import { MaterialIcons } from '@expo/vector-icons';
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-// import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-// // Local File Imports
-// import SearchButton from '../../components/buttons/SearchButton';
-// import Search from '../../components/Search';
-// import SelectMessage from '../../components/SelectMessage';
-// import global_styles from '../../assets/styles/GlobalStyle';
-// import message_styles from '../../assets/styles/MessageStyle';
-
-
-
-
-// export default function MessageScreen({ navigation }) {
-//   return (
-//     <KeyboardAwareScrollView style={styles.container}>
-//         <View style={styles.searchContainer}>
-//           <View style={global_styles.search_section}>
-//             <Search />
-//             <SearchButton>
-//               <MaterialCommunityIcons
-//                 name='pencil'
-//                 size={24}
-//                 color="#b7b7b7" />
-//             </SearchButton>
-//           </View>
-//         </View>
-
-//         <View style={message_styles.select_message}>
-//           <SelectMessage onPress={() => navigation.navigate('ViewMessage')}>
-//             <View style={message_styles.container}>
-//               <View style={message_styles.circle}>
-
-//               </View>
-//               <View style={message_styles.text_view} >
-//                 <Text style={message_styles.textOne} >Eamon Kavanagh</Text>
-//                 <Text style={message_styles.text_two} >You: Jack, can you come in for training...</Text>
-//               </View>
-//               <View style={message_styles.sent}>
-//                 <Text style={message_styles.time}>10:12</Text>
-//                 {/* <View style={message_styles.alert}></View> */}
-//               </View>
-//             </View>
-//           </SelectMessage>
-//         </View>
-
-//         <SelectMessage onPress={() => navigation.navigate('ViewMessage')}>
-//           <View style={message_styles.container}>
-//             <View style={message_styles.circle}>
-
-//             </View>
-//             <View style={message_styles.text_view} >
-//               <Text style={message_styles.textOne} >Brandon Kennedy</Text>
-//               <Text style={message_styles.text_two} >Cian: Lorem ipsum dolor...</Text>
-//             </View>
-//             <View style={message_styles.sent}>
-//               <Text style={message_styles.time}>17 Nov</Text>
-//             </View>
-//           </View>
-//         </SelectMessage>
-//     </KeyboardAwareScrollView>
-//   )
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     backgroundColor: '#f0f2f7',
-//     flex: 1,
-//   },
-//   searchContainer: {
-//     padding: 20,
-//   }
-// });
-
 import React, { useState, useEffect, useCallback } from 'react'
 import { GiftedChat, Bubble, Composer, Send, InputToolbar } from 'react-native-gifted-chat'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -90,11 +13,11 @@ import { firebase } from '../../firebase/config';
 const db = firebase.firestore()
 const chatsRef = db.collection('chats')
 
-export default function App({navigation}) {
+export default function App({ navigation }) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <View style={{marginLeft: 20}} >
+        <View style={{ marginLeft: 20 }} >
           <Ionicons onPress={() => navigation.navigate('Home')} name="ios-arrow-back" size={28} color={'#caccd0'} />
         </View>
       ),
@@ -188,7 +111,7 @@ export default function App({navigation}) {
   }
 
   if (!user) {
-    
+
     return (
       <View style={styles.container}>
         <TextInput style={styles.input} placeholder="Enter your name" value={name} onChangeText={setName} />
@@ -197,14 +120,28 @@ export default function App({navigation}) {
     )
   }
   return <GiftedChat
+    // Array
     messages={messages}
+
+    // Object
     user={user}
+    scrollToBottomStyle={styles.scrollToBottomContainer}
+
+    // Function
     onSend={handleSend}
-    alwaysShowSend={true}
-    renderUsernameOnMessage={false}
     renderBubble={props => customBubble(props)}
     renderSend={props => customSend(props)}
     renderInputToolbar={props => customtInputToolbar(props)}
+
+    // Boolean
+    alwaysShowSend={true}
+    alignTop={true}
+    scrollToBottom={true}
+    renderUsernameOnMessage={false}
+
+    // Integer
+    minInputToolbarHeight={54}
+    bottomOffset={32}
   />
 }
 
@@ -232,5 +169,19 @@ const styles = StyleSheet.create({
     color: '#b7b7b7',
     fontFamily: 'montserrat-medium',
     fontSize: 14
+  },
+  scrollToBottomContainer: {
+    height: 40,
+    width: 50,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    opacity: 1,
+    right: 0,
+    elevation: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
