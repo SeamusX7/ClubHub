@@ -78,7 +78,7 @@ export default function NewSessionModal({ closeModal }) {
 	const pickerStyle = {
 		inputIOS: {
 			backgroundColor: '#f0f2f7',
-			color: '#91999e',
+			color: '#0c1821',
 			borderRadius: 8,
 			fontFamily: 'montserrat-regular',
 			fontSize: 14,
@@ -87,7 +87,7 @@ export default function NewSessionModal({ closeModal }) {
 		},
 		inputAndroid: {
 			backgroundColor: '#f0f2f7',
-			color: '#91999e',
+			color: '#0c1821',
 			borderRadius: 8,
 			fontFamily: 'montserrat-regular',
 			fontSize: 14,
@@ -153,7 +153,7 @@ export default function NewSessionModal({ closeModal }) {
 				{(props) => (
 					<View>
 
-						<Text style={modal_styles.labelText}>Session type</Text>
+						<Text style={modal_styles.labelText}>Type</Text>
 						<RNPickerSelect
 							placeholder={{
 								label: 'Select session type',
@@ -164,93 +164,84 @@ export default function NewSessionModal({ closeModal }) {
 								{ label: 'Training', value: 'training' },
 								{ label: 'Match', value: 'match' },
 								{ label: 'Gym', value: 'gym' },
-							]}
-						/>
+							]} />
 
-						{/* <Text style={modal_styles.labelText}>Session location</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter location...'
-							onChangeText={props.handleChange('location')}
-							value={props.values.session} /> */}
+						{[sessionType === "match" ?
+						 <Text style={modal_styles.labelText}>Location</Text>
+						 	: null]}
+						{[sessionType === "match" ?
+						 <View style={styles.container}>
+								<Autocomplete
+									value={props.values.session}
+									autoCapitalize="none"
+									autoCorrect={false}
+									inputContainerStyle={styles.inputAutocompleteContainer}
+									listStyle={styles.listStyle}
+									data={filteredLocations}
+									renderTextInput={() => (
 
-						<Text style={modal_styles.labelText}>Session location</Text>
-						<View style={styles.container}>
-							<Autocomplete
-								value={props.values.session}
-								autoCapitalize="none"
-								autoCorrect={false}
-								inputContainerStyle={styles.inputAutocompleteContainer}
-								listStyle={styles.listStyle}
-								data={filteredLocations}
-								renderTextInput={() => (
+										<TextInput
+											defaultValue={
+												JSON.stringify(selectedValue) === '{}' ?
+													'' :
+													selectedValue.title
+											}
+											value={location}
+											onChangeText={(text) => findLocation(text)}
+											placeholder={'Enter location...'}
+											style={{
+												backgroundColor: '#f0f2f7',
+												borderRadius: 8,
+												fontFamily: 'montserrat-regular',
+												paddingHorizontal: 16,
+												paddingVertical: 15,
+											}}
+										/>
+									)}
 
-									<TextInput
-										defaultValue={
-											JSON.stringify(selectedValue) === '{}' ?
-												'' :
-												selectedValue.title
-										}
-										value={location}
-										onChangeText={(text) => findLocation(text)}
-										placeholder={'Enter location...'}
-										style={{
-											backgroundColor: '#f0f2f7',
-											borderRadius: 8,
-											fontFamily: 'montserrat-regular',
-											paddingHorizontal: 16,
-											paddingVertical: 15,
-										}}
-									/>
-								)}
+									renderItem={({ item }) => (
+										<View>
+											<TouchableOpacity
+												onPress={() => {
+													setSelectedValue(item);
+													setLocation(item.title);
+													setFilteredLocations([]);
+												}}>
+												<Text style={styles.itemText}>{item.title}</Text>
+											</TouchableOpacity>
+										</View>
+									)
+									}
+								/>
+							</View>
+						 	: null]}
 
-								renderItem={({ item }) => (
-									<View>
-										<TouchableOpacity
-											onPress={() => {
-												setSelectedValue(item);
-												setLocation(item.title);
-												setFilteredLocations([]);
-											}}>
-											<Text style={styles.itemText}>{item.title}</Text>
-										</TouchableOpacity>
-									</View>
-								)
-								}
-							/>
-						</View>
+						{[sessionType === "match" ?
+						 <Text style={modal_styles.labelText}>Opposition</Text>
+						 : null]}
+						{[sessionType === "match" ?
+						 <TextInput
+							 style={modal_styles.modalInput}
+							 placeholder='Enter opposition...'
+							 onChangeText={props.handleChange('opposition')}
+							 value={props.values.opposition} />
+						 	: null]}
 
-						<Text style={modal_styles.labelText}>Opposition</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter opposition...'
-							onChangeText={props.handleChange('opposition')}
-							value={props.values.opposition} />
-
-						{/* <Text style={modal_styles.labelText}>Title</Text>
-						<TextInput
-							style={modal_styles.modalInput}
-							placeholder='Enter title...'
-							onChangeText={props.handleChange('title')}
-							value={props.values.title} /> */}
-
-						<Text style={modal_styles.labelText}>Select Date</Text>
+						<Text style={modal_styles.labelText}>Date</Text>
 						<DateTimeButton title="Select date" onPress={showDatePicker} />
 						<DateTimePickerModal
 							isVisible={isDatePickerVisible}
 							mode="date"
 							onConfirm={handleDateConfirm}
-							onCancel={hideDatePicker}
-						/>
+							onCancel={hideDatePicker} />
 
-						<Text style={modal_styles.labelText}>Select Time</Text>
+						<Text style={modal_styles.labelText}>Time</Text>
 						<DateTimeButton title="Select time" onPress={showTimePicker} />
 						<DateTimePickerModal
 							isVisible={isTimePickerVisible}
 							mode="time"
 							onConfirm={handleTimeConfirm}
-							onCancel={hideTimePicker}
-						/>
+							onCancel={hideTimePicker} />
 
 						<View style={styles.createStyle}>
 							<CustomButton
