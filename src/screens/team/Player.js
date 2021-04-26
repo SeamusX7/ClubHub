@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { firebase } from '../../firebase/config';
 
 // Component Imports
 import SquareCard from '../../components/cards/SquareCard';
@@ -16,7 +17,65 @@ import square_card_styles from '../../assets/styles/SquareCardStyle';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import large_card_styles from '../../assets/styles/LargeCardStyle';
 
+//redux
+import { useDispatch , useSelector } from 'react-redux';
+import { getactivePlayerID, getactivePlayer } from '../../store/activePlayer';
+
 export default function PlayerScreen({navigation}) {
+  var playerId = useSelector(getactivePlayerID);
+  var player = useSelector(getactivePlayer);
+  console.log("REDUX player  => ", player);
+
+  //const [player, setPlayer] = useState([]); 
+
+  
+
+  // const db = firebase.firestore();
+
+  // useEffect(() => {
+  //   const subscriber = db
+  //     .collection('users')
+  //     .where('id', '==', playerId)
+  //     .onSnapshot(querySnapshot => {
+  //       const userData = [];
+
+  //       querySnapshot.forEach(documentSnapshot => {
+  //         userData.push({
+  //           ...documentSnapshot.data(),
+  //           key: documentSnapshot.id,
+  //         });
+  //       });
+
+  //       //setPlayer(userData);
+  //       setPlayer(() => {
+  //         return { userData }
+  //       });
+
+  //       console.log("userData item => ",userData)
+
+  //     });
+
+  //   // Unsubscribe from events when no longer in use
+  //   return () => subscriber();
+  // }, []);
+
+      // useEffect(() => {
+
+      //   db.collection('users')
+      //     .where('id', '==', playerId)
+      //     .get()
+      //     .then(snapshot => {
+      //       snapshot.forEach(doc => {
+      //         player.push({
+      //           ...doc.data(),
+      //           key: doc.id,
+      //         });
+      //       });
+      //       setTeams(player);
+      //     })
+    
+      // }, [player]);
+
   return (
     React.useLayoutEffect(() => {
       navigation.setOptions({
@@ -36,7 +95,7 @@ export default function PlayerScreen({navigation}) {
           source={require('../../assets/images/player-1.png')}
         />
         <View style={profile_styles.profile_content}>
-          <Text style={profile_styles.profile_primary_text}>Jack Lynch</Text>
+          <Text style={profile_styles.profile_primary_text}>{player.Name}</Text>
           <Text style={profile_styles.profile_secondary_text}>Edit your profile</Text>
         </View>
       </View>

@@ -14,7 +14,7 @@ import DateTimeButton from '../../components/buttons/DateTimeButton';
 
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getActiveTeamKey } from '../../store/activeTeam';
+import { getActiveTeamKey, getActiveTeamPlayersArray, getActiveTeamPlayersIDArray } from '../../store/activeTeam';
 
 // Style Imports
 import modal_styles from '../../assets/styles/ModalStyle';
@@ -25,16 +25,20 @@ import { StyleSheet } from 'react-native';
 export default function NewSessionModal({ closeModal }) {
 	var today = new Date();
 	dateTime1 = moment(today).format("YYYY-MM-DD");
-	const [datePicked, setDate] = useState(dateTime1);
-	const [timePicked, setTime] = useState(dateTime1);
+	const [datePicked, setDate] = useState();
+	const [timePicked, setTime] = useState();
+	const [timeDiplayPicked, setDisplayTime] = useState();
 	const [timeStamp, settimeStamp] = useState(dateTime1);
 
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 	const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 	const [sessionType, setSessionType] = useState();
+	const [locationType, setLocationType] = useState();
 	const [location, setLocation] = useState();
 
 	const teamID = useSelector(getActiveTeamKey);
+	const playersArray = useSelector(getActiveTeamPlayersArray);
+	const playersIDArray = useSelector(getActiveTeamPlayersIDArray);
 
 	const showDatePicker = () => {
 		setDatePickerVisibility(true);
@@ -60,20 +64,35 @@ export default function NewSessionModal({ closeModal }) {
 	};
 
 	const handleTimeConfirm = (time) => {
-		var timeFormat = moment(time).format("h:mm:ss")
-		console.log("A time has been picked: ", timeFormat);
-		setTime(time);
-		hideTimePicker();
-		var newDateAndTime = moment(`${datePicked} ${timePicked}`, 'YYYY-MM-DD HH:mm:ss').format();
+		 var timeFormat = moment(time).format("h:mm:ss")
+		// console.log("A time has been picked: ", timeFormat);
+		setDisplayTime(timeFormat);
+		 setTime(time);
+		 var newDateAndTime = moment(`${datePicked} ${timePicked}`, 'YYYY-MM-DD HH:mm:ss').format();
 		console.log("new date and time : => ", newDateAndTime);
-		var newDateAndTime2 = moment(datePicked, timePicked, 'YYYY-MM-DD HH:mm:ss').format();
-		console.log("new date and time 2: => ", newDateAndTime2);
+		// var newDateAndTime2 = moment(datePicked, timePicked, 'YYYY-MM-DD HH:mm:ss').format();
+		// console.log("new date and time 2: => ", newDateAndTime2);
 
 		var myTimestamp = firebase.firestore.Timestamp.fromDate(new Date(newDateAndTime));
 		settimeStamp(myTimestamp);
 
 		console.log("timeStamp : => ", myTimestamp);
+		console.log("time => ", timeFormat);
+		hideTimePicker();
+		
 	};
+
+	const joinTimestamp = () => {
+		var newDateAndTime = moment(`${datePicked} ${timePicked}`, 'YYYY-MM-DD HH:mm:ss').format();
+		console.log("new date and time : => ", newDateAndTime);
+		// var newDateAndTime2 = moment(datePicked, timePicked, 'YYYY-MM-DD HH:mm:ss').format();
+		// console.log("new date and time 2: => ", newDateAndTime2);
+
+		var myTimestamp = firebase.firestore.Timestamp.fromDate(new Date(newDateAndTime));
+		settimeStamp(myTimestamp);
+
+		console.log("timeStamp : => ", myTimestamp);
+	}
 
 	const pickerStyle = {
 		inputIOS: {
@@ -130,6 +149,9 @@ export default function NewSessionModal({ closeModal }) {
 				initialValues={{ location: '', opposition: '', title: '' }}
 				onSubmit={(values) => {
 					closeModal();
+					const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+
+					//joinTimestamp();
 
 					//date = datePicked;
 					// let time = values.time;
@@ -141,11 +163,20 @@ export default function NewSessionModal({ closeModal }) {
 					const db = firebase.firestore()
 					db.collection('sessions').add({
 						sessionType: sessionType,
-						location: location,
+						//location: location,
+						location: locationType,
 						opposition: values.opposition,
 						timeStamp: timeStamp,
 						teamId: teamID,
-						// title: title
+						Pending: playersArray,
+						Accepted: [],
+						Declined: [],
+						Score: " ",
+						Feedback: " ",
+						NotPendingPlayersIDArray: [],
+						PendingPlayersIDArray: playersIDArray,
+						created:timestamp,
+						title: values.title
 					})
 
 				}}>
@@ -174,10 +205,24 @@ export default function NewSessionModal({ closeModal }) {
 							onChangeText={props.handleChange('location')}
 							value={props.values.session} /> */}
 
+							
+
 						<Text style={modal_styles.labelText}>Session location</Text>
-						<View style={styles.container}>
+						<RNPickerSelect
+							placeholder={{
+								label: 'Select location',
+							}}
+							style={pickerStyle}
+							onValueChange={(value) => setLocationType(value)}
+							items={[
+								{ label: 'Home', value: 'Home' },
+								{ label: 'Away', value: 'Away' },
+								
+							]}
+						/>
+						{/* <View style={styles.container}>
 							<Autocomplete
-								value={props.values.session}
+								//value={props.values.session}
 								autoCapitalize="none"
 								autoCorrect={false}
 								inputContainerStyle={styles.inputAutocompleteContainer}
@@ -191,7 +236,7 @@ export default function NewSessionModal({ closeModal }) {
 												'' :
 												selectedValue.title
 										}
-										value={location}
+										//value={location}
 										onChangeText={(text) => findLocation(text)}
 										placeholder={'Enter location...'}
 										style={{
@@ -218,7 +263,7 @@ export default function NewSessionModal({ closeModal }) {
 								)
 								}
 							/>
-						</View>
+						</View> */}
 
 						<Text style={modal_styles.labelText}>Opposition</Text>
 						<TextInput
@@ -227,15 +272,15 @@ export default function NewSessionModal({ closeModal }) {
 							onChangeText={props.handleChange('opposition')}
 							value={props.values.opposition} />
 
-						{/* <Text style={modal_styles.labelText}>Title</Text>
+						<Text style={modal_styles.labelText}>Title</Text>
 						<TextInput
 							style={modal_styles.modalInput}
 							placeholder='Enter title...'
 							onChangeText={props.handleChange('title')}
-							value={props.values.title} /> */}
+							value={props.values.title} />
 
 						<Text style={modal_styles.labelText}>Select Date</Text>
-						<DateTimeButton title="Select date" onPress={showDatePicker} />
+						<DateTimeButton title={datePicked} onPress={showDatePicker} />
 						<DateTimePickerModal
 							isVisible={isDatePickerVisible}
 							mode="date"
@@ -244,7 +289,7 @@ export default function NewSessionModal({ closeModal }) {
 						/>
 
 						<Text style={modal_styles.labelText}>Select Time</Text>
-						<DateTimeButton title="Select time" onPress={showTimePicker} />
+						<DateTimeButton title={timeDiplayPicked} onPress={showTimePicker} />
 						<DateTimePickerModal
 							isVisible={isTimePickerVisible}
 							mode="time"

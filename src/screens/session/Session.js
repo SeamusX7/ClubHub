@@ -44,7 +44,7 @@ export default function SessionScreen({ navigation }) {
   const activeModal = (fact, key) => {
     setSessionIdKey(key.item.key);
     closeModal(fact);
-  }
+  } 
 
   const closeModal = (fact) => {
     setModalOpen(false);
@@ -55,35 +55,74 @@ export default function SessionScreen({ navigation }) {
 
   //dispatch(activeSessionRemove());
   const db = firebase.firestore();
-  const [sessions, setSessions] = useState([]); // Initial empty array of sessions
+  // const [sessions, setSessions] = useState([]); 
+  const [sessionsList, setSessionsList] = useState([]); // Initial empty array of sessions
   const [activeSession, setActiveSession] = useState([]);
 
+  // const getSessions = async() => {
+  //   try{
 
+  //     const list = [];
+  //     var snapshot = await firebase.firestore().collection("sessions").where('teamId', '==', teamID).get();
+  //     console.log("Here in try");
+  //     snapshot.forEach((doc) => {
+  //       list.push(doc.data());
+  //     });
+  //     setSessionsList(...list);
+  //     console.log("sessions list => ", sessionsList);
+
+
+  //   }
+  //   catch (e) {
+  //     console.log('no sessions here!');
+  //   }
+  // }
 
   useEffect(() => {
-
-    // dispatch(activeSessionRemove());
-
-    db.collection('sessions')
+    var today = new Date();
+    const subscriber = db
+      .collection('sessions')
       .where('teamId', '==', teamID)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-
+      .where('timeStamp', '>', today)
+      .onSnapshot(querySnapshot => {
+        const sessions = [];
+        querySnapshot.forEach(documentSnapshot => {
           sessions.push({
-            ...doc.data(),
-            key: doc.id,
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
           });
-
         });
-
-        setSessions(sessions);
-        dispatch(sessionsAdded({ sessions }));
-
+        setSessionsList(sessions);
       });
+          // Unsubscribe from events when no longer in use
+    return () => subscriber();
+  }, []);
 
 
-  }, [sessions]);
+  // useEffect(() => {
+
+  //   // dispatch(activeSessionRemove());
+
+  //   db.collection('sessions')
+  //     .where('teamId', '==', teamID)
+  //     .get()
+  //     .then(snapshot => {
+  //       snapshot.forEach(doc => {
+
+  //         sessions.push({
+  //           ...doc.data(),
+  //           key: doc.id,
+  //         });
+
+  //       });
+
+  //       setSessions(sessions);
+  //       dispatch(sessionsAdded({ sessions }));
+
+  //     });
+
+
+  // }, [sessions]);
 
   sessionSelected = item => {
     setActiveSession(item);
@@ -103,9 +142,38 @@ export default function SessionScreen({ navigation }) {
   }
 
   const [OverflowModalOpen, setOverflowModalOpen] = useState(false);
+  const [Item, setItem] = useState();
 
   const closeOverflowModal = () => {
     setOverflowModalOpen(false);
+  }
+
+  overFlowMenu = (item) =>{
+    setOverflowModalOpen(true);
+
+    setItem(() => {
+      return { item }
+    });
+
+  }
+
+  deleteItem = () =>{
+    setOverflowModalOpen(false);
+    console.log("item over => ",Item);
+
+    
+
+    db.collection("sessions").doc(Item.item.key).delete()
+  }
+
+  const getTimeFromTimeStamp = item => {
+    const time = new Date(item.timeStamp.toDate()).toLocaleTimeString('en-GB')
+    return time;
+  }
+
+  const getDateFromTimeStamp = item => {
+    const time = new Date(item.timeStamp.toDate()).toLocaleDateString('en-GB')
+    return time;
   }
 
   return (
@@ -149,7 +217,7 @@ export default function SessionScreen({ navigation }) {
 
             <HalfModalButton text='Session Information' primaryIconName='information-outline' />
 
-            <HalfModalButton text='Delete Session' primaryIconName='trash-can-outline' />
+            <HalfModalButton text='Delete Session' onPress={() => this.deleteItem()} primaryIconName='trash-can-outline' />
 
             <CancelButton text="Cancel" onPress={() => closeOverflowModal(false)} />
           </View>
@@ -187,7 +255,7 @@ export default function SessionScreen({ navigation }) {
       <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 30 }}>Upcoming sessions</Text>
 
        <FlatList
-        data={sessions}
+        data={sessionsList}
         renderItem={({ item }) => (
           <MediumCard onPress={() => this.sessionSelected({ item })}>
             <View style={medium_card_styles.medium_card_icon_container}>
@@ -197,10 +265,10 @@ export default function SessionScreen({ navigation }) {
             </View>
             <View style={medium_card_styles.medium_card_info_container}>
               {item.sessionType == "match" ? <Text style={medium_card_styles.medium_card_primary_text}>vs. {item.opposition}</Text> : <Text style={medium_card_styles.medium_card_primary_text}>{item.title}</Text>}
-              <Text style={medium_card_styles.medium_card_secondary_text}>{item.timeStamp.toDate().toDateString()} | {item.timeStamp.toDate().toLocaleTimeString('en-US')}</Text>
+              <Text style={medium_card_styles.medium_card_secondary_text}>{getTimeFromTimeStamp(item)} | {getDateFromTimeStamp(item)}</Text>
             </View>
             <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
+            <OverflowMenuButton onPress={() => this.overFlowMenu(item)} />
             </View>
           </MediumCard>
         )}

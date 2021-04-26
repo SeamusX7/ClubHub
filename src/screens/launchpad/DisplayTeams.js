@@ -40,27 +40,44 @@ export default function DisplayTeams(prop) {
   const teamsArray = useSelector(getTeams);
 
   useEffect(() => {
-
-    db.collection('team')
+    const subscriber = db
+      .collection('team')
       .where('managerId', '==', userID)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          teams.push({
-            ...doc.data(),
-            key: doc.id,
+      .onSnapshot(querySnapshot => {
+        const teamsArray = [];
+        querySnapshot.forEach(documentSnapshot => {
+          teamsArray.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
           });
         });
-        setTeams(teams);
-        dispatch(teamsAdded(teams));
-        console.log("user is a coach")
-      })
+        setTeams(teamsArray);
+      });
+          // Unsubscribe from events when no longer in use
+    return () => subscriber();
+  }, []);
 
-  }, [teams]);
+  // useEffect(() => {
+
+  //   db.collection('team')
+  //     .where('managerId', '==', userID)
+  //     .get()
+  //     .then(snapshot => {
+  //       snapshot.forEach(doc => {
+  //         teams.push({
+  //           ...doc.data(),
+  //           key: doc.id,
+  //         });
+  //       });
+  //       setTeams(teams);
+  //       dispatch(teamsAdded(teams));
+  //       console.log("user is a coach")
+  //     })
+
+  // }, [teams]);
 
 
   teamSelected = item => {
-    setActiveTeam(item);
     dispatch(activeTeamRemove());
     dispatch(activeTeamAdded(item));
     prop.props.navigation.navigate('TabNavigator')

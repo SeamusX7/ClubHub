@@ -52,26 +52,47 @@ export default function PreviousMatchSessionsScreen({ navigation }) {
   console.log('sessionsArray ===> : ', sessionsArray);
 
   useEffect(() => {
-
-    db.collection('sessions')
+    var today = new Date();
+    const subscriber = db
+      .collection('sessions')
       .where('teamId', '==', teamID)
       .where('sessionType', '==', "training")
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
+      .where('timeStamp', '<', today)
+      .onSnapshot(querySnapshot => {
+        const sessions = [];
+        querySnapshot.forEach(documentSnapshot => {
           sessions.push({
-            ...doc.data(),
-            key: doc.id,
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
           });
         });
-
         setSessions(sessions);
-        dispatch(sessionsAdded(sessions));
-
       });
+          // Unsubscribe from events when no longer in use
+    return () => subscriber();
+  }, []);
+
+  // useEffect(() => {
+
+  //   db.collection('sessions')
+  //     .where('teamId', '==', teamID)
+  //     .where('sessionType', '==', "training")
+  //     .get()
+  //     .then(snapshot => {
+  //       snapshot.forEach(doc => {
+  //         sessions.push({
+  //           ...doc.data(),
+  //           key: doc.id,
+  //         });
+  //       });
+
+  //       setSessions(sessions);
+  //       dispatch(sessionsAdded(sessions));
+
+  //     });
 
 
-  }, [sessions]);
+  // }, [sessions]);
 
   sessionSelected = item => {
     setActiveSession(item);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View, Modal, SafeAreaView, FlatList } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -16,10 +16,14 @@ import global_styles from '../../assets/styles/GlobalStyle';
 import square_card_styles from '../../assets/styles/SquareCardStyle';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import half_modal_styles from '../../assets/styles/HalfModalStyle';
+import news_feed_styles from '../../assets/styles/NewsFeedStyle';
 
 //redux
 import { useDispatch , useSelector } from 'react-redux';
 import { getActiveTeamWin, getActiveTeamLoss, getActiveTeamDraw, getActiveTeamPlayersArray} from '../../store/activeTeam';
+import { activePlayerAdded, activePlayerRemove } from '../../store/activePlayer';
+
+
 
 
 export default function TeamScreen({ navigation }) {
@@ -35,6 +39,15 @@ export default function TeamScreen({ navigation }) {
     setOverflowModalOpen(false);
   }
 
+  const dispatch = useDispatch();
+  
+  playerSelected = item => {
+
+    console.log("player => ",item);
+    dispatch(activePlayerRemove());
+    dispatch(activePlayerAdded(item));
+    navigation.navigate('Player');
+  }
   return (
     React.useLayoutEffect(() => {
       navigation.setOptions({
@@ -85,12 +98,12 @@ export default function TeamScreen({ navigation }) {
         <FlatList
         data={players}
         renderItem={({ item }) => (
-          <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
+          <MediumPlayerCard onPress={() => this.playerSelected({ item })}>
           <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
+          <Image
               style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-2.png')}
-            />
+              source={require('../../assets/images/player-6.png')}
+              />
           </View>
           <View style={medium_card_styles.medium_card_info_container}>
             <Text style={medium_card_styles.medium_card_primary_text}>{item.Name}</Text>

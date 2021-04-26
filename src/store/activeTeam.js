@@ -45,6 +45,10 @@ export const getActiveTeamPlayersArray = createSelector(
     state => state.entities.activeTeam,
     (activeTeam) => activeTeam[index-1].item.players
 )
+export const getActiveTeamPlayersIDArray = createSelector(
+    state => state.entities.activeTeam,
+    (activeTeam) => activeTeam[index-1].item.playersID
+)
 
 
 
