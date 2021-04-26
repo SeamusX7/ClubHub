@@ -19,7 +19,7 @@ import { LoginScreen, RegistrationScreen } from './src/screens';
 // Redux Imports
 import configureStore from './src/store/configureStore'
 import { Provider } from 'react-redux';
-import {userAdded} from './src/store/user'
+import {userAdded, userRemove} from './src/store/user'
 
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -54,6 +54,7 @@ export default function App() {
           .then((document) => {
             const userData = document.data()
             setUser(userData)
+            store.dispatch(userRemove());
             store.dispatch(userAdded({userData}));
           })
           .catch((error) => {

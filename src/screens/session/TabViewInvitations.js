@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, FlatList, Modal, SafeAreaView } from 'react-native';
 import Collapsible from 'react-native-collapsible';
+import { MaterialCommunityIcons, Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 // Component Imports
 import SmallCard from '../../components/cards/SmallCard';
@@ -8,6 +9,8 @@ import small_card_styles from '../../assets/styles/SmallCardStyle';
 
 // Style Imports
 import global_styles from '../../assets/styles/GlobalStyle';
+import modal_styles from '../../assets/styles/ModalStyle';
+
 
 // Redux Imports
 import { getUserId } from '../../store/user';
@@ -27,6 +30,8 @@ export default function ThirdRoute() {
   const [acceptedCollapsed, setAcceptedCollapsed] = useState(false);
   const [declinedCollapsed, setDeclinedCollapsed] = useState(false);
   const [pendingCollapsed, setPendingCollapsed] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [DeclinedItem, setDeclinedItem] = useState();
 
   const toggleAcceptedExpanded = () => {
     setAcceptedCollapsed(!acceptedCollapsed);
@@ -38,8 +43,39 @@ export default function ThirdRoute() {
     setPendingCollapsed(!pendingCollapsed);
   }
 
+  // declineReason = item => {
+  //   console.log("item => ", item);
+  //   setModalOpen(true);
+  //   setDeclinedItem(() => {
+  //     return { item }
+  //   });
+  // }
+
   return (
     <ScrollView style={global_styles.screen_container}>
+
+      {/* <Modal
+        visible={modalOpen}
+        animationType='slide'>
+        <SafeAreaView style={modal_styles.modalContent}>
+          <View style={modal_styles.modalContent}>
+            <View style={modal_styles.modalHeader}>
+              <Text style={modal_styles.modalTitle}>Reason for declining</Text>
+              <MaterialIcons
+                name='close'
+                color='#333'
+                size={24}
+                style={modal_styles.modalToggleExit}
+                onPress={() => setModalOpen(false)} />
+            </View>
+
+            <Text>Hello</Text>
+
+            <View style={styles.createStyle}>
+            </View>
+          </View>
+        </SafeAreaView>
+      </Modal> */}
 
       <TouchableOpacity onPress={toggleAcceptedExpanded}>
         <Text style={{ ...global_styles.title, marginBottom: 10 }}>Accepted</Text>
@@ -52,7 +88,7 @@ export default function ThirdRoute() {
             <SmallCard>
               <View style={small_card_styles.small_card_status_accepted}></View>
               <Text style={small_card_styles.small_card_text}>{item.Name}</Text>
-              </SmallCard>
+            </SmallCard>
           )}
         />
       </Collapsible>
@@ -61,13 +97,14 @@ export default function ThirdRoute() {
         <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 20 }}>Declined</Text>
       </TouchableOpacity>
       <Collapsible collapsed={declinedCollapsed} align="center">
-      <FlatList
+        <FlatList
           data={declined}
           renderItem={({ item }) => (
-            <SmallCard>
+            <SmallCard >
               <View style={small_card_styles.small_card_status_declined}></View>
               <Text style={small_card_styles.small_card_text}>{item.Name}</Text>
-              </SmallCard>
+              <Text style={small_card_styles.small_card_text}>Reason : {item.Reason}</Text>
+            </SmallCard>
           )}
         />
       </Collapsible>
@@ -77,13 +114,13 @@ export default function ThirdRoute() {
       </TouchableOpacity>
       <Collapsible collapsed={pendingCollapsed} align="center">
 
-      <FlatList
+        <FlatList
           data={pending}
           renderItem={({ item }) => (
             <SmallCard>
               <View style={small_card_styles.small_card_status_pending}></View>
               <Text style={small_card_styles.small_card_text}>{item.Name}</Text>
-              </SmallCard>
+            </SmallCard>
           )}
         />
       </Collapsible>
@@ -140,3 +177,33 @@ export default function ThirdRoute() {
     </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  createStyle: {
+    marginTop: 30
+  },
+  inputAutocompleteContainer: {
+    borderWidth: 0,
+  },
+  itemText: {
+    fontFamily: 'montserrat-regular',
+    fontSize: 14,
+    marginBottom: 3,
+    marginLeft: 10,
+    marginTop: 3,
+  },
+  listStyle: {
+    backgroundColor: '#f0f2f7',
+    borderRadius: 8,
+    borderWidth: 0,
+    marginTop: 10,
+    width: '34%',
+  },
+  container: {
+    shadowColor: "#000",
+    shadowOffset: { height: 0, width: 0 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    zIndex: 1,
+  }
+})

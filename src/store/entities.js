@@ -4,6 +4,7 @@ import teamsReducer from './teams';
 import sessionsReducer from './sessions';
 import activeTeamReducer from './activeTeam';
 import activeSessionReducer from './activeSession';
+import activePlayerReducer from './activePlayer';
 // import projectsReducer from './projects';
 // import usersReducer from './users';
 
@@ -12,7 +13,8 @@ user : userReducer,
 teams : teamsReducer,
 sessions : sessionsReducer,
 activeTeam : activeTeamReducer,
-activeSession : activeSessionReducer
+activeSession : activeSessionReducer,
+activePlayer : activePlayerReducer,
 // projects : projectsReducer,
 // users : usersReducer
 })

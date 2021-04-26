@@ -58,6 +58,21 @@ export const getactiveSessionAccepted = createSelector(
     (activeSession) => activeSession[index-1].item.Accepted
 )
 
+export const getactiveSessionType = createSelector(
+    state => state.entities.activeSession,
+    (activeSession) => activeSession[index-1].item.sessionType
+)
+
+export const getactiveSessionScore = createSelector(
+    state => state.entities.activeSession,
+    (activeSession) => activeSession[index-1].item.Score
+)
+
+export const getactiveSessionFeedback = createSelector(
+    state => state.entities.activeSession,
+    (activeSession) => activeSession[index-1].item.Feedback
+)
+
 
 export const {
     activeSessionAdded,

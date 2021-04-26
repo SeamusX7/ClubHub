@@ -14,12 +14,12 @@ import large_card_styles from '../../assets/styles/LargeCardStyle';
 import modal_styles from '../../assets/styles/ModalStyle';
 
 // Redux Imports
-import { getUserId } from '../../store/user';
+import { getUserId, getUserType } from '../../store/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { teamsAdded, getTeams } from '../../store/teams';
 import { activeTeamAdded, getActiveTeamKey, getActiveTeamName } from '../../store/activeTeam';
 import { sessionsAdded, getSessions } from '../../store/sessions';
-import { getactiveSessionDate, getactiveSessionTime, getactiveSessionOpposition, getactiveSessionLocation, activeSessionRemove } from '../../store/activeSession';
+import { getactiveSessionDate, getactiveSessionTime, getactiveSessionOpposition, getactiveSessionLocation, activeSessionRemove, getactiveSessionScore, getactiveSessionFeedback } from '../../store/activeSession';
 
 export default function FirstRoute() {
   const teamName = useSelector(getActiveTeamName);
@@ -27,7 +27,11 @@ export default function FirstRoute() {
   const date = useSelector(getactiveSessionDate);
   const time = useSelector(getactiveSessionTime);
   const location = useSelector(getactiveSessionLocation);
+  const UType = useSelector(getUserType);
   const dispatch = useDispatch();
+
+  const score = useSelector(getactiveSessionScore);
+  const feedback = useSelector(getactiveSessionFeedback);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -79,14 +83,26 @@ export default function FirstRoute() {
         </View>
       </LargeCard>
 
+      {UType == 'coach' ? <View style={styles.smallCardContainer}>
+        <SmallCard>
+          <Text style={styles.matchReportText}>Match Report</Text>
+          <View style={styles.populateButton}>
+            <PopulateButton text="Edit" onPress={() => setModalOpen(true)} />
+          </View>
+        </SmallCard>
+      </View>
+      :
       <View style={styles.smallCardContainer}>
         <SmallCard>
           <Text style={styles.matchReportText}>Match Report</Text>
           <View style={styles.populateButton}>
-            <PopulateButton text="Populate" onPress={() => setModalOpen(true)} />
+            
           </View>
         </SmallCard>
       </View>
+      }
+
+      
 
       <Text style={{ ...global_styles.title, marginTop: 10 }}>Match report</Text>
       <View style={styles.largeCardContainer}>
@@ -94,11 +110,11 @@ export default function FirstRoute() {
           <View style={large_card_styles.large_card_container}>
             <View style={large_card_styles.large_card_content}>
               <Text style={large_card_styles.large_card_primary_text}>Score:</Text>
-              <Text style={large_card_styles.large_card_secondary_text}>3-16 to 2-09</Text>
+              <Text style={large_card_styles.large_card_secondary_text}>{score}</Text>
             </View>
             <View style={large_card_styles.large_card_content}>
               <Text style={large_card_styles.large_card_primary_text}>Feedback:</Text>
-              <Text style={large_card_styles.large_card_secondary_text}></Text>
+              <Text style={large_card_styles.large_card_secondary_text}>{feedback}</Text>
             </View>
           </View>
         </LargeCard>
