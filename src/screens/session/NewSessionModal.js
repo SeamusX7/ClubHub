@@ -97,7 +97,7 @@ export default function NewSessionModal({ closeModal }) {
 	const pickerStyle = {
 		inputIOS: {
 			backgroundColor: '#f0f2f7',
-			color: '#91999e',
+			color: '#0c1821',
 			borderRadius: 8,
 			fontFamily: 'montserrat-regular',
 			fontSize: 14,
@@ -106,7 +106,7 @@ export default function NewSessionModal({ closeModal }) {
 		},
 		inputAndroid: {
 			backgroundColor: '#f0f2f7',
-			color: '#91999e',
+			color: '#0c1821',
 			borderRadius: 8,
 			fontFamily: 'montserrat-regular',
 			fontSize: 14,
@@ -184,7 +184,7 @@ export default function NewSessionModal({ closeModal }) {
 				{(props) => (
 					<View>
 
-						<Text style={modal_styles.labelText}>Session type</Text>
+						<Text style={modal_styles.labelText}>Type</Text>
 						<RNPickerSelect
 							placeholder={{
 								label: 'Select session type',
@@ -285,8 +285,7 @@ export default function NewSessionModal({ closeModal }) {
 							isVisible={isDatePickerVisible}
 							mode="date"
 							onConfirm={handleDateConfirm}
-							onCancel={hideDatePicker}
-						/>
+							onCancel={hideDatePicker} />
 
 						<Text style={modal_styles.labelText}>Select Time</Text>
 						<DateTimeButton title={timeDiplayPicked} onPress={showTimePicker} />
@@ -294,8 +293,7 @@ export default function NewSessionModal({ closeModal }) {
 							isVisible={isTimePickerVisible}
 							mode="time"
 							onConfirm={handleTimeConfirm}
-							onCancel={hideTimePicker}
-						/>
+							onCancel={hideTimePicker} />
 
 						<View style={styles.createStyle}>
 							<CustomButton

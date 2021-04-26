@@ -19,8 +19,7 @@ export default function RegistrationScreen({ navigation }) {
 	const [isSwitchOn, setIsSwitchOn] = useState(false);
 	const onSwitchChange = () => {
 		setIsSwitchOn(!isSwitchOn);
-		if(isSwitchOn)
-		{
+		if (isSwitchOn) {
 			setUserType("player");
 		}
 	}
@@ -30,8 +29,59 @@ export default function RegistrationScreen({ navigation }) {
 	}
 
 	const onRegisterPress = () => {
+
+	    var i = 0;
+		var capitalCount = 0;
+		var lowerCount = 0;
+		var numberCount = 0;
+		var specialCount = 0;
+		// var character = '';
+
+		for(i; i<password.length; i++) {
+			if (/[A-Z]/.test(password.charAt(i))) {
+				capitalCount++;
+			}
+
+			else if (/[a-z]/.test(password.charAt(i))) {
+				lowerCount++;
+			}
+
+			else if (/[0-9]/.test(password.charAt(i))) {
+				numberCount++;
+			}
+
+			else if (/[!@#$%^&*(),.?":{}|<>]/.test(password.charAt(i))) {
+				specialCount++;
+			}
+		}
+
 		if (password !== confirmPassword) {
 			alert("Passwords don't match.");
+			return
+		}
+
+		else if (password.length < 8) {
+			alert("The password you have chosen is not long enough. Password must contain a number, an uppercase letter, a lowercase letter, a special character and must be at least 8 characters long.");
+			return
+		}
+
+		else if (capitalCount < 1) {
+			alert("The password you have chosen does not contain any uppercase letters. Password must contain a number, an uppercase letter, a lowercase letter, a special character and must be at least 8 characters long.");
+			return
+		}
+
+		else if (lowerCount < 1) {
+			alert("The password you have chosen does not contain any lowercase letters. Password must contain a number, an uppercase letter, a lowercase letter, a special character and must be at least 8 characters long.");
+			return
+		}
+
+		else if (numberCount < 1) {
+			alert("The password you have chosen does not contain any numbers. Password must contain a number, an uppercase letter, a lowercase letter, a special character and must be at least 8 characters long.");
+			return
+		}
+
+		else if (specialCount < 1) {
+			alert("The password you have chosen does not contain any special characters. Password must contain a number, an uppercase letter, a lowercase letter, a special character and must be at least 8 characters long.");
 			return
 		}
 
@@ -51,7 +101,8 @@ export default function RegistrationScreen({ navigation }) {
 					.doc(uid)
 					.set(user)
 					.then(() => {
-						navigation.navigate('ChooseTeam', { user: user });
+						navigation.navigate('Login');
+						alert("Registration successful, please sign in to continue.");
 					})
 					.catch((error) => {
 						alert(error)
@@ -77,16 +128,16 @@ export default function RegistrationScreen({ navigation }) {
 			</View>
 
 			<View style={auth_styles.switch_group}>
-				<Text style={{...auth_styles.switch_text, marginRight: 10}}>Player</Text>
+				<Text style={{ ...auth_styles.switch_text, marginRight: 10 }}>Player</Text>
 				<Switch
 					ios_backgroundColor='#f0f2f7'
 					thumbColor='#fff'
 					trackColor={{ true: '#5386e4', false: '#f0f2f7' }}
 					value={isSwitchOn}
 					onValueChange={onSwitchChange} />
-				<Text style={{...auth_styles.switch_text, marginLeft: 10}}>Manager</Text>
+				<Text style={{ ...auth_styles.switch_text, marginLeft: 10 }}>Manager</Text>
 			</View>
-			
+
 			<Text style={auth_styles.auth_label_text}>Full name</Text>
 			<TextInput
 				style={auth_styles.auth_input}

@@ -11,6 +11,7 @@ import FloatingModalButton from '../../components/buttons/FloatingModalButton';
 import modal_styles from '../../assets/styles/ModalStyle';
 import news_feed_styles from '../../assets/styles/NewsFeedStyle';
 import global_styles from '../../assets/styles/GlobalStyle';
+import medium_card_styles from '../../assets/styles/MediumCardStyle';
 
 // Redux Imports
 import { useSelector } from 'react-redux';
@@ -60,7 +61,10 @@ export default function HomeScreen({ navigation }) {
         <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPost')}>
           <View style={news_feed_styles.news_feed_card_top_row}>
               <View style={news_feed_styles.news_feed_card_circle_title_container}>
-                <View style={news_feed_styles.news_feed_card_profile_picture}></View>
+              <Image
+              style={medium_card_styles.medium_card_image}
+              source={require('../../assets/images/player-5.png')}
+              />
                 <Text style={news_feed_styles.news_feed_card_title}>Eamon Kavanagh</Text>
               </View>
               <View>
@@ -92,11 +96,14 @@ export default function HomeScreen({ navigation }) {
         <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPostTemp1')}>
           <View style={news_feed_styles.news_feed_card_top_row}>
               <View style={news_feed_styles.news_feed_card_circle_title_container}>
-                <View style={news_feed_styles.news_feed_card_profile_picture}></View>
+              <Image
+              style={medium_card_styles.medium_card_image}
+              source={require('../../assets/images/player-5.png')}
+              />
                 <Text style={news_feed_styles.news_feed_card_title}>Eamon Kavanagh</Text>
               </View>
               <View>
-                <Text style={news_feed_styles.news_feed_card_posted_on}>20:12</Text>
+                <Text style={news_feed_styles.news_feed_card_posted_on}>Yesterday</Text>
               </View>
             </View>
 
@@ -125,10 +132,13 @@ export default function HomeScreen({ navigation }) {
         <NewsFeedPost onPress={() => navigation.navigate('SpecificNewsFeedPostTemp2')}>
           <View style={news_feed_styles.news_feed_card_top_row}>
               <View style={news_feed_styles.news_feed_card_circle_title_container}>
-                <View style={news_feed_styles.news_feed_card_profile_picture}></View>
+              <Image
+              style={medium_card_styles.medium_card_image}
+              source={require('../../assets/images/player-5.png')}
+              />
                 <Text style={news_feed_styles.news_feed_card_title}>Eamon Kavanagh</Text>
               </View>
-              <Text style={news_feed_styles.news_feed_card_posted_on}>09:15</Text>
+              <Text style={news_feed_styles.news_feed_card_posted_on}>Friday</Text>
             </View>
 
             <View style={news_feed_styles.news_feed_card_middle_row}>

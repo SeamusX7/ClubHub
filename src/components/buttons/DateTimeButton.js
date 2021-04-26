@@ -20,7 +20,7 @@ const date_time_button_styles = StyleSheet.create({
     paddingVertical: 15,
   },
   buttonText: {
-    color: '#91999e',
+    color: '#caccd0',
     fontSize: 14,
     fontFamily: 'montserrat-regular',
   }

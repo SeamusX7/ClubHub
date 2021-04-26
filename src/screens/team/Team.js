@@ -17,6 +17,7 @@ import square_card_styles from '../../assets/styles/SquareCardStyle';
 import medium_card_styles from '../../assets/styles/MediumCardStyle';
 import half_modal_styles from '../../assets/styles/HalfModalStyle';
 import news_feed_styles from '../../assets/styles/NewsFeedStyle';
+import modal_styles from '../../assets/styles/ModalStyle';
 
 //redux
 import { useDispatch , useSelector } from 'react-redux';
@@ -48,6 +49,8 @@ export default function TeamScreen({ navigation }) {
     dispatch(activePlayerAdded(item));
     navigation.navigate('Player');
   }
+  const [playerInformationModalOpen, setPlayerInformationflowModalOpen] = useState(false);
+
   return (
     React.useLayoutEffect(() => {
       navigation.setOptions({
@@ -79,22 +82,6 @@ export default function TeamScreen({ navigation }) {
 
       <Text style={{ ...global_styles.title, marginBottom: 10, marginTop: 30 }}>Players</Text>
       <ScrollView>
-        {/* <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-1.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Jack Lynch</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Forward</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard> */}
-
         <FlatList
         data={players}
         renderItem={({ item }) => (
@@ -113,87 +100,55 @@ export default function TeamScreen({ navigation }) {
             <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
           </View>
         </MediumPlayerCard>
-        )}
-      />
-
-        {/* <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-2.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Joe McNally</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Midfielder</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard>
-
-        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-3.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Keane Callan</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Defender</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard>
-
-        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-4.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Ciaran Whelan</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Goalkeeper</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard>
-
-        <MediumPlayerCard onPress={() => navigation.navigate('Player')}>
-          <View style={medium_card_styles.medium_card_icon_container}>
-            <Image
-              style={medium_card_styles.medium_card_image}
-              source={require('../../assets/images/player-5.png')}
-            />
-          </View>
-          <View style={medium_card_styles.medium_card_info_container}>
-            <Text style={medium_card_styles.medium_card_primary_text}>Kevin Nolan</Text>
-            <Text style={medium_card_styles.medium_card_secondary_text}>Midfielder</Text>
-          </View>
-          <View style={medium_card_styles.medium_card_overflow_container}>
-            <OverflowMenuButton onPress={() => setOverflowModalOpen(true)} />
-          </View>
-        </MediumPlayerCard> */}
+        )} />
       </ScrollView>
 
       <Modal
         visible={OverflowModalOpen}
         transparent={true}
         animationType='slide'>
-        <SafeAreaView style={half_modal_styles.halfModalContentSmall} >
+        <SafeAreaView style={half_modal_styles.halfModalContentExtraSmall} >
           <View style={half_modal_styles.halfModalView}>
-
-            <HalfModalButton text='Player Information' primaryIconName='information-outline' />
-
-            <HalfModalButton text='Remove Player' primaryIconName='account-remove-outline' />
+            <HalfModalButton text='Player Information' primaryIconName='information-outline'  onPress={() => { closeOverflowModal(false); setPlayerInformationflowModalOpen(true); }} />
 
             <CancelButton text="Cancel" onPress={() => closeOverflowModal(false)} />
           </View>
+        </SafeAreaView>
+      </Modal>
+
+      <Modal
+        visible={playerInformationModalOpen}
+        animationType='slide'>
+
+        <SafeAreaView style={modal_styles.modalContent}>
+          <View style={modal_styles.modalContent}>
+            <View style={modal_styles.modalHeader}>
+              <Text style={modal_styles.modalTitle}>Player information</Text>
+              <MaterialIcons
+                name='close'
+                color='#333'
+                size={24}
+                style={modal_styles.modalToggleExit}
+                onPress={() => setPlayerInformationflowModalOpen(false)} />
+            </View>
+
+            <Text style={modal_styles.labelText}>Name</Text>
+            <TextInput
+              style={modal_styles.modalInput}
+              placeholder="Enter name..."
+              value="Jack Lynch" />
+
+              <Text style={modal_styles.labelText}>Position</Text>
+              <TextInput
+              style={modal_styles.modalInput}
+              placeholder="Select position"
+              value="Forward" />
+
+              <View style={{ marginTop: 30 }}>
+                <CancelButton
+                text="Save" />
+              </View>
+            </View>
         </SafeAreaView>
       </Modal>
     </View>
