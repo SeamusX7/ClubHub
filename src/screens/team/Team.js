@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View, Modal, SafeAreaView, FlatList } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Image, ScrollView, StyleSheet, Text, View, Modal, SafeAreaView, FlatList, TextInput } from 'react-native';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 // Component Imports
 import SquareCard from '../../components/cards/SquareCard';
