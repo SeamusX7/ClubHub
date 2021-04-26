@@ -1,4 +1,4 @@
-<img src="src/assets/images/readme-header-image.PNG?raw=true" height="180">
+![clubhub_logo](src/assets/images/readme-header-image.PNG?raw=true)
 ![GitHub contributors](https://img.shields.io/github/contributors/SeamusX7/Clubhub?color=blue&style=for-the-badge)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SeamusX7/ClubHub?color=important&style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/SeamusX7/ClubHub?color=brightgreen&style=for-the-badge)
